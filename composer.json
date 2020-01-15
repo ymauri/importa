@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.0",
         "sanjabteam/sanjab": "^0.0.20",
         "yajra/laravel-datatables": "^1.5",
+        "yajra/laravel-datatables-fractal": "^1.5",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

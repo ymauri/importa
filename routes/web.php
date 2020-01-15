@@ -55,10 +55,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 Route::middleware('auth')->name('client.')->prefix('client')->group(function() {
-	Route::get('/', 'ClientController@index')->name('index');
-	Route::post('/create', 'ClientController@storage')->name('create');
-	Route::get('/new', 'ClientController@new')->name('new');
-	Route::get('/dt', 'ClientController@dt')->name('dt');
+	Route::get('edit/{id}', 'ClientController@edit')->name('edit');
+	Route::post('edit/{id}', 'ClientController@update')->name('update');
+	Route::get('new', 'ClientController@new')->name('new');
+    Route::get('dt', 'ClientController@dt')->name('dt');
+    Route::get('', 'ClientController@index')->name('index');
+
 
 });
 
