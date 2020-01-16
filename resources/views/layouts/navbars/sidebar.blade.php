@@ -20,9 +20,15 @@
       <li class="nav-item{{ $activePage == 'client' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('client.index') }}">
           <i class="material-icons">accessibility</i>
-          <p>{{ __('clients') }}</p>
+          <p>Clientes</p>
         </a>
       </li>
+      <li class="nav-item{{ $activePage == 'product' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('product.index') }}">
+              <i class="material-icons">widgets</i>
+              <p>Productos</p>
+            </a>
+          </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>

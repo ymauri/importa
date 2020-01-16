@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Address;
-use App\City;
-use App\Client;
+use App\Product;
 use Exception;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class ProductController extends Controller
 {
-    /**
+     /**
      * Create a new controller instance.
      *
      * @return void
@@ -27,36 +25,31 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view('client.index');
+        return view('product.index');
     }
 
     public function dt()
     {
-        return datatables()->of(Client::all())->toJson();
+        return datatables()->of(Product::all())->toJson();
     }
 
     public function edit($id)
     {
-        $client = Client::find($id);
-        $address = Address::find($client->id_address);
+        $product = Product::find($id);
         $edit = true;
         // $cities = City::with(['state.country', function($query){
         //     $query->select('imp_country.id')
         //     ->where('imp_country.name', 'Cuba');
         // }])->get();
-        return view('client.form', compact('client', 'address', 'edit'));
+        return view('product.form', compact('product', 'edit'));
     }
 
     public function update(Request $request)
     {
         try {
             $data = $request->all();
-            // dd($data);
-            $client = Client::find($data['client']['id_client']);
-            $client->update($data['client']);
-
-            $address = Address::find($data['client']['id_address']);
-            $address->update($data['adsress']);
+            $product = Product::find($data['product']['id_product']);
+            $product->update($data['product']);
 
             flash('Datos guarados correctamente.')->success();
         }
@@ -64,40 +57,35 @@ class ClientController extends Controller
             flash('Error al guardar los datos. '.$e->getMessage())->error();
         }
 
-        return  redirect(route('client.index'));
+        return  redirect(route('product.index'));
     }
 
     public function create() {
-        $client = new Client();
-        $address = new Address();
-        return view('client.form', compact('client', 'address'));
+        $product = new Product();
+        return view('product.form', compact('product'));
     }
 
     public function save (Request $request) {
         try {
             $data = $request->all();
-            // dd($data);
-            $address = Address::create($data['address']);
-            $data['client']['id_address'] = $address->id;
-            Client::create($data['client']);
+            Product::create($data['product']);
             flash('Datos guarados correctamente.')->success();
         }
         catch (Exception $e) {
             flash('Error al guardar los datos. '.$e->getMessage())->error();
         }
-        return  redirect(route('client.index'));
+        return  redirect(route('product.index'));
     }
 
-    public function delete(Client $client) {
+    public function delete( $product) {
         try {
-            $client->delete();
+            Product::find($product)->delete();
             flash('Datos eliminados correctamente.')->success();
         }
         catch (Exception $e) {
             flash('Error al eliminar los datos. '.$e->getMessage())->error();
         }
 
-        return  redirect(route('client.index'));
+        return  redirect(route('product.index'));
     }
-
 }

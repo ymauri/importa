@@ -1,10 +1,10 @@
 /**
  * Created by User on 14/01/2020.
  */
-let ImpClient = function () {
+let ImpProduct = function () {
 
     let initTable = function () {
-        $('#datatable_client').DataTable({
+        $('#datatable_product').DataTable({
             responsive: true,
             // Pagination settings
             dom: `<'row'<'col-sm-12'tr>>
@@ -14,14 +14,14 @@ let ImpClient = function () {
             processing: true,
             serverSide: true,
             ajax: {
-                url: 'client/dt',
+                url: 'product/dt',
                 type: 'GET'
             },
 
             columns: [
                 {title: 'Nombre', data: 'name'},
-                {title: 'Apellidos', data: 'last_name'},
-                {title: 'Correo Electrónico', data: 'email'},
+                {title: 'Modelo', data: 'model'},
+                {title: 'Marca', data: 'brand'},
                 {title:  'Acciones', data: 'id', width: '200px'}
             ],
             columnDefs: [
@@ -30,9 +30,9 @@ let ImpClient = function () {
                     orderable: false,
                     class: 'td-actions text-right',
                     render: function (data, type, full, meta) {
-                            return `<form action="client/delete/${full.id}" method="post">
+                            return `<form action="product/delete/${full.id}" method="post">
                             <input type="hidden" name="_token" value="TWcX32NXFMc2axMctaciXT1nDENcT9eVjLeYNWpL">                                  <input type="hidden" name="_method" value="delete">
-                            <a rel="tooltip" class="btn btn-success btn-link" href="client/edit/${full.id}" data-original-title="" title="Editar">
+                            <a rel="tooltip" class="btn btn-success btn-link" href="product/edit/${full.id}" data-original-title="" title="Editar">
                             <i class="material-icons">edit</i>
                             <div class="ripple-container"></div>
                             </a>
@@ -59,5 +59,5 @@ let ImpClient = function () {
 }();
 
 jQuery(document).ready(function () {
-    ImpClient.init();
+    ImpProduct.init();
 });

@@ -65,9 +65,15 @@ Route::middleware('auth')->name('client.')->prefix('client')->group(function() {
     Route::get('', 'ClientController@index')->name('index');
 });
 
-//Route::name('client.')->prefix('client')->group(['middleware' => 'auth'], function () {
-//	Route::get('/', 'ClientController@index')->name('index');
-//});
+Route::middleware('auth')->name('product.')->prefix('product')->group(function() {
+	Route::get('edit/{id}', 'ProductController@edit')->name('edit');
+    Route::post('edit', 'ProductController@update')->name('update');
+	Route::delete('delete/{id}', 'ProductController@delete')->name('delete');
+    Route::get('create', 'ProductController@create')->name('create');
+	Route::post('create', 'ProductController@save')->name('save');
+    Route::get('dt', 'ProductController@dt')->name('dt');
+    Route::get('', 'ProductController@index')->name('index');
+});
 
 
 
