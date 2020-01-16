@@ -24,8 +24,4 @@ class Client extends Model
     public function address() {
         return $this->hasOne(Address::class, 'id', 'id_address');
     }
-
-    public function getNameAttribute() {
-        return $this->name. ' ' . $this->last_name;
-    }
 }
