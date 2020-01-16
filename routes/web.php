@@ -54,14 +54,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
+
 Route::middleware('auth')->name('client.')->prefix('client')->group(function() {
 	Route::get('edit/{id}', 'ClientController@edit')->name('edit');
-	Route::post('edit/{id}', 'ClientController@update')->name('update');
-	Route::get('new', 'ClientController@new')->name('new');
+    Route::post('edit', 'ClientController@update')->name('update');
+	Route::delete('delete/{id}', 'ClientController@delete')->name('delete');
+    Route::get('create', 'ClientController@create')->name('create');
+	Route::post('create', 'ClientController@save')->name('save');
     Route::get('dt', 'ClientController@dt')->name('dt');
     Route::get('', 'ClientController@index')->name('index');
-
-
 });
 
 //Route::name('client.')->prefix('client')->group(['middleware' => 'auth'], function () {

@@ -5,10 +5,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('client.update', ['id' => $client->id]) }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="@if(isset($edit)) {{ route('client.update') }} @else {{ route('client.create') }} @endif" autocomplete="off" class="form-horizontal">
             @csrf
             @method('post')
-
+            <input type="hidden" name="client[id_client]" value="{{ $client->id }}">
+            <input type="hidden" name="client[id_address]" value="{{ $client->id_address }}">
             <div class="card ">
               <div class="card-header card-header-primary">
                 <h4 class="card-title">{{ __('Crear cliente') }}</h4>
@@ -151,8 +152,8 @@
                     <label class="col-sm-2 col-form-label">Ciudad</label>
                     <div class="col-sm-7">
                         <div class="form-group{{ $errors->has('address[id_city]') ? ' has-danger' : '' }}">
-                        <select class="form-control{{ $errors->has('address[id_city]') ? ' is-invalid' : '' }}" name="address[apartment]" id="input-name" placeholder="Ciudad" aria-required="true">
-
+                        <select class="form-control{{ $errors->has('address[id_city]') ? ' is-invalid' : '' }}" name="address[id_city]" id="input-name" placeholder="Ciudad" aria-required="true">
+                            <option value="1">Cuba</option>
                         </select>
                         @if ($errors->has('address[id_city]'))
                             <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('address[id_city]') }}</span>
@@ -192,7 +193,7 @@
                 {{--</div>--}}
               {{--</div>--}}
               <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
             </div>
           </form>

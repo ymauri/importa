@@ -26,6 +26,7 @@
             @include('layouts.page_templates.auth')
         @endauth
         @guest()
+            @include('flash::message')
             @include('layouts.page_templates.guest')
         @endguest
 
