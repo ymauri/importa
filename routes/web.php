@@ -75,5 +75,15 @@ Route::middleware('auth')->name('product.')->prefix('product')->group(function()
     Route::get('', 'ProductController@index')->name('index');
 });
 
+Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
+	Route::get('edit/{id}', 'OrderController@edit')->name('edit');
+    Route::post('edit', 'OrderController@update')->name('update');
+	Route::delete('delete/{id}', 'OrderController@delete')->name('delete');
+    Route::get('create', 'OrderController@create')->name('create');
+	Route::post('create', 'OrderController@save')->name('save');
+    Route::get('dt', 'OrderController@dt')->name('dt');
+    Route::get('', 'OrderController@index')->name('index');
+});
+
 
 
