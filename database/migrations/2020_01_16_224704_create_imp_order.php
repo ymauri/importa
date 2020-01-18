@@ -15,13 +15,13 @@ class CreateImpOrder extends Migration
     {
         Schema::create('imp_order', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->float('weight');
-            $table->float('charter');
-            $table->float('volumen');
-            $table->float('customs');
-            $table->date('departure');
-            $table->string('barcode');
-            $table->string('shipping');
+            $table->float('weight')->default(0);
+            $table->float('charter')->default(0);
+            $table->float('volumen')->default(0);
+            $table->float('customs')->default(0);
+            $table->date('departure')->nullable();
+            $table->string('barcode')->nullable();
+            $table->string('shipping')->nullable();
             $table->string('name');
             $table->string('last_name');
             $table->string('email');
