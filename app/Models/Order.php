@@ -36,4 +36,22 @@ class Order extends Model
         return $this->belongsToMany(Product::class, 'imp_order_product', 'id_order', 'id');
     }
 
+    public function client() {
+        return $this->belongsTo(Client::class, 'id_client', 'id');
+    }
+
+    public function city() {
+        return $this->hasOne(City::class, 'id', 'id_city');
+    }
+
+    public function fullAddress() {
+        return $this->street.
+                ' No. '. $this->number  .
+                ' E/ ' .$this->between.
+                ' Apto. '. $this->apartment .
+                ', '. $this->city->name .
+                ", ".$this->city->state->name.
+                ", ".$this->city->state->country->name;
+    }
+
 }

@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/client.js', 'public/js')
     .js('resources/js/product.js', 'public/js')
     .js('resources/js/order.js', 'public/js')
+    .js('resources/js/modal-products.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');

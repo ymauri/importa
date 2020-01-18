@@ -33,10 +33,15 @@ let ImpOrder = function () {
                     render: function (data, type, full, meta) {
                             return `<form action="order/delete/${full.id}" method="post">
                             <input type="hidden" name="_token" value="TWcX32NXFMc2axMctaciXT1nDENcT9eVjLeYNWpL">                                  <input type="hidden" name="_method" value="delete">
+                            <a rel="tooltip" class="btn btn-info btn-link" href="order/products/${full.id}" data-original-title="" title="Productos">
+                            <i class="material-icons">widgets</i>
+                            <div class="ripple-container"></div>
+                            </a>
                             <a rel="tooltip" class="btn btn-success btn-link" href="order/edit/${full.id}" data-original-title="" title="Editar">
                             <i class="material-icons">edit</i>
                             <div class="ripple-container"></div>
                             </a>
+
                             <button type="button" class="btn btn-danger btn-link" data-original-title="" title="Eliminar" onclick="confirm('Confirmar acción') ? this.parentElement.submit() : ''">
                                 <i class="material-icons">close</i>
                                 <div class="ripple-container"></div>

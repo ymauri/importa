@@ -18,7 +18,17 @@ class Address extends Model
         'id_city'
     ];
 
-    public function state() {
+    public function city() {
         return $this->hasOne(City::class, 'id', 'id_city');
+    }
+
+    public function fullAddress() {
+        return $this->street.
+                ' No. '. $this->number  .
+                ' E/ ' .$this->between.
+                ' Apto. '. $this->apartment .
+                ', '. $this->city->name .
+                ", ".$this->city->state->name.
+                ", ".$this->city->state->country->name;
     }
 }

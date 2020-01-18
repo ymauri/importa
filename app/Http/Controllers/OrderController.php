@@ -68,16 +68,25 @@ class OrderController extends Controller
         return  redirect(route('order.index'));
     }
 
-    // public function delete(Client $client) {
-    //     try {
-    //         $client->delete();
-    //         flash('Datos eliminados correctamente.')->success();
-    //     }
-    //     catch (Exception $e) {
-    //         flash('Error al eliminar los datos. '.$e->getMessage())->error();
-    //     }
+    public function delete(Order $order) {
+        try {
+            $order->delete();
+            flash('Datos eliminados correctamente.')->success();
+        }
+        catch (Exception $e) {
+            flash('Error al eliminar los datos. '.$e->getMessage())->error();
+        }
+        return  redirect(route('order.index'));
+    }
 
-    //     return  redirect(route('client.index'));
-    // }
+    public function products(Order $order) {
+        $products = $order->products;
+        return view('order.products', compact('order', 'products'));
+    }
+
+    public function addProduct(Order $order) {
+        $products = $order->products;
+        return view('order.products', compact('order', 'products'));
+    }
 
 }
