@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
+use App\Client;
 use App\Order;
 use Exception;
 use Illuminate\Http\Request;
@@ -33,58 +35,38 @@ class OrderController extends Controller
         return datatables()->of(Order::all())->toJson();
     }
 
-    // public function edit($id)
-    // {
-    //     $client = Client::find($id);
-    //     $address = Address::find($client->id_address);
-    //     $edit = true;
-    //     // $cities = City::with(['state.country', function($query){
-    //     //     $query->select('imp_country.id')
-    //     //     ->where('imp_country.name', 'Cuba');
-    //     // }])->get();
-    //     return view('client.form', compact('client', 'address', 'edit'));
-    // }
+    public function edit($id)
+    {
+        $order = Order::find($id);
+        $edit = true;
+        return view('order.form', compact('order', 'edit'));
+    }
 
-    // public function update(Request $request)
-    // {
-    //     try {
-    //         $data = $request->all();
-    //         // dd($data);
-    //         $client = Client::find($data['client']['id_client']);
-    //         $client->update($data['client']);
+    public function update(Request $request)
+    {
+        dd($request->all());
 
-    //         $address = Address::find($data['client']['id_address']);
-    //         $address->update($data['adsress']);
+    }
 
-    //         flash('Datos guarados correctamente.')->success();
-    //     }
-    //     catch (Exception $e) {
-    //         flash('Error al guardar los datos. '.$e->getMessage())->error();
-    //     }
+    public function create() {
+        $order = new Order();
+        $clients = Client::all();
+        return view('order.form', compact('order', 'clients'));
+    }
 
-    //     return  redirect(route('client.index'));
-    // }
+    public function save (Request $request) {
+        try {
+            $data = $request->all();
+            Order::create($data['order']);
+            flash('Datos guarados correctamente.')->success();
+        }
+        catch (Exception $e) {
+            dd($e);
+            flash('Error al guardar los datos. '.$e->getMessage())->error();
+        }
 
-    // public function create() {
-    //     $client = new Client();
-    //     $address = new Address();
-    //     return view('client.form', compact('client', 'address'));
-    // }
-
-    // public function save (Request $request) {
-    //     try {
-    //         $data = $request->all();
-    //         // dd($data);
-    //         $address = Address::create($data['address']);
-    //         $data['client']['id_address'] = $address->id;
-    //         Client::create($data['client']);
-    //         flash('Datos guarados correctamente.')->success();
-    //     }
-    //     catch (Exception $e) {
-    //         flash('Error al guardar los datos. '.$e->getMessage())->error();
-    //     }
-    //     return  redirect(route('client.index'));
-    // }
+        return  redirect(route('order.index'));
+    }
 
     // public function delete(Client $client) {
     //     try {

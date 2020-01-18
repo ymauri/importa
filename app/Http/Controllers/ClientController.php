@@ -100,4 +100,22 @@ class ClientController extends Controller
         return  redirect(route('client.index'));
     }
 
+    public function select(Request $request) {
+        $search = $request->search;
+        if($search == '') {
+            $clients = Client::orderby('name','asc')->select('id','name')->limit(5)->get();
+        }
+        else {
+            $clients = Client::orderby('name','asc')->select('id','name')->where('name', 'like', '%' .$search . '%')->limit(5)->get();
+        }
+        $response = [];
+        foreach($clients as $c){
+            $response[] = [
+                "id"=>$c->id,
+                "text"=>$c->name
+            ];
+        }
+        return json_encode($response);
+    }
+
 }

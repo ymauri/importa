@@ -31,9 +31,9 @@ let ImpOrder = function () {
                     orderable: false,
                     class: 'td-actions text-right',
                     render: function (data, type, full, meta) {
-                            return `<form action="product/delete/${full.id}" method="post">
+                            return `<form action="order/delete/${full.id}" method="post">
                             <input type="hidden" name="_token" value="TWcX32NXFMc2axMctaciXT1nDENcT9eVjLeYNWpL">                                  <input type="hidden" name="_method" value="delete">
-                            <a rel="tooltip" class="btn btn-success btn-link" href="product/edit/${full.id}" data-original-title="" title="Editar">
+                            <a rel="tooltip" class="btn btn-success btn-link" href="order/edit/${full.id}" data-original-title="" title="Editar">
                             <i class="material-icons">edit</i>
                             <div class="ripple-container"></div>
                             </a>
@@ -59,9 +59,36 @@ let ImpOrder = function () {
         });
     };
 
+    let initSelect = function () {
+        if ($('#id_client').val() > 0)
+        $("#select_client").val($('#id_client').val())
+        let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $("#select_client").select2({
+            ajax: {
+              url: "/client/select",
+              type: "post",
+              dataType: 'json',
+              delay: 250,
+              data: function (params) {
+                return {
+                  _token: CSRF_TOKEN,
+                  search: params.term // search term
+                };
+              },
+              processResults: function (response) {
+                return {
+                  results: response
+                };
+              },
+              cache: true
+            }
+          });
+    }
+
     return {
         init: function () {
             initTable();
+            initSelect();
         }
     };
 }();

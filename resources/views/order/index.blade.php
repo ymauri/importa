@@ -14,7 +14,7 @@
                     <div class="col-12 text-right">
                             {{-- <a href="{{ route('product.create') }}" class="btn btn-sm btn-primary">Nueva compra</a> --}}
 
-                        <a href="#" class="btn btn-sm btn-primary">Nueva compra</a>
+                    <a href="{{ route('order.create') }}" class="btn btn-sm btn-primary">Nueva compra</a>
                     </div>
                 </div>
               <table class="table table-hover" style="width:100%" id="datatable_order">

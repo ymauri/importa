@@ -8,6 +8,7 @@ class Order extends Model
 {
     protected $table = 'imp_order';
     protected $primaryKey = 'id';
+    public $timestamps = true;
     protected $fillable = [
         'weight',
         'charter',

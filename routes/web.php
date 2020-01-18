@@ -63,6 +63,7 @@ Route::middleware('auth')->name('client.')->prefix('client')->group(function() {
 	Route::post('create', 'ClientController@save')->name('save');
     Route::get('dt', 'ClientController@dt')->name('dt');
     Route::get('', 'ClientController@index')->name('index');
+    Route::post('select', 'ClientController@select')->name('select');
 });
 
 Route::middleware('auth')->name('product.')->prefix('product')->group(function() {
