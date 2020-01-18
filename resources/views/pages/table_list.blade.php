@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-primary">
+          <div class="card-header card-header-info">
             <h4 class="card-title ">Simple Table</h4>
             <p class="card-category"> Here is a subtitle for this table</p>
           </div>
@@ -141,7 +141,7 @@
       </div>
       <div class="col-md-12">
         <div class="card card-plain">
-          <div class="card-header card-header-primary">
+          <div class="card-header card-header-info">
             <h4 class="card-title mt-0"> Table on Plain Background</h4>
             <p class="card-category"> Here is a subtitle for this table</p>
           </div>

@@ -10,14 +10,14 @@
             @method('post')
             <input type="hidden" name="product[id]" value="{{ $product->id }}">
             <div class="card ">
-              <div class="card-header card-header-primary">
+              <div class="card-header card-header-info">
                 <h4 class="card-title">{{ __('Crear producto') }}</h4>
                 <p class="card-category"></p>
               </div>
               <div class="card-body ">
                 <div class="row">
                   <div class="col-md-12 text-right">
-                      <a href="{{ route('product.index') }}" class="btn btn-sm btn-primary">{{ __('Ir al listado') }}</a>
+                      <a href="{{ route('product.index') }}" class="btn btn-sm btn-info">{{ __('Ir al listado') }}</a>
                   </div>
                 </div>
                 <div class="row">
@@ -119,7 +119,7 @@
         'charter'
                     --}}
               <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-info">Guardar</button>
               </div>
             </div>
           </form>

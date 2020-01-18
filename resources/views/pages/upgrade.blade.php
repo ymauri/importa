@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="card">
-          <div class="card-header card-header-primary">
+          <div class="card-header card-header-info">
             <h4 class="card-title">Material Dashboard PRO</h4>
             <p class="card-category">Are you looking for more components? Please check our Premium Version of Material Dashboard.</p>
           </div>

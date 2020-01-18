@@ -4,7 +4,7 @@
 <div class="content">
   <div class="container-fluid">
     <div class="card">
-      <div class="card-header card-header-primary">
+      <div class="card-header card-header-info">
         <h3 class="card-title">Notifications</h3>
         <p class="card-category">Handcrafted by our friend
           <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the
@@ -93,13 +93,13 @@
             <div class="col-lg-8 col-md-10 ml-auto mr-auto">
               <div class="row">
                 <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="md.showNotification('top','left')">Top Left</button>
+                  <button class="btn btn-info btn-block" onclick="md.showNotification('top','left')">Top Left</button>
                 </div>
                 <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="md.showNotification('top','center')">Top Center</button>
+                  <button class="btn btn-info btn-block" onclick="md.showNotification('top','center')">Top Center</button>
                 </div>
                 <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="md.showNotification('top','right')">Top Right</button>
+                  <button class="btn btn-info btn-block" onclick="md.showNotification('top','right')">Top Right</button>
                 </div>
               </div>
             </div>
@@ -108,13 +108,13 @@
             <div class="col-lg-8 col-md-10 ml-auto mr-auto">
               <div class="row">
                 <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="md.showNotification('bottom','left')">Bottom Left</button>
+                  <button class="btn btn-info btn-block" onclick="md.showNotification('bottom','left')">Bottom Left</button>
                 </div>
                 <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="md.showNotification('bottom','center')">Bottom Center</button>
+                  <button class="btn btn-info btn-block" onclick="md.showNotification('bottom','center')">Bottom Center</button>
                 </div>
                 <div class="col-md-4">
-                  <button class="btn btn-primary btn-block" onclick="md.showNotification('bottom','right')">Bottom Right</button>
+                  <button class="btn btn-info btn-block" onclick="md.showNotification('bottom','right')">Bottom Right</button>
                 </div>
               </div>
             </div>

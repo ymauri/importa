@@ -296,7 +296,7 @@
           <div class="row">
             <div class="col-lg-6 col-md-12">
               <div class="card">
-                <div class="card-header card-header-tabs card-header-primary">
+                <div class="card-header card-header-tabs card-header-info">
                   <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
                       <span class="nav-tabs-title">وظایف:</span>
@@ -341,7 +341,7 @@
                             </td>
                             <td>طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن؟</td>
                             <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-primary btn-link btn-sm">
+                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-info btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
                               <button type="button" rel="tooltip" title="حذف" class="btn btn-danger btn-link btn-sm">
@@ -362,7 +362,7 @@
                             </td>
                             <td>نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند؟</td>
                             <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-primary btn-link btn-sm">
+                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-info btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
                               <button type="button" rel="tooltip" title="حذف" class="btn btn-danger btn-link btn-sm">
@@ -384,7 +384,7 @@
                             <td>همان حال کار آنها به نوعی وابسته به متن می‌باشد
                             </td>
                             <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-primary btn-link btn-sm">
+                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-info btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
                               <button type="button" rel="tooltip" title="حذف" class="btn btn-danger btn-link btn-sm">
@@ -405,7 +405,7 @@
                             </td>
                             <td>آنها با استفاده از محتویات ساختگی، صفحه گرافیکی خود را صفحه‌آرایی می‌کنند</td>
                             <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-primary btn-link btn-sm">
+                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-info btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
                               <button type="button" rel="tooltip" title="حذف" class="btn btn-danger btn-link btn-sm">
@@ -433,7 +433,7 @@
                             <td>بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته
                             </td>
                             <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-primary btn-link btn-sm">
+                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-info btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
                               <button type="button" rel="tooltip" title="حذف" class="btn btn-danger btn-link btn-sm">
@@ -454,7 +454,7 @@
                             </td>
                             <td>اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید؟</td>
                             <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-primary btn-link btn-sm">
+                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-info btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
                               <button type="button" rel="tooltip" title="حذف" class="btn btn-danger btn-link btn-sm">
@@ -481,7 +481,7 @@
                             </td>
                             <td>گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد. معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی؟</td>
                             <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-primary btn-link btn-sm">
+                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-info btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
                               <button type="button" rel="tooltip" title="حذف" class="btn btn-danger btn-link btn-sm">
@@ -503,7 +503,7 @@
                             <td> از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد. معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی ؟
                             </td>
                             <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-primary btn-link btn-sm">
+                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-info btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
                               <button type="button" rel="tooltip" title="حذف" class="btn btn-danger btn-link btn-sm">
@@ -524,7 +524,7 @@
                             </td>
                             <td>از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند؟</td>
                             <td class="td-actions text-right">
-                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-primary btn-link btn-sm">
+                              <button type="button" rel="tooltip" title="ویرایش وظیفه" class="btn btn-info btn-link btn-sm">
                                 <i class="material-icons">edit</i>
                               </button>
                               <button type="button" rel="tooltip" title="حذف" class="btn btn-danger btn-link btn-sm">
@@ -587,7 +587,7 @@
           <div class="row">
             <div class="col-lg-6 col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
+                <div class="card-header card-header-info">
                   <h3 class="card-title">اعلان ها</h3>
                   <p class="card-category">ایجاد شده توسط دوست ما
                     <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. لطفا
@@ -632,7 +632,7 @@
                   <p class="card-description">
                       طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد. معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند ...
                   </p>
-                  <a href="#pablo" class="btn btn-primary btn-round">دنبال‌کردن</a>
+                  <a href="#pablo" class="btn btn-info btn-round">دنبال‌کردن</a>
                 </div>
               </div>
 

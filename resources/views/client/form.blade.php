@@ -11,14 +11,14 @@
             <input type="hidden" name="client[id_client]" value="{{ $client->id }}">
             <input type="hidden" name="client[id_address]" value="{{ $client->id_address }}">
             <div class="card ">
-              <div class="card-header card-header-primary">
+              <div class="card-header card-header-info">
                 <h4 class="card-title">{{ __('Crear cliente') }}</h4>
                 <p class="card-category"></p>
               </div>
               <div class="card-body ">
                 <div class="row">
                   <div class="col-md-12 text-right">
-                      <a href="{{ route('client.index') }}" class="btn btn-sm btn-primary">{{ __('Ir al listado') }}</a>
+                      <a href="{{ route('client.index') }}" class="btn btn-sm btn-info">{{ __('Ir al listado') }}</a>
                   </div>
                 </div>
                 <div class="row">
@@ -162,7 +162,7 @@
                     </div>
                 </div>
               <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-info">Guardar</button>
               </div>
             </div>
           </form>
