@@ -28,3 +28,23 @@
     </div>
   </div>
 </nav>
+@if(session('flash_message_notification'))
+@push('js')
+    <script>
+        $.notify({
+      icon: "add_alert",
+      message: " {{ session('flash_message_notification') }} "
+
+    }, {
+      type: "{{ session('flash_level_notification') }} ",
+      timer: 3000,
+      placement: {
+        from: 'top',
+        align: 'right'
+      }
+    });
+    </script>
+    {{ session()->forget(['flash_message_notification', 'flash_level_notification']) }} --}}
+
+    @endpush
+@endif
