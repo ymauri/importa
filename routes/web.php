@@ -64,6 +64,8 @@ Route::middleware('auth')->name('client.')->prefix('client')->group(function() {
     Route::get('dt', 'ClientController@dt')->name('dt');
     Route::get('', 'ClientController@index')->name('index');
     Route::post('select', 'ClientController@select')->name('select');
+    Route::post('selectCity', 'ClientController@selectCity')->name('selectCity');
+
 });
 
 Route::middleware('auth')->name('product.')->prefix('product')->group(function() {
@@ -85,7 +87,9 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
     Route::get('dt', 'OrderController@dt')->name('dt');
     Route::get('', 'OrderController@index')->name('index');
     Route::get('products/{order}', 'OrderController@products')->name('products');
-    Route::get('addProduct/{order}', 'OrderController@addProduct')->name('addProduct');
+    Route::post('addProduct', 'OrderController@addProduct')->name('addProduct');
+    Route::post('deleteProduct', 'OrderController@deleteProduct')->name('deleteProduct');
+
 });
 
 

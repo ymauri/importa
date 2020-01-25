@@ -51,12 +51,11 @@ class ClientController extends Controller
     {
         try {
             $data = $request->all();
-            // dd($data);
             $client = Client::find($data['client']['id_client']);
             $client->update($data['client']);
 
             $address = Address::find($data['client']['id_address']);
-            $address->update($data['adsress']);
+            $address->update($data['address']);
 
             flash('Datos guarados correctamente.')->success();
         }
@@ -103,16 +102,43 @@ class ClientController extends Controller
     public function select(Request $request) {
         $search = $request->search;
         if($search == '') {
-            $clients = Client::orderby('name','asc')->select('id','name')->limit(5)->get();
+            $clients = Client::orderby('name','asc')->select('id','name', 'last_name')->limit(5)->get();
         }
         else {
-            $clients = Client::orderby('name','asc')->select('id','name')->where('name', 'like', '%' .$search . '%')->limit(5)->get();
+            $clients = Client::orderby('name','asc')->select('id','name', 'last_name')
+                        ->where('name', 'like', '%' .$search . '%')
+                        ->orWhere('last_name', 'like', '%' .$search . '%')->limit(5)->get();
         }
         $response = [];
         foreach($clients as $c){
             $response[] = [
                 "id"=>$c->id,
-                "text"=>$c->name
+                "text"=> $c->name. " " .$c->last_name
+            ];
+        }
+        return json_encode($response);
+    }
+
+    public function selectCity(Request $request) {
+        $search = $request->search;
+        $base = City::join('imp_state', 'imp_state.id', 'imp_city.id_state')
+                ->join('imp_country', 'imp_country.id', 'imp_state.id_country')
+                ->orderby('imp_state.name','asc')
+                ->select(
+                    'imp_city.id',
+                    \DB::raw('CONCAT(imp_city.name, ", ", imp_state.name, " - ", imp_country.name) as city')
+                );
+        if($search == '') {
+            $cities = $base->limit(5)->get();
+        }
+        else {
+            $cities = $base->having('city', 'like', '%' .$search . '%')->limit(5)->get();
+        }
+        $response = [];
+        foreach($cities as $c){
+            $response[] = [
+                "id"=>$c['id'],
+                "text"=> $c['city']
             ];
         }
         return json_encode($response);

@@ -65,12 +65,34 @@ let ImpOrder = function () {
     };
 
     let initSelect = function () {
-        if ($('#id_client').val() > 0)
-        $("#select_client").val($('#id_client').val())
         let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $("#select_client").select2({
+        if ( $("#select_client").length > 0) {
+            $("#select_client").select2({
+                ajax: {
+                  url: "/client/select",
+                  type: "post",
+                  dataType: 'json',
+                  delay: 250,
+                  data: function (params) {
+                    return {
+                      _token: CSRF_TOKEN,
+                      search: params.term // search term
+                    };
+                  },
+                  processResults: function (response) {
+                    return {
+                      results: response
+                    };
+                  },
+                  cache: true
+                }
+              });
+        }
+        if ( $("#order_city").length > 0) {
+
+          $("#order_city").select2({
             ajax: {
-              url: "/client/select",
+              url: "/client/selectCity",
               type: "post",
               dataType: 'json',
               delay: 250,
@@ -88,6 +110,7 @@ let ImpOrder = function () {
               cache: true
             }
           });
+        }
     }
 
     return {

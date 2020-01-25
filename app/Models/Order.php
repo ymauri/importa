@@ -54,4 +54,20 @@ class Order extends Model
                 ", ".$this->city->state->country->name;
     }
 
+    public function updateGlobalValues() {
+        $weight = $chatrer = $volumen = $customs = 0;
+        foreach ($this->products as $product) {
+            $weight += $product->weight;
+            $chatrer += $product->chatrer;
+            $volumen += $product->volumen;
+            $customs += $product->customs;
+        }
+        $this->update([
+            'weight' => $weight,
+            'chatrer' => $chatrer,
+            'volumen' => $volumen,
+            'customs' => $customs,
+        ]);
+    }
+
 }

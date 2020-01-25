@@ -28,10 +28,15 @@
                     <div class="row">
                         <label class="col-sm-2 col-form-label">{{ __('Cliente') }}</label>
                         <input type="hidden" value="{{ $order->id_client }}" id="id_client">
+                        <input type="hidden" value="{{ $order->id }}" name="order[id_order]">
                         <div class="col-sm-7">
                             <div class="form-group{{ $errors->has('order[id_client]') ? ' has-danger' : '' }}">
-                            <select  class="form-control {{ $errors->has('order[id_client]') ? ' is-invalid' : '' }}" name="order[id_client]" type="text" placeholder="Seleccione ..."  required="true" aria-required="true" id="select_client">
-                                <option value='0'></option>
+                            <select  class="form-control {{ $errors->has('order[id_client]') ? ' is-invalid' : '' }}" name="order[id_client]" type="text" placeholder="Escriba el nombre del cliente ..."  required="true" aria-required="true" id="select_client">
+                                @if( !empty($order->client ) )
+                                    <option value='{{ $order->id_client }}'> {{ $order->client->name  }} {{ $order->client->last_name  }}</option>
+                                @else
+                                    <option value="0"></option>
+                                @endif
                             </select>
                             @if ($errors->has('order[id_client]'))
                                 <span id="name-error" class="error text-danger">{{ $errors->first('order[id_client]') }}</span>
@@ -168,11 +173,16 @@
                     </div>
                 </div>
                 <div class="row">
+                    <input type="hidden" value="{{ $order->id_city }}" id="id_city">
                     <label class="col-sm-2 col-form-label">Ciudad</label>
                     <div class="col-sm-7">
                         <div class="form-group{{ $errors->has('order[id_city]') ? ' has-danger' : '' }}">
-                        <select class="form-control{{ $errors->has('order[id_city]') ? ' is-invalid' : '' }}" name="order[id_city]" placeholder="Ciudad" aria-required="true">
-                            <option value="1">Cuba</option>
+                        <select class="form-control{{ $errors->has('order[id_city]') ? ' is-invalid' : '' }}" name="order[id_city]" placeholder="Ciudad" aria-required="true" id="order_city">
+                            @if( !empty($order->city) )
+                                <option value='{{ $order->id_city }}'> {{ $order->city->name  }}, {{ $order->city->state->name  }} - {{ $order->city->state->country->name  }}</option>
+                            @else
+                                <option value="0"></option>
+                            @endif
                         </select>
                         @if ($errors->has('order[id_city]'))
                             <span id="name-error" class="error text-danger">{{ $errors->first('order[id_city]') }}</span>

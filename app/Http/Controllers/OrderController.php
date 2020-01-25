@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\Client;
 use App\Order;
+use App\OrderProduct;
+use App\Product;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -44,8 +46,17 @@ class OrderController extends Controller
 
     public function update(Request $request)
     {
-        dd($request->all());
-
+        try {
+            $data = $request->all();
+            $order = Order::find($data['order']['id_order']);
+            $data['order']['barcode'] = $this->getCode6Package($order->id);
+            $order->update($data['order']);
+            flash('Datos guarados correctamente.')->success();
+        }
+        catch (Exception $e) {
+            flash('Error al guardar los datos. '.$e->getMessage())->error();
+        }
+        return  redirect(route('order.index'));
     }
 
     public function create() {
@@ -57,14 +68,17 @@ class OrderController extends Controller
     public function save (Request $request) {
         try {
             $data = $request->all();
-            Order::create($data['order']);
+            $order = Order::create($data['order']);
+            $order->update([
+                'barcode' => $this->getCode6Package($order->id)
+            ]);
+            $order->updateGlobalValues();
             flash('Datos guarados correctamente.')->success();
         }
         catch (Exception $e) {
             dd($e);
             flash('Error al guardar los datos. '.$e->getMessage())->error();
         }
-
         return  redirect(route('order.index'));
     }
 
@@ -80,13 +94,43 @@ class OrderController extends Controller
     }
 
     public function products(Order $order) {
-        $products = $order->products;
+        $products = OrderProduct::where('id_order', $order->id)->get();
         return view('order.products', compact('order', 'products'));
     }
 
-    public function addProduct(Order $order) {
-        $products = $order->products;
-        return view('order.products', compact('order', 'products'));
+    public function addProduct(Request $request) {
+        $data = $request->all();
+        try {
+            $relation = OrderProduct::where('id_product', $data['product'])->where('id_order', $data['order'])->first();
+            if (!empty($relation)){
+                $qty = $relation->quantity + $data['qty'];
+                $relation->update(['quantity' => $qty]);
+            } else {
+                OrderProduct::insert([
+                    'quantity' =>  $data['qty'],
+                    'id_product' => $data['product'],
+                    'id_order' => $data['order'],
+                ]);
+            }
+            $order = Order::find($data['order']);
+            $order->updateGlobalValues();
+            return response(json_encode(['status' => 200, 'response'=> 'Producto añadido correctamente']));
+        } catch (Exception $e) {
+            return response(json_encode(['status' => 500, 'response'=> $e->getMessage()]));
+        }
+    }
+
+    public function deleteProduct(Request $request) {
+        $data = $request->all();
+        try {
+            OrderProduct::where('id_product', $data['product'])->where('id_order', $data['order'])->delete();
+            $order = Order::find($data['order']);
+            $order->updateGlobalValues();
+            return response(json_encode(['status' => 200, 'response'=> 'Producto eliminado correctamente']));
+        } catch (Exception $e) {
+            return response(json_encode(['status' => 500, 'response'=> $e->getMessage()]));
+
+        }
     }
 
 }

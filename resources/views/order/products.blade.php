@@ -7,6 +7,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-info">
+          <input type="hidden" value="{{ $order->id }}" id="id_order">
               <div class="row">
                     <div class="col-md-12 col-sm-12"><h4>Identificador: <b>#{{ $order->id }}</b></h4> </div>
                 </div>
@@ -53,6 +54,26 @@
                         {{-- <a href="{{ route('order.addProduct', ['order' => $order->id]) }}" class="btn btn-sm btn-info">Añadir productos</a> --}}
                         </div>
                     </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Marca </th>
+                                <th>Modelo</th>
+                                <th class="td-actions text-right">Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($products as $item)
+                                <tr>
+                                    <td>{{ $item->product->name }} </td>
+                                    <td>{{ $item->product->brand }} </td>
+                                    <td>{{ $item->product->model }} </td>
+                                    <td class="td-actions text-right" id="prodcut-qty-{{ $item->id_product }}">{{ $item->quantity }} </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
               </div>
             </div>
