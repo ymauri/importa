@@ -141,4 +141,8 @@ class OrderController extends Controller
         return $pdf->download($order->id.'.pdf');
     }
 
+    public function productsDt (Order $order) {
+        return datatables()->of($order->products)->toJson();
+    }
+
 }

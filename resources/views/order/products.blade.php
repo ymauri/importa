@@ -50,29 +50,12 @@
                     </div>
                     <div class="row">
                         <div class="col-12 text-right">
-                            <button id="show-modal" type="button" class="btn btn-info" data-toggle="modal" data-target=".product-list-modal">Añadir productos</button>
+
+                            <button id="show-modal" type="button" class="btn btn-info" data-toggle="modal" data-target=".product-list-modal"><i class="material-icons">playlist_add</i></button>
                         {{-- <a href="{{ route('order.addProduct', ['order' => $order->id]) }}" class="btn btn-sm btn-info">Añadir productos</a> --}}
                         </div>
                     </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Marca </th>
-                                <th>Modelo</th>
-                                <th class="td-actions text-right">Cantidad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($products as $item)
-                                <tr>
-                                    <td>{{ $item->product->name }} </td>
-                                    <td>{{ $item->product->brand }} </td>
-                                    <td>{{ $item->product->model }} </td>
-                                    <td class="td-actions text-right" id="prodcut-qty-{{ $item->id_product }}">{{ $item->quantity }} </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+                    <table class="table table-hover" style="width:100%" id="datatable_products_order">
                     </table>
                 </div>
               </div>
@@ -83,6 +66,6 @@
 @include('order.modal-products')
 @endsection
 @push('scripts')
-    {{-- <script src="{{asset('js/order.js')}}" type="text/javascript"></script> --}}
+    <script src="{{asset('js/order.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/modal-products.js')}}" type="text/javascript"></script>
 @endpush

@@ -88,8 +88,10 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
     Route::get('', 'OrderController@index')->name('index');
     Route::get('products/{order}', 'OrderController@products')->name('products');
     Route::post('addProduct', 'OrderController@addProduct')->name('addProduct');
-    Route::post('deleteProduct', 'OrderController@deleteProduct')->name('deleteProduct');
+    Route::delete('deleteProduct', 'OrderController@deleteProduct')->name('deleteProduct');
     Route::get('pdf/{order}', 'OrderController@pdf')->name('pdf');
+    Route::get('productsDt/{order}', 'OrderController@productsDt')->name('productsDt');
+
 
 
 });

@@ -42,10 +42,6 @@ let ImpModalProducts = function () {
                             <i class="material-icons">add_shopping_cart</i>
                             <div class="ripple-container"></div>
                         <div class="ripple-container"></div></button>
-                        <a rel="tooltip" class="btn btn-danger btn-link delete-product" href="#" data-original-title="" title="Eliminar">
-                        <i class="material-icons">remove_shopping_cart</i>
-                        <div class="ripple-container"></div>
-                        </a>
                     </form>`
 
                     },
@@ -72,7 +68,6 @@ let ImpModalProducts = function () {
 
                 } );
                 addProduct();
-                deleteProduct();
             }
         });
     };
@@ -116,7 +111,7 @@ let ImpModalProducts = function () {
                         Imp.notify('success', response.response)
                         drawProductTable();
                     } else {
-                        Imp.notify('error', response.response);
+                        Imp.notify('danger', response.response);
                     }
                 }
               });
@@ -146,7 +141,7 @@ let ImpModalProducts = function () {
                         Imp.notify('success', response.response)
                         drawProductTable();
                     } else {
-                        Imp.notify('error', response.response);
+                        Imp.notify('danger', response.response);
                     }
                 }
               });

@@ -213,7 +213,7 @@ let ImpShipping = function () {
                         Imp.notify('success', response.response)
                         table_order.ajax.reload();
                     } else {
-                        Imp.notify('error', response.response);
+                        Imp.notify('danger', response.response);
                     }
                 }
               });
@@ -241,7 +241,7 @@ let ImpShipping = function () {
                         Imp.notify('success', response.response)
                         table_order.ajax.reload();
                     } else {
-                        Imp.notify('error', response.response);
+                        Imp.notify('danger', response.response);
                     }
                 }
               });
