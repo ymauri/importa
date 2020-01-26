@@ -106,6 +106,7 @@ Route::middleware('auth')->name('shipping.')->prefix('shipping')->group(function
     Route::post('addOrder', 'ShippingController@addOrder')->name('addOrder');
     Route::delete('deleteOrder', 'ShippingController@deleteOrder')->name('deleteOrder');
     Route::get('', 'ShippingController@index')->name('index');
+    Route::get('txt/{shipping}', 'ShippingController@txt')->name('txt');
 });
 
 

@@ -139,4 +139,30 @@ class ShippingController extends Controller
         }
     }
 
+    public function txt (Shipping $shipping) {
+        $pathToFile = storage_path().'/app/public/'.'Envio_' .$shipping->id.".txt";
+        if (is_file($pathToFile))
+            unlink($pathToFile);
+        $file = fopen($pathToFile,"a");
+        $orders = ShippingOrder::where('id_shipping', $shipping->id)->get();
+        foreach($orders as $o) {
+
+            $line = $o->order->barcode.",".'"'.
+                    strtoupper($o->order->client->name).'","'.
+                    strtoupper($o->order->client->last_name).'","'.
+                    strtoupper($o->order->name).'","'.
+                    strtoupper($o->order->last_name).'","'.
+                    str_ireplace(","," ", $o->order->street).'","'.
+                    str_ireplace(","," ", $o->order->number).'","'.
+                    str_ireplace(","," ",$o->order->between).'","'.
+                    str_ireplace(","," ",preg_replace("/[\r\n|\n|\r]+/", PHP_EOL, $o->order->city->name)).'","'.
+                    $o->order->city->cubapack_code.'",'.
+                    $o->order->weight.','.
+                    $o->order->ci;
+            fwrite($file,$line.PHP_EOL);
+        }
+        fclose($file);
+        return  response()->download($pathToFile);
+    }
+
 }

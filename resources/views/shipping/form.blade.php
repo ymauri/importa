@@ -49,7 +49,9 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="#" class="btn btn-sm btn-info" id="show-modal">Añadir bulto</a>
+                                <a href="#" class="btn btn-sm btn-success disabled" ><i class="material-icons">list_alt</i></a>
+                                <a href="{{ route('shipping.txt', ['shipping'=>  $shipping->id]) }}" class="btn btn-sm btn-success" ><i class="material-icons">text_fields</i></a>
+                                <a href="#" class="btn btn-sm btn-info" id="show-modal"><i class="material-icons">playlist_add</i></a>
                             </div>
                         </div>
                         <table class="table table-hover" style="width:100%" id="datatable_order">
