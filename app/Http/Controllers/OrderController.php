@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Client;
+use App\Models\Shipping;
+use App\Models\ShippingOrder;
 use App\Order;
 use App\OrderProduct;
 use App\Product;
 use Exception;
 use Illuminate\Http\Request;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -49,6 +52,7 @@ class OrderController extends Controller
         try {
             $data = $request->all();
             $order = Order::find($data['order']['id_order']);
+            $data['order']['barcode'] = $this->getCodePackage($data['order']['id_order']);
             $order->update($data['order']);
             flash('Datos guarados correctamente.')->success();
         }
@@ -129,6 +133,12 @@ class OrderController extends Controller
             return response(json_encode(['status' => 500, 'response'=> $e->getMessage()]));
 
         }
+    }
+
+    public function pdf (Order $order) {
+        $data = ['order' => $order, 'shipping' => ShippingOrder::where('id_order', $order->id)->first()];
+        $pdf = PDF::loadView('order.pdf', $data);
+        return $pdf->download($order->id.'.pdf');
     }
 
 }

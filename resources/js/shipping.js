@@ -77,7 +77,7 @@ let ImpShipping = function () {
                     {title: 'Id', data: 'id_shipping_order'},
                     {title: 'Comprador', data: 'name'},
                     {title: 'Barcode', data: 'barcode'},
-                    {title: 'Eliminar', data: ''}
+                    {title: 'Eliminar', data: 'id_order'}
                 ],
                 columnDefs: [
                     {
@@ -88,6 +88,10 @@ let ImpShipping = function () {
                                 return `<form action="/shipping/delete/" method="post">
                                 <input type="hidden" name="_token" value="TWcX32NXFMc2axMctaciXT1nDENcT9eVjLeYNWpL">                                  <input type="hidden" name="_method" value="delete">
                                 <input type="hidden" name="id_shipping_order" value="${full.id_shipping_order}">
+                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/pdf/${data}" data-original-title="" title="Comprobante">
+                                <i class="material-icons">picture_as_pdf</i>
+                                <div class="ripple-container"></div>
+                                </a>
                                 <button type="button" class="btn btn-danger btn-link delete-bulto" data-original-title="" title="Eliminar" >
                                     <i class="material-icons">close</i>
                                     <div class="ripple-container"></div>

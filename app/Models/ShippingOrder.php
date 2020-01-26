@@ -13,4 +13,8 @@ class ShippingOrder extends Model
         'id_order',
         'id_shipping'
     ];
+
+    public function shipping() {
+        return $this->hasOne(Shipping::class, 'id', 'id_shipping');
+    }
 }

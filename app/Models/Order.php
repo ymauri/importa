@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Shipping;
+use App\Models\ShippingOrder;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -40,6 +42,10 @@ class Order extends Model
         return $this->belongsTo(Client::class, 'id_client', 'id');
     }
 
+    public function shipping() {
+        return $this->belongsTo(ShippingOrder::class, 'id_order', 'id');
+    }
+
     public function city() {
         return $this->hasOne(City::class, 'id', 'id_city');
     }
@@ -52,6 +58,14 @@ class Order extends Model
                 ', '. $this->city->name .
                 ", ".$this->city->state->name.
                 ", ".$this->city->state->country->name;
+    }
+
+    public function description() {
+        $desc = '';
+        foreach ($this->products as $p) {
+            $desc .= ', '.$p->name;
+        }
+        return $desc;
     }
 
     public function updateGlobalValues() {

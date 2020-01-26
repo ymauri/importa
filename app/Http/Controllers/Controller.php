@@ -31,9 +31,9 @@ class Controller extends BaseController
         }
         $dns = new DNS1D();
         $dns->barcode_eanupc($barcode);
-        $img = $dns->getBarcodePNG($barcode, "EAN13", 2, 30, [0, 0, 0], true);
+        $img = $dns->getBarcodePNG($barcode, "EAN13", 2, 60, [0, 0, 0], true);
         $fullcode = $dns->getBarcodeArray();
-        Storage::disk('public')->put('/barcode/'.$fullcode['code'].'.png', base64_decode($img));
+        Storage::disk('local')->put('public/barcode/'.$fullcode['code'].'.png', base64_decode($img));
         return $fullcode['code'];
     }
 }
