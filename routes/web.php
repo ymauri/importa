@@ -92,5 +92,19 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
 
 });
 
+Route::middleware('auth')->name('shipping.')->prefix('shipping')->group(function() {
+    Route::get('ordersDt/{shipping}', 'ShippingController@ordersDt')->name('ordersDt');
+    Route::get('modalDt/{id}', 'ShippingController@modalDt')->name('modalDt');
+	Route::get('edit/{shipping}', 'ShippingController@edit')->name('edit');
+    Route::post('edit', 'ShippingController@update')->name('update');
+	Route::delete('delete/{id}', 'ShippingController@delete')->name('delete');
+    Route::get('create', 'ShippingController@create')->name('create');
+	Route::post('create', 'ShippingController@save')->name('save');
+    Route::get('dt', 'ShippingController@dt')->name('dt');
+    Route::post('addOrder', 'ShippingController@addOrder')->name('addOrder');
+    Route::delete('deleteOrder', 'ShippingController@deleteOrder')->name('deleteOrder');
+    Route::get('', 'ShippingController@index')->name('index');
+});
+
 
 

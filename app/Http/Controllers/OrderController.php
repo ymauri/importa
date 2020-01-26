@@ -76,7 +76,6 @@ class OrderController extends Controller
             flash('Datos guarados correctamente.')->success();
         }
         catch (Exception $e) {
-            dd($e);
             flash('Error al guardar los datos. '.$e->getMessage())->error();
         }
         return  redirect(route('order.index'));

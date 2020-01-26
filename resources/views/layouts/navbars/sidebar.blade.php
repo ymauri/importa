@@ -35,6 +35,12 @@
                 <p>Compras</p>
             </a>
         </li>
+        <li class="nav-item{{ $activePage == 'shipping' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('shipping.index') }}">
+                <i class="material-icons">assignment_turned_in</i>
+                <p>Envíos</p>
+            </a>
+        </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
             <i class="material-icons">work</i>

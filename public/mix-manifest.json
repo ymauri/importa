@@ -4,5 +4,6 @@
     "/js/client.js": "/js/client.js",
     "/js/modal-products.js": "/js/modal-products.js",
     "/js/order.js": "/js/order.js",
-    "/js/product.js": "/js/product.js"
+    "/js/product.js": "/js/product.js",
+    "/js/shipping.js": "/js/shipping.js"
 }
