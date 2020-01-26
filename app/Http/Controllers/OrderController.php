@@ -49,7 +49,6 @@ class OrderController extends Controller
         try {
             $data = $request->all();
             $order = Order::find($data['order']['id_order']);
-            $data['order']['barcode'] = $this->getCode6Package($order->id);
             $order->update($data['order']);
             flash('Datos guarados correctamente.')->success();
         }
@@ -70,7 +69,7 @@ class OrderController extends Controller
             $data = $request->all();
             $order = Order::create($data['order']);
             $order->update([
-                'barcode' => $this->getCode6Package($order->id)
+                'barcode' => $this->getCodePackage($order->id)
             ]);
             $order->updateGlobalValues();
             flash('Datos guarados correctamente.')->success();

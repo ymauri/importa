@@ -77,7 +77,7 @@ let ImpShipping = function () {
                     {title: 'Id', data: 'id_shipping_order'},
                     {title: 'Comprador', data: 'name'},
                     {title: 'Barcode', data: 'barcode'},
-                    {title: 'Creado el', data: 'updated_at'}
+                    {title: 'Eliminar', data: ''}
                 ],
                 columnDefs: [
                     {

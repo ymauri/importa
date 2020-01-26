@@ -24,6 +24,7 @@
     </div>
   </div>
 </div>
+<audio src=""></audio>
 @endsection
 
 @push('scripts')

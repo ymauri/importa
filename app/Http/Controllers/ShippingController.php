@@ -102,7 +102,7 @@ class ShippingController extends Controller
     {
         return datatables()->of(
             Order::leftJoin('imp_shipping_orders', 'imp_shipping_orders.id_order', 'imp_order.id')
-            //->where('imp_shipping_orders.id_shipping', '!=', $id)
+            ->whereNull('imp_shipping_orders.id_shipping')
             ->select(
                 'imp_order.id as order',
                 'imp_order.barcode as barcode',
