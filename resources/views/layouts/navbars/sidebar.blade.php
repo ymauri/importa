@@ -41,6 +41,7 @@
                 <p>Envíos</p>
             </a>
         </li>
+        @if( Auth::user()->email == 'ymauri@gmail.com' )
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
             <i class="material-icons">work</i>
@@ -65,6 +66,7 @@
           </ul>
         </div>
       </li>
+      @endif
     </ul>
   </div>
 </div>

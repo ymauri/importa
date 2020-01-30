@@ -69,9 +69,9 @@
             @endif
         </div>
         <div class="col-6 text-right">
-            <a href="{{ route('register') }}" class="text-light">
+            {{-- <a href="{{ route('register') }}" class="text-light">
                 <small>Crear nueva cuenta</small>
-            </a>
+            </a> --}}
         </div>
       </div>
     </div>
