@@ -109,6 +109,7 @@ Route::middleware('auth')->name('shipping.')->prefix('shipping')->group(function
     Route::delete('deleteOrder', 'ShippingController@deleteOrder')->name('deleteOrder');
     Route::get('', 'ShippingController@index')->name('index');
     Route::get('txt/{shipping}', 'ShippingController@txt')->name('txt');
+    Route::get('excel/{shipping}', 'ShippingController@excel')->name('excel');
 });
 
 

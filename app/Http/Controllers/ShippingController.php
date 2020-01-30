@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrderExport;
 use App\Models\Shipping;
 use App\Models\ShippingOrder;
 use App\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
 class ShippingController extends Controller
 {
@@ -163,6 +167,21 @@ class ShippingController extends Controller
         }
         fclose($file);
         return  response()->download($pathToFile);
+    }
+
+
+    public function excel (Shipping $shipping) {
+        // return FacadesExcel::download(new OrderExport($shipping->id), 'Envio'.$shipping->id.'.xlsx', null, [
+        //     'Código de barra',
+        //     'Paquete',
+        //     'Remitento',
+        //     'Destinatario',
+        //     'Artículo',
+        //     'Código',
+        //     'Cantidad',
+        //     'Peso'
+        //     ]);
+        return (new OrderExport($shipping->id))->download('Envio'.$shipping->id.'.xlsx', null,);
     }
 
 }
