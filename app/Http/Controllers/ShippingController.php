@@ -171,16 +171,6 @@ class ShippingController extends Controller
 
 
     public function excel (Shipping $shipping) {
-        // return FacadesExcel::download(new OrderExport($shipping->id), 'Envio'.$shipping->id.'.xlsx', null, [
-        //     'Código de barra',
-        //     'Paquete',
-        //     'Remitento',
-        //     'Destinatario',
-        //     'Artículo',
-        //     'Código',
-        //     'Cantidad',
-        //     'Peso'
-        //     ]);
         return (new OrderExport($shipping->id))->download('Envio'.$shipping->id.'.xlsx', null,);
     }
 

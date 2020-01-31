@@ -141,8 +141,10 @@ class OrderController extends Controller
         return $pdf->download($order->id.'.pdf');
     }
 
-    public function productsDt (Order $order) {
-        return datatables()->of($order->products)->toJson();
+    public function productsDt ($order) {
+        $orderObj = OrderProduct::join('imp_product', 'imp_product.id', 'imp_order_product.id_product')->where('id_order', $order)
+                    ->select('imp_product.id', 'imp_product.name', 'imp_product.brand', 'imp_product.model')->get();
+        return datatables()->of($orderObj)->toJson();
     }
 
 }
