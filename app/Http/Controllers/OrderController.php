@@ -53,6 +53,22 @@ class OrderController extends Controller
             $data = $request->all();
             $order = Order::find($data['order']['id_order']);
             $data['order']['barcode'] = $this->getCodePackage($data['order']['id_order']);
+            if ($data['order']['type'] == 1) {
+                //Set data from client object
+                $client = Client::find($data['order']['id_client']);
+                $data['order']['name'] = $client->name;
+                $data['order']['last_name'] = $client->last_name;
+                $data['order']['email'] = $client->email;
+                $data['order']['ci'] = $client->ci;
+                $data['order']['passport'] = $client->passport;
+                $data['order']['phone'] = $client->phone;
+                $data['order']['mobile'] = $client->mobile;
+                $data['order']['street'] = $client->address->street;
+                $data['order']['between'] = $client->address->between;
+                $data['order']['number'] = $client->address->number;
+                $data['order']['apartment'] = $client->address->apartment;
+                $data['order']['id_city'] = $client->address->id_city;
+            }
             $order->update($data['order']);
             flash('Datos guarados correctamente.')->success();
         }
@@ -80,11 +96,13 @@ class OrderController extends Controller
                 $data['order']['ci'] = $client->ci;
                 $data['order']['passport'] = $client->passport;
                 $data['order']['phone'] = $client->phone;
+                $data['order']['mobile'] = $client->mobile;
                 $data['order']['street'] = $client->address->street;
-                $data['order']['between'] = $client->addredd->between;
-                $data['order']['number'] = $client->addredd->number;
-                $data['order']['apartment'] = $client->addredd->apartment;
-                $data['order']['id_city'] = $client->addredd->id_city;
+                $data['order']['between'] = $client->address->between;
+                $data['order']['number'] = $client->address->number;
+                $data['order']['apartment'] = $client->address->apartment;
+                $data['order']['id_city'] = $client->address->id_city;
+                $data['order']['type'] = 1;
             }
             $order = Order::create($data['order']);
             $order->update([

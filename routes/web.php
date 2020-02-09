@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::middleware('auth')->name('client.')->prefix('client')->group(function() {
 	Route::get('edit/{id}', 'ClientController@edit')->name('edit');
     Route::post('edit', 'ClientController@update')->name('update');
-	Route::delete('delete/{id}', 'ClientController@delete')->name('delete');
+	Route::delete('delete/{client}', 'ClientController@delete')->name('delete');
     Route::get('create', 'ClientController@create')->name('create');
 	Route::post('create', 'ClientController@save')->name('save');
     Route::get('dt', 'ClientController@dt')->name('dt');
@@ -71,7 +71,7 @@ Route::middleware('auth')->name('client.')->prefix('client')->group(function() {
 Route::middleware('auth')->name('product.')->prefix('product')->group(function() {
 	Route::get('edit/{id}', 'ProductController@edit')->name('edit');
     Route::post('edit', 'ProductController@update')->name('update');
-	Route::delete('delete/{id}', 'ProductController@delete')->name('delete');
+	Route::delete('delete/{product}', 'ProductController@delete')->name('delete');
     Route::get('create', 'ProductController@create')->name('create');
 	Route::post('create', 'ProductController@save')->name('save');
     Route::get('dt', 'ProductController@dt')->name('dt');
@@ -101,7 +101,7 @@ Route::middleware('auth')->name('shipping.')->prefix('shipping')->group(function
     Route::get('modalDt/{id}', 'ShippingController@modalDt')->name('modalDt');
 	Route::get('edit/{shipping}', 'ShippingController@edit')->name('edit');
     Route::post('edit', 'ShippingController@update')->name('update');
-	Route::delete('delete/{id}', 'ShippingController@delete')->name('delete');
+	Route::post('delete/{shipping}', 'ShippingController@delete')->name('delete');
     Route::get('create', 'ShippingController@create')->name('create');
 	Route::post('create', 'ShippingController@save')->name('save');
     Route::get('dt', 'ShippingController@dt')->name('dt');

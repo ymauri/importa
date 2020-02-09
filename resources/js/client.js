@@ -30,8 +30,9 @@ let ImpClient = function () {
                     orderable: false,
                     class: 'td-actions text-right',
                     render: function (data, type, full, meta) {
+                            token = $('meta[name="csrf-token"]').attr('content');
                             return `<form action="client/delete/${full.id}" method="post">
-                            <input type="hidden" name="_token" value="TWcX32NXFMc2axMctaciXT1nDENcT9eVjLeYNWpL">                                  <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" value="${token}">                                  <input type="hidden" name="_method" value="delete">
                             <a rel="tooltip" class="btn btn-success btn-link" href="client/edit/${full.id}" data-original-title="" title="Editar">
                             <i class="material-icons">edit</i>
                             <div class="ripple-container"></div>

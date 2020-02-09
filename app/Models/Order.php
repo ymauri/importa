@@ -31,7 +31,8 @@ class Order extends Model
         'number',
         'apartment',
         'id_city',
-        'id_client'
+        'id_client',
+        'type'
     ];
 
     public function products(){
