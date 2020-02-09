@@ -44,6 +44,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">Fecha de salida</label>
+                        <div class="col-sm-7">
+                          <div class="form-group{{ $errors->has('order[departure]') ? ' has-danger' : '' }}">
+                            <input class="form-control{{ $errors->has('order[departure]') ? ' is-invalid' : '' }} datepicker" name="order[departure]" type="text" placeholder="Fecha de salida" value="{{ $order->departure }}" id="order-departure" />
+                            @if ($errors->has('order[departure]'))
+                              <span id="name-error" class="error text-danger">{{ $errors->first('order[departure]') }}</span>
+                            @endif
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-2 col-form-label">Flete</label>
+                        <div class="col-sm-7">
+                          <div class="form-group{{ $errors->has('order[shipping]') ? ' has-danger' : '' }}">
+                            <input class="form-control{{ $errors->has('order[shipping]') ? ' is-invalid' : '' }}" name="order[shipping]" type="text" placeholder="Flete" value="{{ $order->shipping }}" />
+                            @if ($errors->has('order[shipping]'))
+                              <span id="name-error" class="error text-danger">{{ $errors->first('order[shipping]') }}</span>
+                            @endif
+                          </div>
+                        </div>
+                      </div>
+
                     <div class='row'>
                         <label class="col-sm-2 col-form-label">Tipo de envío</label>
                         <div class="col-sm-7">
@@ -219,9 +242,12 @@
 
 @push('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css" integrity="sha256-FdatTf20PQr/rWg+cAKfl6j4/IY3oohFAJ7gVC3M34E=" crossorigin="anonymous" />
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('js')
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/i18n/datepicker.es-ES.min.js" integrity="sha256-b46Ei80gSqobQQdLu0dzusIZDr5GfP0QAFx9d6QZs4c=" crossorigin="anonymous"></script> --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/i18n/es.js" integrity="sha256-ICzX9DU11JFCI552rqj4v+yAtzFpjtLCwO8Pptyl8PQ=" crossorigin="anonymous"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js" integrity="sha256-wfVTTtJ2oeqlexBsfa3MmUoB77wDNRPqT1Q1WA2MMn4=" crossorigin="anonymous"></script>
     <script src="{{asset('js/order.js')}}" type="text/javascript"></script>

@@ -24,7 +24,7 @@ let ImpOrder = function () {
                 {title: 'Comprador'},
                 {title: 'Destinatario', data: 'name'},
                 {title: 'Barcode', data: 'barcode'},
-                {title: 'Creado el', data: 'updated_at'},
+                {title: 'Tipo', data: 'type'},
                 {title:  'Acciones', data: 'id', width: '200px'}
             ],
             columnDefs: [
@@ -63,6 +63,13 @@ let ImpOrder = function () {
                     targets: 2,
                     render: function (data, type, full, meta) {
                         return full.name + " " + full.last_name;
+                    },
+                },
+
+                {
+                    targets: 4,
+                    render: function (data, type, full, meta) {
+                        return data == 1 ? "ENA" : "Importacion";
                     },
                 }
 
@@ -218,6 +225,10 @@ let ImpOrder = function () {
                 $('#destiny-data input').attr('required', 'required').arrt('aria-required', "true");
             }
         })
+
+        if ($('.datepicker').length > 0) {
+            $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
+        }
     }
 
     return {

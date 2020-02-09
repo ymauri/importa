@@ -144,7 +144,7 @@ let ImpShipping = function () {
 
             columns: [
                 {title: 'Id', data: 'order'},
-                {title: 'Comprador', data: 'name'},
+                {title: 'Destinatario', data: 'name'},
                 {title: 'Barcode', data: 'barcode'},
                 {title:  'Acciones', data: 'order', width: '200px'}
             ],
