@@ -99,7 +99,18 @@ class ShippingController extends Controller
                     'imp_shipping_orders.id_order',
                     'imp_order.barcode',
                     'imp_shipping_orders.id as id_shipping_order'
-                ))->toJson();
+                )) ->filterColumn('id_shipping_order', function($query, $id_shipping_order) {
+                        $query->where('imp_shipping_orders.id', $id_shipping_order);
+                })
+                ->filterColumn('name', function($query, $name) {
+                    $query->where('imp_order.name', 'like', '%'.$name.'%');
+                })
+                ->filterColumn('last_name', function($query, $last_name) {
+                    $query->where('imp_order.last_name', 'like', '%'.$last_name.'%');
+                })
+                ->filterColumn('barcode', function($query, $barcode) {
+                    $query->where('imp_order.barcode', 'like', '%'.$barcode.'%');
+                })->toJson();
     }
 
     public function modalDt($id)
@@ -171,7 +182,7 @@ class ShippingController extends Controller
 
 
     public function excel (Shipping $shipping) {
-        return (new OrderExport($shipping->id))->download('Envio'.$shipping->id.'.xlsx', null,);
+        return (new OrderExport($shipping->id))->download('Envio'.$shipping->id.'.xlsx', null);
     }
 
 }

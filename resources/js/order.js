@@ -21,7 +21,8 @@ let ImpOrder = function () {
 
             columns: [
                 {title: 'Id', data: 'id'},
-                {title: 'Comprador', data: 'name'},
+                {title: 'Comprador'},
+                {title: 'Destinatario', data: 'name'},
                 {title: 'Barcode', data: 'barcode'},
                 {title: 'Creado el', data: 'updated_at'},
                 {title:  'Acciones', data: 'id', width: '200px'}
@@ -50,11 +51,19 @@ let ImpOrder = function () {
                         </form>`
                     },
                 },
+
                 {
                     targets: 1,
                     render: function (data, type, full, meta) {
-                        return full.name + " " + full.last_name;
+                        return full.client.name + " " + full.client.last_name;
+                    },
                 },
+
+                {
+                    targets: 2,
+                    render: function (data, type, full, meta) {
+                        return full.name + " " + full.last_name;
+                    },
                 }
 
             ],

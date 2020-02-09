@@ -69,7 +69,7 @@ let ImpShipping = function () {
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '/shipping/ordersDt/' + $('#shipping_id').val(),
+                    url: '/shipping/ordersDt/' + $('#shipping_id').val() + "/",
                     type: 'GET'
                 },
 
@@ -109,7 +109,16 @@ let ImpShipping = function () {
                 ],
 
                 initComplete: function () {
+                    $('#order-global-search').on( 'keyup', function () {
+                        if (timeout) {
+                            clearTimeout(timeout);
+                        }
+                        timeout = setTimeout(function() {
+                            offset = 0;
+                            table_order.search($('input.search').val()).draw();
+                        }, requestTimeout);
 
+                    } );
                 }
             });
         }

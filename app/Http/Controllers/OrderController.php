@@ -37,7 +37,7 @@ class OrderController extends Controller
 
     public function dt()
     {
-        return datatables()->of(Order::all())->toJson();
+        return datatables()->of(Order::with('client')->get())->toJson();
     }
 
     public function edit($id)
