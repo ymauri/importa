@@ -44,6 +44,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class='row'>
+                        <label class="col-sm-2 col-form-label">Tipo de envío</label>
+                        <div class="col-sm-7">
+                            <div class="custom-control custom-radio  custom-control-inline">
+                                <input type="radio" class="custom-control-input" value="1" id="order-ena" name="order[type]" @if($order->type == 1) checked @endif>
+                                <label class="custom-control-label" for="order-ena">ENA</label>
+                            </div>
+                            <div class="custom-control custom-radio  custom-control-inline">
+                                <input type="radio" class="custom-control-input" value="2" id="order-importacion" name="order[type]" @if($order->type == 2) checked @endif>
+                                <label class="custom-control-label" for="order-importacion">Importación </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="destiny-data" @if($order->type == 1)  style="display:none" @endif>
                     <div class="row">
                         <div class="col-sm-7">
                         <h4 >Datos del destinatario</h4>
@@ -53,7 +67,7 @@
                             <label class="col-sm-2 col-form-label">{{ __('Nombre') }}</label>
                             <div class="col-sm-7">
                               <div class="form-group{{ $errors->has('order[name]') ? ' has-danger' : '' }}">
-                                <input class="form-control{{ $errors->has('order[name]') ? ' is-invalid' : '' }}" name="order[name]" type="text" placeholder="{{ __('Nombre') }}" value="{{ $order->name }}" required="true" aria-required="true"/>
+                                <input class="form-control{{ $errors->has('order[name]') ? ' is-invalid' : '' }}" name="order[name]" type="text" placeholder="{{ __('Nombre') }}" value="{{ $order->name }}" aria-required="true"/>
                                 @if ($errors->has('order[name]'))
                                   <span id="name-error" class="error text-danger">{{ $errors->first('order[name]') }}</span>
                                 @endif
@@ -64,7 +78,7 @@
                             <label class="col-sm-2 col-form-label">Apellidos</label>
                             <div class="col-sm-7">
                               <div class="form-group{{ $errors->has('order[last_name]') ? ' has-danger' : '' }}">
-                                <input class="form-control{{ $errors->has('order[last_name]') ? ' is-invalid' : '' }}" name="order[last_name]" type="text" placeholder="Apellidos" value="{{ $order->last_name }}" required="true" aria-required="true"/>
+                                <input class="form-control{{ $errors->has('order[last_name]') ? ' is-invalid' : '' }}" name="order[last_name]" type="text" placeholder="Apellidos" value="{{ $order->last_name }}" />
                                 @if ($errors->has('order[last_name]'))
                                   <span id="name-error" class="error text-danger">{{ $errors->first('order[last_name]') }}</span>
                                 @endif
@@ -86,7 +100,7 @@
                               <label class="col-sm-2 col-form-label">Carnet de Identidad</label>
                               <div class="col-sm-7">
                                   <div class="form-group{{ $errors->has('order[ci]') ? ' has-danger' : '' }}">
-                                  <input class="form-control{{ $errors->has('order[ci]') ? ' is-invalid' : '' }}" name="order[ci]" type="text" placeholder="Carnet de Identidad" value="{{ $order->ci }}" required="true" aria-required="true"/>
+                                  <input class="form-control{{ $errors->has('order[ci]') ? ' is-invalid' : '' }}" name="order[ci]" type="text" placeholder="Carnet de Identidad" value="{{ $order->ci }}" />
                                   @if ($errors->has('order[ci]'))
                                       <span id="name-error" class="error text-danger">{{ $errors->first('order[ci]') }}</span>
                                   @endif
@@ -97,7 +111,7 @@
                               <label class="col-sm-2 col-form-label">Pasaporte</label>
                               <div class="col-sm-7">
                                   <div class="form-group{{ $errors->has('order[passport]') ? ' has-danger' : '' }}">
-                                  <input class="form-control{{ $errors->has('order[passport]') ? ' is-invalid' : '' }}" name="order[passport]" type="text" placeholder="Pasaporte" value="{{ $order->passport }}" required="true" aria-required="true"/>
+                                  <input class="form-control{{ $errors->has('order[passport]') ? ' is-invalid' : '' }}" name="order[passport]" type="text" placeholder="Pasaporte" value="{{ $order->passport }}" />
                                   @if ($errors->has('order[passport]'))
                                       <span id="name-error" class="error text-danger">{{ $errors->first('order[passport]') }}</span>
                                   @endif
@@ -108,7 +122,7 @@
                               <label class="col-sm-2 col-form-label">Teléfono Fijo</label>
                               <div class="col-sm-7">
                                   <div class="form-group{{ $errors->has('order[phone]') ? ' has-danger' : '' }}">
-                                  <input class="form-control{{ $errors->has('order[phone]') ? ' is-invalid' : '' }}" name="order[phone]" type="phone" placeholder="Teléfono Fijo" value="{{ $order->phone }}" required="true" aria-required="true"/>
+                                  <input class="form-control{{ $errors->has('order[phone]') ? ' is-invalid' : '' }}" name="order[phone]" type="phone" placeholder="Teléfono Fijo" value="{{ $order->phone }}" />
                                   @if ($errors->has('order[phone]'))
                                       <span id="name-error" class="error text-danger">{{ $errors->first('order[phone]') }}</span>
                                   @endif
@@ -119,7 +133,7 @@
                               <label class="col-sm-2 col-form-label">Teléfono Móvil</label>
                               <div class="col-sm-7">
                                   <div class="form-group{{ $errors->has('order[mobile]') ? ' has-danger' : '' }}">
-                                  <input class="form-control{{ $errors->has('order[mobile]') ? ' is-invalid' : '' }}" name="order[mobile]" type="phone" placeholder="Teléfono Movil" value="{{ $order->mobile}}" required="true" aria-required="true"/>
+                                  <input class="form-control{{ $errors->has('order[mobile]') ? ' is-invalid' : '' }}" name="order[mobile]" type="phone" placeholder="Teléfono Movil" value="{{ $order->mobile}}" />
                                   @if ($errors->has('order[mobile]'))
                                       <span id="name-error" class="error text-danger">{{ $errors->first('order[mobile]') }}</span>
                                   @endif
@@ -131,7 +145,7 @@
                     <label class="col-sm-2 col-form-label">Calle</label>
                     <div class="col-sm-7">
                         <div class="form-group{{ $errors->has('order[street]') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('order[street]') ? ' is-invalid' : '' }}" name="order[street]" type="text" placeholder="Calle" value="{{ $order->street }}" required="true" aria-required="true"/>
+                        <input class="form-control{{ $errors->has('order[street]') ? ' is-invalid' : '' }}" name="order[street]" type="text" placeholder="Calle" value="{{ $order->street }}" />
                         @if ($errors->has('order[street]'))
                             <span id="name-error" class="error text-danger">{{ $errors->first('order[street]') }}</span>
                         @endif
@@ -142,7 +156,7 @@
                         <label class="col-sm-2 col-form-label">Entre</label>
                         <div class="col-sm-7">
                             <div class="form-group{{ $errors->has('order[between]') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('order[between]') ? ' is-invalid' : '' }}" name="order[between]" type="text" placeholder="Entre" value="{{ $order->between }}" required="true" aria-required="true"/>
+                            <input class="form-control{{ $errors->has('order[between]') ? ' is-invalid' : '' }}" name="order[between]" type="text" placeholder="Entre" value="{{ $order->between }}" />
                             @if ($errors->has('order[between]'))
                                 <span id="name-error" class="error text-danger">{{ $errors->first('order[between]') }}</span>
                             @endif
@@ -154,7 +168,7 @@
                     <label class="col-sm-2 col-form-label">Número</label>
                     <div class="col-sm-7">
                         <div class="form-group{{ $errors->has('order[number]') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('order[number]') ? ' is-invalid' : '' }}" name="order[number]" type="text" placeholder="Número" value="{{ $order->number }}" required="true" aria-required="true"/>
+                        <input class="form-control{{ $errors->has('order[number]') ? ' is-invalid' : '' }}" name="order[number]" type="text" placeholder="Número" value="{{ $order->number }}" />
                         @if ($errors->has('order[number]'))
                             <span id="name-error" class="error text-danger">{{ $errors->first('order[number]') }}</span>
                         @endif
@@ -165,7 +179,7 @@
                     <label class="col-sm-2 col-form-label">Apartamento</label>
                     <div class="col-sm-7">
                         <div class="form-group{{ $errors->has('order[apartment]') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('order[apartment]') ? ' is-invalid' : '' }}" name="order[apartment]" type="text" placeholder="Apartamento" value="{{ $order->apartment }}" required="true" aria-required="true"/>
+                        <input class="form-control{{ $errors->has('order[apartment]') ? ' is-invalid' : '' }}" name="order[apartment]" type="text" placeholder="Apartamento" value="{{ $order->apartment }}"/>
                         @if ($errors->has('order[apartment]'))
                             <span id="name-error" class="error text-danger">{{ $errors->first('order[apartment]') }}</span>
                         @endif
@@ -190,6 +204,7 @@
                         </div>
                     </div>
                 </div>
+                    </div>
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-info">Guardar</button>
                 <button type="submit" class="btn btn-success">Configurar productos</button>

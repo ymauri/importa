@@ -207,11 +207,25 @@ let ImpOrder = function () {
         }
     }
 
+    let initComponents = function () {
+        $('input[name="order[type]"]').click(function(){
+            if ($(this).val() == 1) {
+                $('#destiny-data').hide(300)
+                $('#destiny-data input').val("").removeAttr('required').removeAttr('aria-required');
+            }
+            else {
+                $('#destiny-data').show(300)
+                $('#destiny-data input').attr('required', 'required').arrt('aria-required', "true");
+            }
+        })
+    }
+
     return {
         init: function () {
             initTable();
             initSelect();
             initTableProductos();
+            initComponents();
         }
     };
 }();

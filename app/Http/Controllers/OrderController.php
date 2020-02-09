@@ -71,6 +71,21 @@ class OrderController extends Controller
     public function save (Request $request) {
         try {
             $data = $request->all();
+            if ($data['order']['type'] == 1) {
+                //Set data from client object
+                $client = Client::find($data['order']['id_client']);
+                $data['order']['name'] = $client->name;
+                $data['order']['last_name'] = $client->last_name;
+                $data['order']['email'] = $client->email;
+                $data['order']['ci'] = $client->ci;
+                $data['order']['passport'] = $client->passport;
+                $data['order']['phone'] = $client->phone;
+                $data['order']['street'] = $client->address->street;
+                $data['order']['between'] = $client->addredd->between;
+                $data['order']['number'] = $client->addredd->number;
+                $data['order']['apartment'] = $client->addredd->apartment;
+                $data['order']['id_city'] = $client->addredd->id_city;
+            }
             $order = Order::create($data['order']);
             $order->update([
                 'barcode' => $this->getCodePackage($order->id)
