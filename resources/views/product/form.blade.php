@@ -57,7 +57,7 @@
                     <label class="col-sm-2 col-form-label">Peso</label>
                     <div class="col-sm-7">
                         <div class="form-group{{ $errors->has('product[weight]') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('product[weight]') ? ' is-invalid' : '' }}" name="product[weight]" type="text" placeholder="Peso en kilogramos (Kg)" value="{{ $product->weight }}"/>
+                        <input class="form-control{{ $errors->has('product[weight]') ? ' is-invalid' : '' }}" name="product[weight]" type="number" step="any" placeholder="Peso en kilogramos (Kg)" value="{{ $product->weight }}"/>
                         @if ($errors->has('product[weight]'))
                             <span id="name-error" class="error text-danger">{{ $errors->first('product[weight]') }}</span>
                         @endif
@@ -68,7 +68,7 @@
                     <label class="col-sm-2 col-form-label">Volumen</label>
                     <div class="col-sm-7">
                         <div class="form-group{{ $errors->has('product[volumen]') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('product[volumen]') ? ' is-invalid' : '' }}" name="product[volumen]" type="number" placeholder="Volumen en metros cúbicos (m3)" value="{{ $product->volumen }}" />
+                        <input class="form-control{{ $errors->has('product[volumen]') ? ' is-invalid' : '' }}" name="product[volumen]"  step="any" type="number" placeholder="Volumen en metros cúbicos (m3)" value="{{ $product->volumen }}" />
                         @if ($errors->has('product[volumen]'))
                             <span id="name-error" class="error text-danger">{{ $errors->first('product[volumen]') }}</span>
                         @endif
@@ -79,7 +79,7 @@
                     <label class="col-sm-2 col-form-label">Precio unitario</label>
                     <div class="col-sm-7">
                         <div class="form-group{{ $errors->has('product[price]') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('product[price]') ? ' is-invalid' : '' }}" name="product[price]" type="number" placeholder="Precio unitario (USD)" value="{{ $product->price }}"/>
+                        <input class="form-control{{ $errors->has('product[price]') ? ' is-invalid' : '' }}" name="product[price]"  step="any" type="number" placeholder="Precio unitario (USD)" value="{{ $product->price }}"/>
                         @if ($errors->has('product[price]'))
                             <span id="name-error" class="error text-danger">{{ $errors->first('product[price]') }}</span>
                         @endif
@@ -90,7 +90,7 @@
                     <label class="col-sm-2 col-form-label">Puntos aduanales</label>
                     <div class="col-sm-7">
                         <div class="form-group{{ $errors->has('product[customs_points]') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('product[customs_points]') ? ' is-invalid' : '' }}" name="product[customs_points]" type="number" placeholder="Puntos aduanales" value="{{ $product->customs_points }}"/>
+                        <input class="form-control{{ $errors->has('product[customs_points]') ? ' is-invalid' : '' }}" name="product[customs_points]"  step="any" type="number" placeholder="Puntos aduanales" value="{{ $product->customs_points }}"/>
                         @if ($errors->has('product[customs_points]'))
                             <span id="name-error" class="error text-danger">{{ $errors->first('product[customs_points]') }}</span>
                         @endif
@@ -101,7 +101,7 @@
                         <label class="col-sm-2 col-form-label">Flete marítimo</label>
                         <div class="col-sm-7">
                             <div class="form-group{{ $errors->has('product[charter]') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('product[charter]') ? ' is-invalid' : '' }}" name="product[charter]" type="number" placeholder="Costo del flete marítimo (USD)" value="{{ $product->charter }}"/>
+                            <input class="form-control{{ $errors->has('product[charter]') ? ' is-invalid' : '' }}" name="product[charter]"  step="any" type="number" placeholder="Costo del flete marítimo (USD)" value="{{ $product->charter }}"/>
                             @if ($errors->has('product[charter]'))
                                 <span id="name-error" class="error text-danger">{{ $errors->first('product[charter]') }}</span>
                             @endif
