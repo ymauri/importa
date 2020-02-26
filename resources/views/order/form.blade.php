@@ -76,7 +76,7 @@
                             </div>
                             <div class="custom-control custom-radio  custom-control-inline">
                                 <input type="radio" class="custom-control-input" value="2" id="order-importacion" name="order[type]" @if($order->type == 2) checked @endif>
-                                <label class="custom-control-label" for="order-importacion">Importación </label>
+                                <label class="custom-control-label" for="order-importacion">Envío</label>
                             </div>
                         </div>
                     </div>
