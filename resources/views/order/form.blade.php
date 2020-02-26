@@ -112,7 +112,7 @@
                               <label class="col-sm-2 col-form-label">Correo Electrónico</label>
                               <div class="col-sm-7">
                                   <div class="form-group{{ $errors->has('order[email]') ? ' has-danger' : '' }}">
-                                  <input class="form-control{{ $errors->has('order[email]') ? ' is-invalid' : '' }}" name="order[email]" type="email" placeholder="Correo Electrónico" value="{{ $order->email }}" required="true" aria-required="true"/>
+                                  <input class="form-control{{ $errors->has('order[email]') ? ' is-invalid' : '' }}" name="order[email]" type="email" placeholder="Correo Electrónico" value="{{ $order->email }}" />
                                   @if ($errors->has('order[email]'))
                                       <span id="name-error" class="error text-danger">{{ $errors->first('order[email]') }}</span>
                                   @endif

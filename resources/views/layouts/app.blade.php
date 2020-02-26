@@ -5,7 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="author" content="Ing. Yolanda Mauri Pérez">
+    <meta name="author" content="Yolanda Mauri Pérez">
+    <meta name="description" content="Sistema de impotaciones para la sede de GoldBlack Investments en Panamá.">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Sistema de impotaciones para la sede de GoldBlack Investments en Panamá.">
+    <meta property="og:url" content="{{route('home')}}">
+    <meta property="og:site_name" content="Importa">
+    <meta property="og:image" content="{{ asset('img/img.png') }}">
+    <meta property="og:image:width" content="438">
+    <meta property="og:image:height" content="439">
+    <meta property="og:image:secure_url" content="{{ asset('img/img.png') }}">
+
     <title>Importa</title>
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
