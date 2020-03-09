@@ -97,17 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                        <label class="col-sm-2 col-form-label">Flete marítimo</label>
-                        <div class="col-sm-7">
-                            <div class="form-group{{ $errors->has('product[charter]') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('product[charter]') ? ' is-invalid' : '' }}" name="product[charter]"  step="any" type="number" placeholder="Costo del flete marítimo (USD)" value="{{ $product->charter }}"/>
-                            @if ($errors->has('product[charter]'))
-                                <span id="name-error" class="error text-danger">{{ $errors->first('product[charter]') }}</span>
-                            @endif
-                            </div>
-                        </div>
-                    </div>
+                
                 {{--
                     'name',
         'model',

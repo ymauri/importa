@@ -39,6 +39,10 @@ class Order extends Model
         return $this->belongsToMany(Product::class, 'imp_order_product', 'id_order', 'id');
     }
 
+    public function orderProducts() {
+        return $this->hasMany(OrderProduct::class, 'id_order', 'id');
+    }
+
     public function client() {
         return $this->belongsTo(Client::class, 'id_client', 'id');
     }

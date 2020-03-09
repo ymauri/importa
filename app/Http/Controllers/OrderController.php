@@ -139,12 +139,13 @@ class OrderController extends Controller
             $relation = OrderProduct::where('id_product', $data['product'])->where('id_order', $data['order'])->first();
             if (!empty($relation)){
                 $qty = $relation->quantity + $data['qty'];
-                $relation->update(['quantity' => $qty]);
+                $relation->update(['quantity' => $qty, 'charter' => $data['charter']]);
             } else {
                 OrderProduct::insert([
                     'quantity' =>  $data['qty'],
                     'id_product' => $data['product'],
                     'id_order' => $data['order'],
+                    'charter' => $data['charter']
                 ]);
             }
             $order = Order::find($data['order']);

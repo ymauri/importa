@@ -1,11 +1,11 @@
 /**
  * Created by User on 14/01/2020.
  */
-let ImpModalProducts = function () {
+let ImpModalProducts = function() {
     let table;
     let timeout = false;
     let requestTimeout = 1000;
-    let initTable = function () {
+    let initTable = function() {
         table = $('#datatable_products').DataTable({
             responsive: true,
             // Pagination settings
@@ -21,21 +21,22 @@ let ImpModalProducts = function () {
             },
 
             columns: [
-                {title: 'Nombre', data: 'name'},
-                {title: 'Modelo', data: 'model'},
-                {title: 'Marca', data: 'brand'},
-                {title: 'Cantidad', data: null},
-                {title:  'Acciones', data: 'id', width: '200px'}
+                { title: 'Nombre', data: 'name' },
+                { title: 'Modelo', data: 'model' },
+                { title: 'Marca', data: 'brand' },
+                { title: 'Cantidad', data: null },
+                { title: 'Flete', data: null },
+                { title: 'Acciones', data: 'id', width: '200px' }
             ],
-            columnDefs: [
-                {
+            columnDefs: [{
                     targets: -1,
                     orderable: false,
                     class: 'td-actions text-right',
-                    render: function (data, type, full, meta) {
+                    render: function(data, type, full, meta) {
                         return `<form action="/addProduct" method="post" class="m-0">
                         <input type="hidden" name="_token" value="">
                         <input type="hidden" name="qty" value="">
+                        <input type="hidden" name="charter" value="">
                         <input type="hidden" name="order" value="">
                         <input type="hidden" name="product" value="${full.id}">
                         <button type="button" class="btn btn-success btn-link add-product" data-original-title="" title="Adicionar" id-product="${full.id}">
@@ -50,14 +51,22 @@ let ImpModalProducts = function () {
                     targets: 3,
                     orderable: false,
                     class: 'td-actions text-right',
-                    render: function (data, type, full, meta) {
-                        return `<input class="form-control qty float-right w-25 text-right" data-product="${full.id}" id="product-${full.id}"  value="1"/>`
+                    render: function(data, type, full, meta) {
+                        return `<input class="form-control qty float-right w-25 text-right" data-product="${full.id}" id="product-qty-${full.id}"  value="1"/>`
+                    },
+                },
+                {
+                    targets: 4,
+                    orderable: false,
+                    class: 'td-actions text-right',
+                    render: function(data, type, full, meta) {
+                        return `<input class="form-control charter float-right w-25 text-right" data-product="${full.id}" id="product-charter-${full.id}" value=""/>`
                     },
                 }
             ],
 
-            initComplete: function () {
-                $('input.search').on( 'keyup', function () {
+            initComplete: function() {
+                $('input.search').on('keyup', function() {
                     if (timeout) {
                         clearTimeout(timeout);
                     }
@@ -66,36 +75,39 @@ let ImpModalProducts = function () {
                         table.search($('input.search').val()).draw();
                     }, requestTimeout);
 
-                } );
+                });
                 addProduct();
             }
         });
     };
 
-    let initModal = function () {
-        $('#show-modal').click(function(e){
+    let initModal = function() {
+        $('#show-modal').click(function(e) {
             e.preventDefault();
-            if ( !$.fn.dataTable.isDataTable( '#datatable_products' )) {
+            if (!$.fn.dataTable.isDataTable('#datatable_products')) {
                 initTable();
             }
             $('#areaProductoList').modal().show();
-            $().change(function(){})
-            $('table#asa').on('change', '#elqueyouiero', function(){
+            $().change(function() {})
+            $('table#asa').on('change', '#elqueyouiero', function() {
 
             })
 
         })
     }
 
-    let addProduct = function () {
-        $('#datatable_products').on('click', '.add-product', function (e) {
+    let addProduct = function() {
+        $('#datatable_products').on('click', '.add-product', function(e) {
             e.preventDefault();
             form = $(this).closest('form');
             $(form).children('input[name="qty"]').val(
-                $('#product-'+ $(this).attr('id-product')).val()
+                $('#product-qty-' + $(this).attr('id-product')).val()
             )
             $(form).children('input[name="order"]').val(
                 $('#id_order').val()
+            )
+            $(form).children('input[name="charter"]').val(
+                $('#product-charter-' + $(this).attr('id-product')).val()
             )
             $(form).children('input[name="_token"]').val(
                 $('meta[name="csrf-token"]').attr('content')
@@ -105,7 +117,7 @@ let ImpModalProducts = function () {
                 url: "/order/addProduct",
                 data: $(form).serialize(),
                 dataType: 'json',
-                success: function(response){
+                success: function(response) {
                     // response = JSON.parse(response.status)
                     if (response.status === 200) {
                         Imp.notify('success', response.response)
@@ -114,16 +126,16 @@ let ImpModalProducts = function () {
                         Imp.notify('danger', response.response);
                     }
                 }
-              });
+            });
         })
     }
 
-    let deleteProduct = function () {
-        $('#datatable_products').on('click', '.delete-product', function (e) {
+    let deleteProduct = function() {
+        $('#datatable_products').on('click', '.delete-product', function(e) {
             e.preventDefault();
             form = $(this).closest('form');
             $(form).children('input[name="qty"]').val(
-                $('#product-'+ $(this).attr('id-product')).val()
+                $('#product-qty-' + $(this).attr('id-product')).val()
             )
             $(form).children('input[name="order"]').val(
                 $('#id_order').val()
@@ -136,7 +148,7 @@ let ImpModalProducts = function () {
                 url: "/order/deleteProduct",
                 data: $(form).serialize(),
                 dataType: 'json',
-                success: function(response){
+                success: function(response) {
                     if (response.status === 200) {
                         Imp.notify('success', response.response)
                         drawProductTable();
@@ -144,21 +156,21 @@ let ImpModalProducts = function () {
                         Imp.notify('danger', response.response);
                     }
                 }
-              });
+            });
         })
     }
 
-    let drawProductTable = function () {
+    let drawProductTable = function() {
         //TODO
     }
 
     return {
-        init: function () {
+        init: function() {
             initModal()
         }
     };
 }();
 
-jQuery(document).ready(function () {
+jQuery(document).ready(function() {
     ImpModalProducts.init();
 });

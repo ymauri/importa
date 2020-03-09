@@ -16,7 +16,6 @@ class Product extends Model
         'weight',
         'volumen',
         'price',
-        'customs_points',
-        'charter'
+        'customs_points'
     ];
 }
