@@ -23,6 +23,5 @@
     <p><b>FECHA:</b> {{ date('d-m-Y', strtotime($order->created_at)) }}</p>
     <br>
     <img src="{{ storage_path('app/public/barcode/'.$order->barcode.'.png') }}">
-    {{dd('')}}
 </body>
 </html>

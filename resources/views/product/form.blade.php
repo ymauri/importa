@@ -97,18 +97,18 @@
                         </div>
                     </div>
                 </div>
-                
-                {{--
-                    'name',
-        'model',
-        'brand',
-        'weight',
-        'volumen',
-        'price',
-        'customs_points',
-        'charter'
-                    --}}
-              <div class="card-footer ml-auto mr-auto">
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Proveedor</label>
+                    <div class="col-sm-7">
+                        <div class="form-group{{ $errors->has('product[provider]') ? ' has-danger' : '' }}">
+                        <input class="form-control{{ $errors->has('product[provider]') ? ' is-invalid' : '' }}" name="product[provider]"  step="any" type="text" placeholder="Proveedor del producto" value="{{ $product->provider }}"/>
+                        @if ($errors->has('product[provider]'))
+                            <span id="name-error" class="error text-danger">{{ $errors->first('product[provider]') }}</span>
+                        @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-info">Guardar</button>
               </div>
             </div>

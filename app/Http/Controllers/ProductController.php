@@ -48,7 +48,7 @@ class ProductController extends Controller
     {
         try {
             $data = $request->all();
-            $product = Product::find($data['product']['id_product']);
+            $product = Product::find($data['product']['id']);
             $product->update($data['product']);
 
             flash('Datos guarados correctamente.')->success();
