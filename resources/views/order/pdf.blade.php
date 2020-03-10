@@ -19,7 +19,7 @@
         @foreach ($order->orderProducts as $key=>$item)
             {{ $item->product->name }} ({{ $key+1 }}/{{ $order->orderProducts->count() }})@if (!$loop->last), @endif
         @endforeach</p>
-	<p><b>TIPO DE ARTÍCULOS:</b> {{ $order->type }} </p>
+	<p><b>TIPO DE ARTÍCULOS:</b> {{ App\Enums\OrderType::getName($order->type) }} </p>
     <p><b>FECHA:</b> {{ date('d-m-Y', strtotime($order->created_at)) }}</p>
     <br>
     <img src="{{ storage_path('app/public/barcode/'.$order->barcode.'.png') }}">
