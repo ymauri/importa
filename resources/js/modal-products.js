@@ -88,11 +88,6 @@ let ImpModalProducts = function() {
                 initTable();
             }
             $('#areaProductoList').modal().show();
-            $().change(function() {})
-            $('table#asa').on('change', '#elqueyouiero', function() {
-
-            })
-
         })
     }
 

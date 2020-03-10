@@ -3,9 +3,10 @@
  */
 let ImpOrder = function() {
     let products;
+    let ordersTables;
     let initTable = function() {
         if ($('#datatable_order').length > 0) {
-            $('#datatable_order').DataTable({
+            ordersTables = $('#datatable_order').DataTable({
                 responsive: true,
                 // Pagination settings
                 dom: `<'row'<'col-sm-12'tr>>
@@ -161,6 +162,11 @@ let ImpOrder = function() {
         })
     }
 
+    let updateTableAfterModalClose = function() {
+        $(document).on('hidden.bs.modal', '#areaProductoList', function() {
+            products.ajax.reload();
+        });
+    }
 
     let initSelect = function() {
         let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -233,6 +239,7 @@ let ImpOrder = function() {
             initSelect();
             initTableProductos();
             initComponents();
+            updateTableAfterModalClose();
         }
     };
 }();
