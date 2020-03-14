@@ -75,7 +75,7 @@
                 <td>{{ $op->quantity }}</td>
                 <td>{{ $op->product->brand }}</td>
                 <td>{{ $op->product->model }} &nbsp;</td>
-                <td></td>
+                <td>{{ $op->product->provider }}</td>
                 <td>{{ $op->product->volumen }}</td>
                 <td>{{ $op->product->weight }}</td>
                 <td>{{ $op->product->weigthLb() }}</td>
