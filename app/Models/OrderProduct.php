@@ -23,4 +23,20 @@ class OrderProduct extends Model
     public function order() {
         return $this->hasOne(Order::class, 'id', 'id_order');
     }
+
+    public function getCharterAttribute () {
+        return number_format($this->attributes['charter'], 2);
+    }
+
+    public function totalCharter () {
+        return number_format($this->attributes['charter'] * $this->product->price, 2);
+    }
+
+    public function totalPrice() {
+        return number_format($this->attributes['quantity'] * $this->product->price, 2);
+    }
+
+    public function totalCustomsPoints() {
+        return number_format($this->attributes['quantity'] * $this->product->customs_points, 2);
+    }
 }

@@ -1,13 +1,13 @@
 /**
  * Created by User on 14/01/2020.
  */
-let ImpShipping = function () {
+let ImpShipping = function() {
     let table_modal;
     let table_order;
     let timeout = false;
     let requestTimeout = 1000;
 
-    let initTable = function () {
+    let initTable = function() {
         if ($('#datatable_shipping').length > 0) {
             $('#datatable_shipping').DataTable({
                 responsive: true,
@@ -24,18 +24,17 @@ let ImpShipping = function () {
                 },
 
                 columns: [
-                    {title: 'Id', data: 'id'},
-                    {title: 'Descripción', data: 'description'},
-                    {title:  'Acciones', data: 'id', width: '200px'}
+                    { title: 'Id', data: 'id' },
+                    { title: 'Descripción', data: 'description' },
+                    { title: 'Acciones', data: 'id', width: '200px' }
                 ],
-                columnDefs: [
-                    {
-                        targets: -1,
-                        orderable: false,
-                        class: 'td-actions text-right',
-                        render: function (data, type, full, meta) {
-                                token = $('meta[name="csrf-token"]').attr('content');
-                                return `<form action="/shipping/delete/${full.id}" method="post">
+                columnDefs: [{
+                    targets: -1,
+                    orderable: false,
+                    class: 'td-actions text-right',
+                    render: function(data, type, full, meta) {
+                        token = $('meta[name="csrf-token"]').attr('content');
+                        return `<form action="/shipping/delete/${full.id}" method="post">
                                 <input type="hidden" name="_token" value="${token}">
                                 <a rel="tooltip" class="btn btn-success btn-link" href="shipping/edit/${full.id}" data-original-title="" title="Editar">
                                 <i class="material-icons">edit</i>
@@ -47,18 +46,17 @@ let ImpShipping = function () {
                                     <div class="ripple-container"></div>
                                 <div class="ripple-container"></div></button>
                             </form>`
-                        },
-                    }
-                ],
+                    },
+                }],
 
-                initComplete: function () {
+                initComplete: function() {
 
                 }
             });
         }
     };
 
-    let initBultos = function () {
+    let initBultos = function() {
         if ($('#datatable_order').length > 0) {
             table_order = $('#datatable_order').DataTable({
                 responsive: true,
@@ -75,24 +73,27 @@ let ImpShipping = function () {
                 },
 
                 columns: [
-                    {title: 'Id', data: 'id_shipping_order'},
-                    {title: 'Destinatario', data: 'name'},
-                    {title: 'Barcode', data: 'barcode'},
-                    {title: 'Eliminar', data: 'id_order'}
+                    { title: 'Id', data: 'id_shipping_order' },
+                    { title: 'Destinatario', data: 'name' },
+                    { title: 'Barcode', data: 'barcode' },
+                    { title: 'Eliminar', data: 'id_order' }
                 ],
-                columnDefs: [
-                    {
+                columnDefs: [{
                         targets: -1,
                         orderable: false,
                         class: 'td-actions text-right',
-                        render: function (data, type, full, meta) {
-                                token = $('meta[name="csrf-token"]').attr('content');
-                                return `<form action="/shipping/delete/" method="post">
+                        render: function(data, type, full, meta) {
+                            token = $('meta[name="csrf-token"]').attr('content');
+                            return `<form action="/shipping/delete/" method="post">
                                 <input type="hidden" name="_token" value="${token}">
                                 <input type="hidden" name="_method" value="delete">
                                 <input type="hidden" name="id_shipping_order" value="${full.id_shipping_order}">
                                 <a rel="tooltip" class="btn btn-success btn-link" href="/order/pdf/${data}" data-original-title="" title="Comprobante">
                                 <i class="material-icons">picture_as_pdf</i>
+                                <div class="ripple-container"></div>
+                                </a>
+                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/excel/${data}" data-original-title="" title="Factura">
+                                <i class="material-icons">list_alt</i>
                                 <div class="ripple-container"></div>
                                 </a>
                                 <button type="button" class="btn btn-danger btn-link delete-bulto" data-original-title="" title="Eliminar" >
@@ -104,15 +105,15 @@ let ImpShipping = function () {
                     },
                     {
                         targets: 1,
-                        render: function (data, type, full, meta) {
+                        render: function(data, type, full, meta) {
                             return full.name + " " + full.last_name;
-                    },
+                        },
                     }
 
                 ],
 
-                initComplete: function () {
-                    $('#order-global-search').on( 'keyup', function () {
+                initComplete: function() {
+                    $('#order-global-search').on('keyup', function() {
                         if (timeout) {
                             clearTimeout(timeout);
                         }
@@ -121,13 +122,13 @@ let ImpShipping = function () {
                             table_order.search($('input.search').val()).draw();
                         }, requestTimeout);
 
-                    } );
+                    });
                 }
             });
         }
     }
 
-    let initTableModal = function () {
+    let initTableModal = function() {
         table_modal = $('#datatable_orders_modal').DataTable({
             responsive: true,
             // Pagination settings
@@ -143,17 +144,16 @@ let ImpShipping = function () {
             },
 
             columns: [
-                {title: 'Id', data: 'order'},
-                {title: 'Destinatario', data: 'name'},
-                {title: 'Barcode', data: 'barcode'},
-                {title:  'Acciones', data: 'order', width: '200px'}
+                { title: 'Id', data: 'order' },
+                { title: 'Destinatario', data: 'name' },
+                { title: 'Barcode', data: 'barcode' },
+                { title: 'Acciones', data: 'order', width: '200px' }
             ],
-            columnDefs: [
-                {
+            columnDefs: [{
                     targets: -1,
                     orderable: false,
                     class: 'td-actions text-right',
-                    render: function (data, type, full, meta) {
+                    render: function(data, type, full, meta) {
                         return `<form action="/addOrder" method="post" class="m-0">
                         <input type="hidden" name="_token" value="">
                         <input type="hidden" name="id_shipping" value="">
@@ -168,14 +168,14 @@ let ImpShipping = function () {
                 },
                 {
                     targets: 1,
-                    render: function (data, type, full, meta) {
+                    render: function(data, type, full, meta) {
                         return full.name + " " + full.last_name;
                     }
                 }
             ],
 
-            initComplete: function () {
-                $('input.search').on( 'keyup', function () {
+            initComplete: function() {
+                $('input.search').on('keyup', function() {
                     if (timeout) {
                         clearTimeout(timeout);
                     }
@@ -184,16 +184,16 @@ let ImpShipping = function () {
                         table.search($('input.search').val()).draw();
                     }, requestTimeout);
 
-                } );
+                });
 
             }
         });
     };
 
-    let initModal = function () {
-        $('#show-modal').click(function(e){
+    let initModal = function() {
+        $('#show-modal').click(function(e) {
             e.preventDefault();
-            if ( !$.fn.dataTable.isDataTable( '#datatable_orders_modal' )) {
+            if (!$.fn.dataTable.isDataTable('#datatable_orders_modal')) {
                 initTableModal();
             } else {
                 table_modal.ajax.reload();
@@ -202,8 +202,8 @@ let ImpShipping = function () {
         })
     }
 
-    let addOrder = function () {
-        $('#datatable_orders_modal').on('click', '.add-order', function (e) {
+    let addOrder = function() {
+        $('#datatable_orders_modal').on('click', '.add-order', function(e) {
             e.preventDefault();
             form = $(this).closest('form');
 
@@ -219,7 +219,7 @@ let ImpShipping = function () {
                 url: "/shipping/addOrder",
                 data: $(form).serialize(),
                 dataType: 'json',
-                success: function(response){
+                success: function(response) {
                     // response = JSON.parse(response.status)
                     if (response.status === 200) {
                         Imp.notify('success', response.response)
@@ -228,12 +228,12 @@ let ImpShipping = function () {
                         Imp.notify('danger', response.response);
                     }
                 }
-              });
+            });
         })
     }
 
-    let deleteOrder = function () {
-       $('body').on('click', '.delete-bulto', function (e) {
+    let deleteOrder = function() {
+        $('body').on('click', '.delete-bulto', function(e) {
             e.preventDefault();
             form = $(this).closest('form');
 
@@ -248,7 +248,7 @@ let ImpShipping = function () {
                 url: "/shipping/deleteOrder",
                 data: $(form).serialize(),
                 dataType: 'json',
-                success: function(response){
+                success: function(response) {
                     if (response.status === 200) {
                         Imp.notify('success', response.response)
                         table_order.ajax.reload();
@@ -256,12 +256,12 @@ let ImpShipping = function () {
                         Imp.notify('danger', response.response);
                     }
                 }
-              });
+            });
         })
     }
 
     return {
-        init: function () {
+        init: function() {
             initTable();
             initBultos();
             initModal();
@@ -271,6 +271,6 @@ let ImpShipping = function () {
     };
 }();
 
-jQuery(document).ready(function () {
+jQuery(document).ready(function() {
     ImpShipping.init();
 });

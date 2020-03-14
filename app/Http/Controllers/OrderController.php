@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Client;
+use App\Exports\BillExport;
 use App\Models\Shipping;
 use App\Models\ShippingOrder;
 use App\Order;
@@ -179,6 +180,10 @@ class OrderController extends Controller
         $orderObj = OrderProduct::join('imp_product', 'imp_product.id', 'imp_order_product.id_product')->where('id_order', $order)
                     ->select('imp_product.id', 'imp_product.name', 'imp_product.brand', 'imp_product.model')->get();
         return datatables()->of($orderObj)->toJson();
+    }
+
+    public function excel (Order $order) {
+        return (new BillExport($order->id))->download('Factura'.$order->id.'.xlsx', null);
     }
 
 }
