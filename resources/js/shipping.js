@@ -73,7 +73,7 @@ let ImpShipping = function() {
                 },
 
                 columns: [
-                    { title: 'Id', data: 'id_shipping_order' },
+                    { title: 'Id', data: 'id_order' },
                     { title: 'Destinatario', data: 'name' },
                     { title: 'Barcode', data: 'barcode' },
                     { title: 'Eliminar', data: 'id_order' }
@@ -94,6 +94,10 @@ let ImpShipping = function() {
                                 </a>
                                 <a rel="tooltip" class="btn btn-success btn-link" href="/order/excel/${data}" data-original-title="" title="Factura">
                                 <i class="material-icons">list_alt</i>
+                                <div class="ripple-container"></div>
+                                </a>
+                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/edit/${data}" data-original-title="" title="Factura">
+                                <i class="material-icons">edit</i>
                                 <div class="ripple-container"></div>
                                 </a>
                                 <button type="button" class="btn btn-danger btn-link delete-bulto" data-original-title="" title="Eliminar" >
