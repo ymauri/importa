@@ -11,9 +11,11 @@ class CountriesTableSeeder extends Seeder
 */
 public function run()
 {
-	DB::table('imp_country')->delete();
+    DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+    DB::table('imp_country')->truncate();
+    DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 	$countries = array(
-		array('id' => 1,'code' => 'AF' ,'name' => "Afghanistan",'phonecode' => 93),
+		array('id' => 55,'code' => 'AF' ,'name' => "Afghanistan",'phonecode' => 93),
 		array('id' => 2,'code' => 'AL' ,'name' => "Albania",'phonecode' => 355),
 		array('id' => 3,'code' => 'DZ' ,'name' => "Algeria",'phonecode' => 213),
 		array('id' => 4,'code' => 'AS' ,'name' => "American Samoa",'phonecode' => 1684),
@@ -67,7 +69,7 @@ public function run()
 		array('id' => 52,'code' => 'CR','name' => "Costa Rica",'phonecode' => 506),
 		array('id' => 53,'code' => 'CI','name' => "Cote D Ivoire (Ivory Coast)",'phonecode' => 225),
 		array('id' => 54,'code' => 'HR','name' => "Croatia (Hrvatska)",'phonecode' => 385),
-		array('id' => 55,'code' => 'CU','name' => "Cuba",'phonecode' => 53),
+		array('id' => 1,'code' => 'CU','name' => "Cuba",'phonecode' => 53),
 		array('id' => 56,'code' => 'CY','name' => "Cyprus",'phonecode' => 357),
 		array('id' => 57,'code' => 'CZ','name' => "Czech Republic",'phonecode' => 420),
 		array('id' => 58,'code' => 'DK','name' => "Denmark",'phonecode' => 45),
