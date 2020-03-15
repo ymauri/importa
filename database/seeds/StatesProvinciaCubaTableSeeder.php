@@ -10,6 +10,7 @@ class StatesProvinciaCubaTableSeeder extends Seeder
      * @return void
      */
     public function run() {
+        DB::table('imp_state')->where('id_country', 1)->delete();
         $municipios = [
             [ 'name' => 'Sandino', 'province' => 'Pinar del Rio', 'cubapack_code' => '010100'],
             [ 'name' =>  'Mantua', 'province' => 'Pinar del Rio', 'cubapack_code' => '010200'],
