@@ -82,9 +82,7 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
     Route::get('pdf/{order}', 'OrderController@pdf')->name('pdf');
     Route::get('excel/{order}', 'OrderController@excel')->name('excel');
     Route::get('productsDt/{order}', 'OrderController@productsDt')->name('productsDt');
-
-
-
+    Route::get('bill/{order}', 'OrderController@bill')->name('bill');
 });
 
 Route::middleware('auth')->name('shipping.')->prefix('shipping')->group(function() {

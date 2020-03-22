@@ -182,6 +182,11 @@ class OrderController extends Controller
         return datatables()->of($orderObj)->toJson();
     }
 
+    public function bill (Order $order) {
+        $view = true;
+        return view('order.bill-view',compact('order', 'view'));
+    }
+
     public function excel (Order $order) {
         return (new BillExport($order->id))->download('Factura'.$order->id.'.xlsx', null);
     }

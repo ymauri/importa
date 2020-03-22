@@ -1,19 +1,18 @@
 //
-
 .select2-selection.select2-selection--single {
     position: relative;
-	font-family: inherit;
-	background-color: transparent !important;
-	font-size: 15px;
-	border-radius: 0 !important;
-	border: none !important;
-	border-bottom: 1px solid rgba(0,0,0, 0.12) !important;
+    font-family: inherit;
+    background-color: transparent !important;
+    font-size: 15px;
+    border-radius: 0 !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
 }
 
 input.datepicker {
     background: no-repeat center bottom, center calc(100% - 1px);
     background-size: 0 100%, 100% 100%;
-    border-bottom: 1px solid rgba(0,0,0, 0.12) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
     height: 36px;
     transition: background 0s ease-out;
     padding-left: 0;
@@ -28,11 +27,17 @@ input.datepicker {
 }
 
 .gj-icon {
-    color:#444;
+    color: #444;
 }
 
 .gj-picker-md table tr td.selected.gj-cursor-pointer div {
     color: white;
     background-color: #00acc1 !important;
     border-radius: 5px !important;
+}
+
+.custom-table td,
+.custom-table th,
+.custom-table {
+    border: 1px solid #ddd;
 }

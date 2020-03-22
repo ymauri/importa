@@ -92,7 +92,7 @@ let ImpShipping = function() {
                                 <i class="material-icons">picture_as_pdf</i>
                                 <div class="ripple-container"></div>
                                 </a>
-                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/excel/${data}" data-original-title="" title="Factura">
+                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/bill/${data}" data-original-title="" title="Factura">
                                 <i class="material-icons">list_alt</i>
                                 <div class="ripple-container"></div>
                                 </a>

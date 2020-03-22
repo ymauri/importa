@@ -1,10 +1,15 @@
 @php
     $quantity = $volumen = $pesoKg = $pesoLb = $precioTotal = $valueTotal = $flete = 0;
 @endphp
-<table style="boder: solid 1px #000000;">
+<table @isset($view) class="table custom-table" @endisset style="boder: solid 1px #ddd !important;">
     <tbody>
         <tr>
-            <td rowspan="11" style="font-size: 12px; text-align: center;"><img style="width: 250px;" src="{{ public_path(). '/img/gbi.jpg'}}"><br/>
+            <td rowspan="11" style="font-size: 12px; text-align: center;"><img style="width: 250px;"
+                @isset($view)
+                    src="/img/gbi.jpg"
+                @else
+                    src="{{ public_path(). '/img/gbi.jpg'}}"
+                @endisset><br/>
                 <i>MADRID - CAPITAN HAYA #16 <br/> PANAMÁ- FRANCE FIELD </i>
             </td>
             <td colspan="2"><strong>TIPO</strong></td>
@@ -43,10 +48,7 @@
             <td colspan="11">{{ $order->departure }}</td>
         </tr>
         <tr>
-            <td colspan="12">&nbsp;</td>
-        </tr>
-        <tr>
-            <td colspan="12">&nbsp;</td>
+            <td colspan="14">&nbsp;</td>
         </tr>
         <tr>
             <td colspan="10"><strong>MERCANCÍA</strong></td>
@@ -99,21 +101,21 @@
         <tr>
             <td><strong>TOTALES</strong></td>
             <td> {{ $quantity }} </td>
-            <td style="background-color: #666666"></td>
-            <td style="background-color: #666666"></td>
-            <td style="background-color: #666666"></td>
+            <td style="background-color: #f5eded"></td>
+            <td style="background-color: #f5eded"></td>
+            <td style="background-color: #f5eded"></td>
             <td> {{ number_format($volumen, 2) }} </td>
             <td> {{ number_format($pesoKg, 2) }} </td>
             <td> {{ number_format($pesoLb, 2) }} </td>
-            <td style="background-color: #666666"></td>
+            <td style="background-color: #f5eded"></td>
             <td> {{ number_format($precioTotal, 2) }} </td>
-            <td style="background-color: #666666"></td>
+            <td style="background-color: #f5eded"></td>
             <td> {{ number_format($valueTotal, 2) }} </td>
-            <td style="background-color: #666666"></td>
+            <td style="background-color: #f5eded"></td>
             <td> {{ number_format($flete, 2) }} </td>
         </tr>
         <tr>
-            <td colspan="10" style="background-color: #666666"></td>
+            <td colspan="10" style="background-color: #f5eded"></td>
             <td><strong>PDTS</strong></td>
             <td colspan="3"></td>
         </tr>
@@ -158,11 +160,11 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="14" style="background-color: #666666">&nbsp;</td>
+            <td colspan="14" style="background-color: #f5eded">&nbsp;</td>
         </tr>
         <tr>
             <td><strong>FLETE</strong></td>
-            <td colspan="7" style="background-color: #666666"></td>
+            <td colspan="7" style="background-color: #f5eded"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -172,7 +174,7 @@
         </tr>
         <tr>
             <td><strong>DOCUMENTACIÓN</strong></td>
-            <td colspan="7" style="background-color: #666666"></td>
+            <td colspan="7" style="background-color: #f5eded"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -182,7 +184,7 @@
         </tr>
         <tr>
             <td><strong>MANEJO EN BODEGA</strong></td>
-            <td colspan="7" style="background-color: #666666"></td>
+            <td colspan="7" style="background-color: #f5eded"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -192,7 +194,7 @@
         </tr>
         <tr>
             <td><strong>GESTIÓN COMERCIAL Y COTIZACIÓN</strong></td>
-            <td colspan="7" style="background-color: #666666"></td>
+            <td colspan="7" style="background-color: #f5eded"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -202,7 +204,7 @@
         </tr>
         <tr>
             <td><strong>EMABALAJE Y RETRACTILADO</strong></td>
-            <td colspan="7" style="background-color: #666666"></td>
+            <td colspan="7" style="background-color: #f5eded"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -212,7 +214,7 @@
         </tr>
         <tr>
             <td><strong>TOTAL ENVÍO</strong></td>
-            <td colspan="7" style="background-color: #666666"></td>
+            <td colspan="7" style="background-color: #f5eded"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -222,7 +224,7 @@
         </tr>
         <tr>
             <td><strong>TOTAL MERCANCÍA + ENVÍO</strong></td>
-            <td colspan="7" style="background-color: #666666"></td>
+            <td colspan="7" style="background-color: #f5eded"></td>
             <td></td>
             <td></td>
             <td></td>
