@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Models\Shipping;
 use App\Models\ShippingOrder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,7 +31,8 @@ class Order extends Model
         'apartment',
         'id_city',
         'id_client',
-        'type'
+        'type',
+        'pickup'
     ];
 
     public function products(){
@@ -87,6 +87,14 @@ class Order extends Model
             'volumen' => $volumen,
             'customs' => $customs,
         ]);
+    }
+
+    public function pickupName() {
+        if ($this->pickup) {
+            return "Directa";
+        } else {
+            return "A Domicilio";
+        }
     }
 
 }

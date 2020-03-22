@@ -55,17 +55,6 @@
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <label class="col-sm-2 col-form-label">Flete</label>
-                        <div class="col-sm-7">
-                          <div class="form-group{{ $errors->has('order[shipping]') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('order[shipping]') ? ' is-invalid' : '' }}" name="order[shipping]" type="text" placeholder="Flete" value="{{ $order->shipping }}" />
-                            @if ($errors->has('order[shipping]'))
-                              <span id="name-error" class="error text-danger">{{ $errors->first('order[shipping]') }}</span>
-                            @endif
-                          </div>
-                        </div>
-                      </div>
 
                     <div class='row'>
                         <label class="col-sm-2 col-form-label">Tipo de envío</label>
@@ -77,6 +66,19 @@
                             <div class="custom-control custom-radio  custom-control-inline">
                                 <input type="radio" class="custom-control-input" value="2" id="order-importacion" name="order[type]" @if($order->type == 2) checked @endif>
                                 <label class="custom-control-label" for="order-importacion">Envío</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <label class="col-sm-2 col-form-label">Recogida</label>
+                        <div class="col-sm-7">
+                            <div class="custom-control custom-radio  custom-control-inline">
+                                <input type="radio" class="custom-control-input" value="1" id="order-directa" name="order[pickup]" @if($order->pickup == 1) checked @endif>
+                                <label class="custom-control-label" for="order-directa">Directa</label>
+                            </div>
+                            <div class="custom-control custom-radio  custom-control-inline">
+                                <input type="radio" class="custom-control-input" value="0" id="order-domicilio" name="order[pickup]" @if($order->pickup == 0) checked @endif>
+                                <label class="custom-control-label" for="order-domicilio">A domicilio</label>
                             </div>
                         </div>
                     </div>

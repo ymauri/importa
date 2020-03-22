@@ -14,12 +14,13 @@
 	<p><b>CI:</b> {{ $order->ci }}</p>
 	<p><b>TELÉFONO:</b> {{ $order->mobile }}</p>
 	<p><b>DESCRIPCIÓN:</b> {{ $order->description() }}</p>
+	<p><b>RECOGIDA:</b> {{ $order->pickupName() }}</p>
     <p><b>CANTIDAD DE PIEZAS:</b> {{ $order->orderProducts->count() }} </p>
     <p><b>PIEZAS:</b>
         @foreach ($order->orderProducts as $key=>$item)
             {{ $item->product->name }} ({{ $key+1 }}/{{ $order->orderProducts->count() }})@if (!$loop->last), @endif
         @endforeach</p>
-	<p><b>TIPO DE ARTÍCULOS:</b> {{ App\Enums\OrderType::getName($order->type) }} </p>
+	<p><b>TIPO DE ENVÍO:</b> {{ App\Enums\OrderType::getName($order->type) }} </p>
     <p><b>FECHA:</b> {{ date('d-m-Y', strtotime($order->created_at)) }}</p>
     <br>
     <img src="{{ storage_path('app/public/barcode/'.$order->barcode.'.png') }}">

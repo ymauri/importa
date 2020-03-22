@@ -1,5 +1,5 @@
 @php
-    $quantity = $volumen = $pesoKg = $pesoLb = 0;
+    $quantity = $volumen = $pesoKg = $pesoLb = $precioTotal = $valueTotal = $flete = 0;
 @endphp
 <table style="boder: solid 1px #000000;">
     <tbody>
@@ -91,6 +91,9 @@
                 $volumen += $op->product->volumen;
                 $pesoKg += $op->product->weight;
                 $pesoLb += $op->product->weigthLb();
+                $precioTotal += $op->product->price;
+                $valueTotal += ($op->product->customs_points * $op->quantity);
+                $flete += ($op->product->price * $op->charter);
             @endphp
         @endforeach
         <tr>
@@ -102,9 +105,12 @@
             <td> {{ number_format($volumen, 2) }} </td>
             <td> {{ number_format($pesoKg, 2) }} </td>
             <td> {{ number_format($pesoLb, 2) }} </td>
-            <td colspan="2" style="background-color: #666666"></td>
-            <td colspan="2" style="background-color: #666666"></td>
-            <td colspan="2" style="background-color: #666666"></td>
+            <td style="background-color: #666666"></td>
+            <td> {{ number_format($precioTotal, 2) }} </td>
+            <td style="background-color: #666666"></td>
+            <td> {{ number_format($valueTotal, 2) }} </td>
+            <td style="background-color: #666666"></td>
+            <td> {{ number_format($flete, 2) }} </td>
         </tr>
         <tr>
             <td colspan="10" style="background-color: #666666"></td>
@@ -156,17 +162,17 @@
         </tr>
         <tr>
             <td><strong>FLETE</strong></td>
-            <td colspan="7"></td>
+            <td colspan="7" style="background-color: #666666"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td> {{ number_format($flete, 2) }} </td>
         </tr>
         <tr>
             <td><strong>DOCUMENTACIÓN</strong></td>
-            <td colspan="7"></td>
+            <td colspan="7" style="background-color: #666666"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -176,7 +182,7 @@
         </tr>
         <tr>
             <td><strong>MANEJO EN BODEGA</strong></td>
-            <td colspan="7"></td>
+            <td colspan="7" style="background-color: #666666"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -186,7 +192,7 @@
         </tr>
         <tr>
             <td><strong>GESTIÓN COMERCIAL Y COTIZACIÓN</strong></td>
-            <td colspan="7"></td>
+            <td colspan="7" style="background-color: #666666"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -196,7 +202,7 @@
         </tr>
         <tr>
             <td><strong>EMABALAJE Y RETRACTILADO</strong></td>
-            <td colspan="7"></td>
+            <td colspan="7" style="background-color: #666666"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -206,23 +212,23 @@
         </tr>
         <tr>
             <td><strong>TOTAL ENVÍO</strong></td>
-            <td colspan="7"></td>
+            <td colspan="7" style="background-color: #666666"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td> {{ number_format($flete + 70, 2) }} </td>
         </tr>
         <tr>
             <td><strong>TOTAL MERCANCÍA + ENVÍO</strong></td>
-            <td colspan="7"></td>
+            <td colspan="7" style="background-color: #666666"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td> {{ number_format($flete + 70 + $flete, 2) }} </td>
         </tr>
     </tbody>
 </table>
