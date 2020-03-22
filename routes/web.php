@@ -99,6 +99,8 @@ Route::middleware('auth')->name('shipping.')->prefix('shipping')->group(function
     Route::get('', 'ShippingController@index')->name('index');
     Route::get('txt/{shipping}', 'ShippingController@txt')->name('txt');
     Route::get('excel/{shipping}', 'ShippingController@excel')->name('excel');
+    Route::get('excelBill/{shipping}', 'ShippingController@excelBill')->name('excelBill');
+    Route::get('bill/{shipping}', 'ShippingController@bill')->name('bill');
 });
 
 

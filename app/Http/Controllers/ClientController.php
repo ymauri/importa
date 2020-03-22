@@ -40,10 +40,6 @@ class ClientController extends Controller
         $client = Client::find($id);
         $address = Address::find($client->id_address);
         $edit = true;
-        // $cities = City::with(['state.country', function($query){
-        //     $query->select('imp_country.id')
-        //     ->where('imp_country.name', 'Cuba');
-        // }])->get();
         return view('client.form', compact('client', 'address', 'edit'));
     }
 

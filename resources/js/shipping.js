@@ -264,6 +264,33 @@ let ImpShipping = function() {
         })
     }
 
+    //select_city
+    let initSelect = function() {
+        let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        if ($("#select_city").length > 0) {
+            $("#select_city").select2({
+                ajax: {
+                    url: "/client/selectCity",
+                    type: "post",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            _token: CSRF_TOKEN,
+                            search: params.term // search term
+                        };
+                    },
+                    processResults: function(response) {
+                        return {
+                            results: response
+                        };
+                    },
+                    cache: true
+                }
+            });
+        }
+    }
+
     return {
         init: function() {
             initTable();
@@ -271,6 +298,7 @@ let ImpShipping = function() {
             initModal();
             addOrder();
             deleteOrder();
+            initSelect();
         }
     };
 }();

@@ -5,13 +5,13 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-            <form method="get" action="{{ route('order.excel', ['order' => $order->id]) }}" autocomplete="off" class="form-horizontal">
+            <form method="get" action="{{ route('shipping.excelBill', ['shipping' => $shipping->id]) }}" autocomplete="off" class="form-horizontal">
                 @csrf
                 @method('post')
-                <input type="hidden" name="order[id]" value="{{ $order->id }}">
+                <input type="hidden" name="shipping[id]" value="{{ $shipping->id }}">
                 <div class="card ">
                     <div class="card-header card-header-info">
-                        <h4 class="card-title">Vista previa - Factura - {{$order->id}} </h4>
+                        <h4 class="card-title">Vista previa - Factura - {{$shipping->description}} </h4>
                         <p class="card-category"></p>
                     </div>
                     <div class="card-body ">
@@ -20,7 +20,7 @@
                                 <a href="{{ url()->previous() }}" class="btn btn-sm btn-info">{{ __('Ir al listado') }}</a>
                             </div>
                         </div>
-                        @include('order.bill')
+                        @include('shipping.bill')
                         <div class="col-12 text-right">
                             <button type="submit" class="btn btn-success">Exportar Excel</button>
                         </div>
