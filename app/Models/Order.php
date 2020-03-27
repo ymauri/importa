@@ -97,4 +97,7 @@ class Order extends Model
         }
     }
 
+    public function weigthLb () {
+        return number_format((!empty($this->attributes['weight']) ? $this->attributes['weight'] : 0) * 2.2, 2);
+    }
 }

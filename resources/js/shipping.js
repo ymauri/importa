@@ -75,7 +75,7 @@ let ImpShipping = function() {
                 columns: [
                     { title: 'Id', data: 'id_order' },
                     { title: 'Destinatario', data: 'name' },
-                    { title: 'Barcode', data: 'barcode' },
+                    { title: 'HBL', data: 'barcode' },
                     { title: 'Eliminar', data: 'id_order' }
                 ],
                 columnDefs: [{
@@ -88,7 +88,11 @@ let ImpShipping = function() {
                                 <input type="hidden" name="_token" value="${token}">
                                 <input type="hidden" name="_method" value="delete">
                                 <input type="hidden" name="id_shipping_order" value="${full.id_shipping_order}">
-                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/pdf/${data}" data-original-title="" title="Comprobante">
+                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/label/${data}" data-original-title="" title="Etiqueta">
+                                <i class="material-icons">label</i>
+                                <div class="ripple-container"></div>
+                                </a>
+                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/ticket/${data}" data-original-title="" title="Comprobante">
                                 <i class="material-icons">picture_as_pdf</i>
                                 <div class="ripple-container"></div>
                                 </a>
@@ -96,7 +100,7 @@ let ImpShipping = function() {
                                 <i class="material-icons">list_alt</i>
                                 <div class="ripple-container"></div>
                                 </a>
-                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/edit/${data}" data-original-title="" title="Factura">
+                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/edit/${data}" data-original-title="" title="Editar">
                                 <i class="material-icons">edit</i>
                                 <div class="ripple-container"></div>
                                 </a>
@@ -150,7 +154,7 @@ let ImpShipping = function() {
             columns: [
                 { title: 'Id', data: 'order' },
                 { title: 'Destinatario', data: 'name' },
-                { title: 'Barcode', data: 'barcode' },
+                { title: 'HBL', data: 'barcode' },
                 { title: 'Acciones', data: 'order', width: '200px' }
             ],
             columnDefs: [{

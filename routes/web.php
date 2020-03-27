@@ -79,7 +79,8 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
     Route::get('products/{order}', 'OrderController@products')->name('products');
     Route::post('addProduct', 'OrderController@addProduct')->name('addProduct');
     Route::delete('deleteProduct', 'OrderController@deleteProduct')->name('deleteProduct');
-    Route::get('pdf/{order}', 'OrderController@pdf')->name('pdf');
+    Route::get('label/{order}', 'OrderController@label')->name('label');
+    Route::get('ticket/{order}', 'OrderController@ticket')->name('ticket');
     Route::get('excel/{order}', 'OrderController@excel')->name('excel');
     Route::get('productsDt/{order}', 'OrderController@productsDt')->name('productsDt');
     Route::get('bill/{order}', 'OrderController@bill')->name('bill');

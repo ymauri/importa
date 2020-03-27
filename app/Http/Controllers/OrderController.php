@@ -170,10 +170,16 @@ class OrderController extends Controller
         }
     }
 
-    public function pdf (Order $order) {
+    public function label (Order $order) {
         $data = ['order' => $order, 'shipping' => ShippingOrder::where('id_order', $order->id)->first()];
-        $pdf = PDF::loadView('order.pdf', $data);
-        return $pdf->download($order->id.'.pdf');
+        $pdf = PDF::loadView('order.label', $data);
+        return $pdf->download('Etiqueta - '.$order->id.'.pdf');
+    }
+
+    public function ticket (Order $order) {
+        $data = ['order' => $order, 'shipping' => ShippingOrder::where('id_order', $order->id)->first()];
+        $pdf = PDF::loadView('order.ticket', $data);
+        return $pdf->download('Comprobante - '.$order->id.'.pdf');
     }
 
     public function productsDt ($order) {

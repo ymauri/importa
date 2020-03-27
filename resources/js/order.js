@@ -24,7 +24,7 @@ let ImpOrder = function() {
                     { title: 'Id', data: 'id' },
                     { title: 'Comprador' },
                     { title: 'Destinatario', data: 'name' },
-                    { title: 'Barcode', data: 'barcode' },
+                    { title: 'HBL', data: 'barcode' },
                     { title: 'Tipo', data: 'type' },
                     { title: 'Acciones', data: 'id', width: '200px' }
                 ],
