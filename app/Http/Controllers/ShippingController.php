@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Address;
-use App\Exports\BillShippingExport;
 use App\Exports\ShippingExport;
 use App\Models\Shipping;
 use App\Models\ShippingOrder;
 use App\Order;
 use Exception;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Excel;
 
 class ShippingController extends Controller
 {
@@ -182,7 +180,7 @@ class ShippingController extends Controller
 
 
     public function excel (Shipping $shipping) {
-        return (new ShippingExport($shipping->id))->download('Manifiesto '.$shipping->id.'.xlsx');
+        return (new ShippingExport($shipping->id))->download('Manifiesto '.$shipping->id.'.xlsx',  Excel::XLSX);
     }
 
 }
