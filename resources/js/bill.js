@@ -32,7 +32,7 @@ let ImpOrder = function() {
                     class: 'td-actions text-right',
                     render: function(data, type, full, meta) {
                         return `<form action="/order/enterprise/delete/${full.id}" method="post">
-                            <input type="hidden" name="_token" value="TWcX32NXFMc2axMctaciXT1nDENcT9eVjLeYNWpL">                                  <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" value="${ $('meta[name="csrf-token"]').attr('content')}">                                  <input type="hidden" name="_method" value="delete">
                             <a rel="tooltip" class="btn btn-success btn-link" href="/order/enterprise/bill/${data}" data-original-title="" title="Factura">
                                 <i class="material-icons">list_alt</i>
                                 <div class="ripple-container"></div>

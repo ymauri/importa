@@ -108,4 +108,15 @@ class BillController extends Controller
     public function excelBill (Bill $bill) {
         return (new BillEnterpriseExport($bill->id))->download('Factura '.$bill->id.'.xlsx', null);
     }
+
+    public function delete(Bill $bill) {
+        try {
+            $bill->delete();
+            flash('Datos eliminados correctamente.')->success();
+        }
+        catch (Exception $e) {
+            flash('Error al eliminar los datos. '.$e->getMessage())->error();
+        }
+        return  redirect(route('order.bill.index'));
+    }
 }

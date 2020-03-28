@@ -95,6 +95,8 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
         Route::post('selectOrder', 'BillController@select')->name('select');
         Route::get('excelBill/{bill}', 'BillController@excelBill')->name('excelBill');
         Route::get('bill/{bill}', 'BillController@bill')->name('bill');
+	    Route::delete('delete/{bill}', 'BillController@delete')->name('delete');
+
     });
 });
 

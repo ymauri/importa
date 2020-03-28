@@ -34,7 +34,7 @@ let ImpOrder = function() {
                         class: 'td-actions text-right',
                         render: function(data, type, full, meta) {
                             return `<form action="order/delete/${full.id}" method="post">
-                            <input type="hidden" name="_token" value="TWcX32NXFMc2axMctaciXT1nDENcT9eVjLeYNWpL">                                  <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" value="${ $('meta[name="csrf-token"]').attr('content')}">                                  <input type="hidden" name="_method" value="delete">
                             <a rel="tooltip" class="btn btn-info btn-link" href="order/products/${full.id}" data-original-title="" title="Productos">
                             <i class="material-icons">widgets</i>
                             <div class="ripple-container"></div>
@@ -116,7 +116,7 @@ let ImpOrder = function() {
                                 <input type="hidden" name="_token" value="">
                                 <input type="hidden" name="order" value="">
                                 <input type="hidden" name="product" value="${full.id}">
-                                <input type="hidden" name="_token" value="TWcX32NXFMc2axMctaciXT1nDENcT9eVjLeYNWpL">                                  <input type="hidden" name="_method" value="delete">
+                                <input type="hidden" name="_token" value="${ $('meta[name="csrf-token"]').attr('content')}">                                  <input type="hidden" name="_method" value="delete">
                                 <a rel="tooltip" class="btn btn-danger btn-link delete-product" href="#" data-original-title="" title="Eliminar">
                                 <i class="material-icons">close</i>
                                 <div class="ripple-container"></div>
