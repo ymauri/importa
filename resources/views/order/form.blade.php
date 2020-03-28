@@ -232,7 +232,6 @@
                     </div>
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-info">Guardar</button>
-                <button type="submit" class="btn btn-success">Configurar productos</button>
               </div>
             </div>
           </form>

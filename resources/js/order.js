@@ -103,6 +103,8 @@ let ImpOrder = function() {
                     { title: 'Nombre', data: 'name' },
                     { title: 'Modelo', data: 'model' },
                     { title: 'Marca', data: 'brand' },
+                    { title: 'Cantidad', data: 'quantity' },
+                    { title: 'Flete', data: 'charter' },
                     { title: 'Eliminar', data: 'id', width: '200px' }
                 ],
                 columnDefs: [{

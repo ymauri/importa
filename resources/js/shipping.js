@@ -36,7 +36,15 @@ let ImpShipping = function() {
                         token = $('meta[name="csrf-token"]').attr('content');
                         return `<form action="/shipping/delete/${full.id}" method="post">
                                 <input type="hidden" name="_token" value="${token}">
-                                <a rel="tooltip" class="btn btn-success btn-link" href="shipping/edit/${full.id}" data-original-title="" title="Editar">
+                                <a rel="tooltip" class="btn btn-success btn-link" href="/shipping/excel/${full.id}" data-original-title="" title="Manifiesto">
+                                <i class="material-icons">subject</i>
+                                <div class="ripple-container"></div>
+                                </a>
+                                <a rel="tooltip" class="btn btn-success btn-link" href="/shipping/txt/${full.id}" data-original-title="" title="Txt Cubapack">
+                                <i class="material-icons">text_fields</i>
+                                <div class="ripple-container"></div>
+                                </a>
+                                <a rel="tooltip" class="btn btn-success btn-link" href="/shipping/edit/${full.id}" data-original-title="" title="Editar">
                                 <i class="material-icons">edit</i>
                                 <div class="ripple-container"></div>
                                 </a>

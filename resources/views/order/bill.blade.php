@@ -51,7 +51,7 @@
             <td colspan="14">&nbsp;</td>
         </tr>
         <tr>
-            <td colspan="10"><strong>MERCANCÍA</strong></td>
+            <td colspan="9"><strong>MERCANCÍA</strong></td>
             <td colspan="2"><strong>VALOR ADUANAL</strong></td>
             <td colspan="2"><strong>FLETE</strong></td>
         </tr>

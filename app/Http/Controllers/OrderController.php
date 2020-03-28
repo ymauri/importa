@@ -184,7 +184,7 @@ class OrderController extends Controller
 
     public function productsDt ($order) {
         $orderObj = OrderProduct::join('imp_product', 'imp_product.id', 'imp_order_product.id_product')->where('id_order', $order)
-                    ->select('imp_product.id', 'imp_product.name', 'imp_product.brand', 'imp_product.model')->get();
+                    ->select('imp_product.id', 'imp_product.name', 'imp_product.brand', 'imp_product.model', 'imp_order_product.quantity', 'imp_order_product.charter')->get();
         return datatables()->of($orderObj)->toJson();
     }
 
