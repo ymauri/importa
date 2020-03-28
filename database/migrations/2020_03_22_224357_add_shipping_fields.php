@@ -33,7 +33,7 @@ class AddShippingFields extends Migration
             $table->dropColumn('name');
             $table->dropColumn('email');
             $table->dropColumn('phone');
-            $table->dropIndex(['id_address']);
+            $table->dropForeign(['id_address']);
             $table->dropColumn('id_address');
         });
     }
