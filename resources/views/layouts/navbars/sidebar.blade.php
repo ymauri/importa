@@ -63,6 +63,12 @@
                 <p class="sidebar-normal"> Usuarios </p>
               </a>
             </li>
+            <li class="nav-item{{ $activePage == 'city-management' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('city.index') }}">
+                <i class="material-icons"></i>
+                <p class="sidebar-normal"> Adicionar municipio </p>
+              </a>
+            </li>
           </ul>
         </div>
       </li>

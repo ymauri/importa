@@ -45,6 +45,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
+Route::group(['middleware' => 'auth'], function () {
+	Route::resource('city', 'CityController', ['except' => ['show']]);
+	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+});
+
 Route::middleware('auth')->name('client.')->prefix('client')->group(function() {
 	Route::get('edit/{id}', 'ClientController@edit')->name('edit');
     Route::post('edit', 'ClientController@update')->name('update');
