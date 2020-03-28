@@ -58,47 +58,51 @@ let ImpOrder = function() {
     //select_city
     let initSelect = function() {
         let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $("#select_city").select2({
-            ajax: {
-                url: "/client/selectCity",
-                type: "post",
-                dataType: 'json',
-                delay: 250,
-                data: function(params) {
-                    return {
-                        _token: CSRF_TOKEN,
-                        search: params.term // search term
-                    };
-                },
-                processResults: function(response) {
-                    return {
-                        results: response
-                    };
-                },
-                cache: true
-            }
-        });
+        if ($('#select_city').length > 0) {
+            $("#select_city").select2({
+                ajax: {
+                    url: "/client/selectCity",
+                    type: "post",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            _token: CSRF_TOKEN,
+                            search: params.term // search term
+                        };
+                    },
+                    processResults: function(response) {
+                        return {
+                            results: response
+                        };
+                    },
+                    cache: true
+                }
+            });
+        }
 
-        $("#select_bulto").select2({
-            ajax: {
-                url: "/order/enterprise/selectOrder",
-                type: "post",
-                dataType: 'json',
-                delay: 250,
-                data: function(params) {
-                    return {
-                        _token: CSRF_TOKEN,
-                        search: params.term // search term
-                    };
-                },
-                processResults: function(response) {
-                    return {
-                        results: response
-                    };
-                },
-                cache: true
-            }
-        });
+        if ($('#select_bulto').length > 0) {
+            $("#select_bulto").select2({
+                ajax: {
+                    url: "/order/enterprise/selectOrder",
+                    type: "post",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            _token: CSRF_TOKEN,
+                            search: params.term // search term
+                        };
+                    },
+                    processResults: function(response) {
+                        return {
+                            results: response
+                        };
+                    },
+                    cache: true
+                }
+            });
+        }
     }
 
     return {

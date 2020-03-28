@@ -10,6 +10,7 @@ use App\Models\ShippingOrder;
 use App\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ShippingController extends Controller
 {
@@ -181,7 +182,7 @@ class ShippingController extends Controller
 
 
     public function excel (Shipping $shipping) {
-        return (new ShippingExport($shipping->id))->download('Envio'.$shipping->id.'.xlsx', null);
+        return (new ShippingExport($shipping->id))->download('Manifiesto '.$shipping->id.'.xlsx');
     }
 
 }
