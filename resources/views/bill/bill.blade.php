@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <td colspan="2"><strong>NOMBRE</strong></td>
-            <td colspan="11">{{ $shipping->name }}</td>
+            <td colspan="11">{{ $bill->name }}</td>
         </tr>
         <tr>
             <td colspan="2"><strong>CI</strong></td>
@@ -29,11 +29,11 @@
         </tr>
         <tr>
             <td colspan="2"><strong>DIRECCIÓN</strong></td>
-            <td colspan="11"> @if(!empty($shipping->address)) {{ $shipping->address->fullAddress() }} @endif</td>
+            <td colspan="11"> @if(!empty($bill->address)) {{ $bill->address->fullAddress() }} @endif</td>
         </tr>
         <tr>
             <td colspan="2"><strong>TELÉFONO FIJO</strong></td>
-            <td colspan="11">{{ $shipping->phone }} &nbsp;</td>
+            <td colspan="11">{{ $bill->phone }} &nbsp;</td>
         </tr>
         <tr>
             <td colspan="2"><strong>TELÉFONO MÓVIL</strong></td>
@@ -41,7 +41,7 @@
         </tr>
         <tr>
             <td colspan="2"><strong>CORREO ELECTRÓNICO</strong></td>
-            <td colspan="11">{{ $shipping->email }}</td>
+            <td colspan="11">{{ $bill->email }}</td>
         </tr>
         <tr>
             <td colspan="2"><strong>FECHA SALIDA</strong></td>
@@ -71,9 +71,9 @@
             <td><strong>PRECIO UNITARIO</strong></td>
             <td><strong>PRECIO TOTAL</strong></td>
         </tr>
-        {{-- {{dd($shipping->orders)}} --}}
-        @foreach ($shipping->orders as $sho)
-             @foreach ($sho->order->orderProducts as $op)
+        {{-- {{dd($bill->orders)}} --}}
+        @foreach ($bill->orders as $order)
+             @foreach ($order->orderProducts as $op)
                 <tr>
                     <td>{{ $op->product->name }}</td>
                     <td>{{ $op->quantity }}</td>

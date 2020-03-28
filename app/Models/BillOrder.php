@@ -9,7 +9,7 @@ class BillOrder extends Model
 {
     protected $table = 'imp_bill_order';
     protected $primaryKey = 'id';
-    public $timestamps = true;
+    public $timestamps = false;
     protected $fillable = [
         'bill_id',
         'order_id'

@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Address;
+use App\Order;
 use Illuminate\Database\Eloquent\Model;
 
 class Bill extends Model
 {
     protected $table = 'imp_bill';
     protected $primaryKey = 'id';
-    public $timestamps = true;
+    public $timestamps = false;
     protected $fillable = [
         'name',
         'email',
@@ -18,11 +19,11 @@ class Bill extends Model
     ];
 
     public function address() {
-        return $this->hasOne(Address::class);
+        return $this->hasOne(Address::class, 'id', 'address_id');
     }
 
     public function orders() {
-        return $this->hasMany(BillOrder::class, 'id_shipping', 'id');
+        return $this->belongsToMany(Order::class, 'imp_bill_order');
     }
 
 }

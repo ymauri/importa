@@ -32,7 +32,7 @@
         <li class="nav-item{{ $activePage == 'order' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('order.index') }}">
                 <i class="material-icons">attach_money</i>
-                <p>Compras</p>
+                <p>Bultos</p>
             </a>
         </li>
         <li class="nav-item{{ $activePage == 'shipping' ? ' active' : '' }}">

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\City;
+use App\Models\Bill;
 use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
