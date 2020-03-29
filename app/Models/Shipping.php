@@ -12,16 +12,8 @@ class Shipping extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     protected $fillable = [
-        'description',
-        'name',
-        'email',
-        'phone',
-        'id_address'
+        'description'
     ];
-
-    public function address() {
-        return $this->hasOne(Address::class, 'id', 'id_address');
-    }
 
     public function orders() {
         return $this->hasMany(ShippingOrder::class, 'id_shipping', 'id');

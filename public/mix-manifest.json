@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/city.js": "/js/city.js",
+    "/js/bill.js": "/js/bill.js",
     "/js/client.js": "/js/client.js",
     "/js/country.js": "/js/country.js",
     "/js/modal-products.js": "/js/modal-products.js",

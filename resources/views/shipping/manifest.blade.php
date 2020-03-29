@@ -15,7 +15,7 @@
             <td style="background-color: #f5eded; font-weight:bold;">Entrega</td>
         </tr>
         @foreach ($shipping->orders as $sho)
-            {{ $cantidad = $sho->order->orderProducts->count() }}
+            @php $cantidad = $sho->order->orderProducts->count() @endphp
                 <tr>
                     <td rowspan="{{ $cantidad }}"> {{$sho->order->barcode}} &nbsp;&nbsp;</td>
                     <td rowspan="{{ $cantidad }}"> {{$sho->order->id}} &nbsp; </td>

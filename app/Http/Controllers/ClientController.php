@@ -99,12 +99,12 @@ class ClientController extends Controller
     public function select(Request $request) {
         $search = $request->search;
         if($search == '') {
-            $clients = Client::orderby('name','asc')->select('id','name', 'last_name')->limit(5)->get();
+            $clients = Client::orderby('name','asc')->select('id','name', 'last_name')->limit(15)->get();
         }
         else {
             $clients = Client::orderby('name','asc')->select('id','name', 'last_name')
                         ->where('name', 'like', '%' .$search . '%')
-                        ->orWhere('last_name', 'like', '%' .$search . '%')->limit(5)->get();
+                        ->orWhere('last_name', 'like', '%' .$search . '%')->limit(15)->get();
         }
         $response = [];
         foreach($clients as $c){
@@ -126,10 +126,10 @@ class ClientController extends Controller
                     \DB::raw('CONCAT(imp_city.name, ", ", imp_state.name, " - ", imp_country.name) as city')
                 );
         if($search == '') {
-            $cities = $base->limit(5)->get();
+            $cities = $base->limit(15)->get();
         }
         else {
-            $cities = $base->having('city', 'like', '%' .$search . '%')->limit(5)->get();
+            $cities = $base->having('city', 'like', '%' .$search . '%')->limit(15)->get();
         }
         $response = [];
         foreach($cities as $c){

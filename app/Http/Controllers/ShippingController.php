@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Address;
-use App\Exports\BillShippingExport;
 use App\Exports\ShippingExport;
 use App\Models\Shipping;
 use App\Models\ShippingOrder;
 use App\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 
 class ShippingController extends Controller
 {
@@ -42,9 +41,7 @@ class ShippingController extends Controller
     public function edit(Shipping $shipping)
     {
         $edit = true;
-        $address = !empty($shipping->id_address) ? Address::find($shipping->id_address) : new Address();
-        $edit = true;
-        return view('shipping.form', compact('shipping', 'address', 'edit'));
+        return view('shipping.form', compact('shipping', 'edit'));
     }
 
     public function update(Request $request)
@@ -53,8 +50,6 @@ class ShippingController extends Controller
             $data = $request->all();
             $shipping = Shipping::find($data['shipping']['id']);
             $shipping->update($data['shipping']);
-            $address = Address::find($data['shipping']['id_address']);
-            $address->update($data['address']);
             flash('Datos guarados correctamente.')->success();
         }
         catch (Exception $e) {
@@ -65,19 +60,13 @@ class ShippingController extends Controller
 
     public function create() {
         $shipping = new Shipping();
-        $address = new Address();
-        return view('shipping.form', compact('shipping', 'address'));
+        return view('shipping.form', compact('shipping'));
     }
 
     public function save (Request $request) {
         try {
             $data = $request->all();
-            if ($data['address']['id_city']) {
-                $address = Address::create($data['address']);
-                $data['shipping']['id_address'] = $address->id;
-            }
             Shipping::create($data['shipping']);
-
             flash('Datos guarados correctamente.')->success();
         }
         catch (Exception $e) {
@@ -191,15 +180,7 @@ class ShippingController extends Controller
 
 
     public function excel (Shipping $shipping) {
-        return (new ShippingExport($shipping->id))->download('Envio'.$shipping->id.'.xlsx', null);
+        return (new ShippingExport($shipping->id))->download('Manifiesto '.$shipping->id.'.xlsx',  Excel::XLSX);
     }
 
-    public function bill (Shipping $shipping) {
-        $view = true;
-        return view('shipping.bill-view',compact('shipping', 'view'));
-    }
-
-    public function excelBill (Shipping $shipping) {
-        return (new BillShippingExport($shipping->id))->download('Factura Envío'.$shipping->id.'.xlsx', null);
-    }
 }

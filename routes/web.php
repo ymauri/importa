@@ -94,6 +94,20 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
     Route::get('excel/{order}', 'OrderController@excel')->name('excel');
     Route::get('productsDt/{order}', 'OrderController@productsDt')->name('productsDt');
     Route::get('bill/{order}', 'OrderController@bill')->name('bill');
+
+    Route::name('bill.')->prefix('enterprise')->group(function () {
+        Route::get('bills', 'BillController@index')->name('index');
+        Route::get('dt', 'BillController@dt')->name('dt');
+        Route::get('create', 'BillController@create')->name('create');
+        Route::post('create', 'BillController@save')->name('save');
+        Route::get('edit/{bill}', 'BillController@edit')->name('edit');
+        Route::post('edit', 'BillController@update')->name('update');
+        Route::post('selectOrder', 'BillController@select')->name('select');
+        Route::get('excelBill/{bill}', 'BillController@excelBill')->name('excelBill');
+        Route::get('bill/{bill}', 'BillController@bill')->name('bill');
+	    Route::delete('delete/{bill}', 'BillController@delete')->name('delete');
+
+    });
 });
 
 Route::middleware('auth')->name('shipping.')->prefix('shipping')->group(function() {
@@ -110,8 +124,6 @@ Route::middleware('auth')->name('shipping.')->prefix('shipping')->group(function
     Route::get('', 'ShippingController@index')->name('index');
     Route::get('txt/{shipping}', 'ShippingController@txt')->name('txt');
     Route::get('excel/{shipping}', 'ShippingController@excel')->name('excel');
-    Route::get('excelBill/{shipping}', 'ShippingController@excelBill')->name('excelBill');
-    Route::get('bill/{shipping}', 'ShippingController@bill')->name('bill');
 });
 
 
