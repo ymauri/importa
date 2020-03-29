@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\City;
 use App\Client;
+use App\Country;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -135,6 +136,28 @@ class ClientController extends Controller
             $response[] = [
                 "id"=>$c['id'],
                 "text"=> $c['city']
+            ];
+        }
+        return json_encode($response);
+    }
+
+    public function selectCountry(Request $request) {
+        $search = $request->search;
+        $base = Country::select(
+                    'name',
+                    'id'
+                );
+        if($search == '') {
+            $country = $base->limit(5)->get();
+        }
+        else {
+            $country = $base->where('name', 'like', '%' .$search . '%')->limit(5)->get();
+        }
+        $response = [];
+        foreach($country as $c){
+            $response[] = [
+                "id"=>$c['id'],
+                "text"=> $c['name']
             ];
         }
         return json_encode($response);

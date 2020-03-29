@@ -46,10 +46,13 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::resource('city', 'CityController', ['except' => ['show']]);
+    Route::resource('city', 'CityController', ['except' => ['show']]);
+    Route::get('searchState/{id}', 'CityController@searchState')->name('select_city_by_country');
+    Route::get('city/store', 'CityController@insert')->name('store_city');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+
 });
 
 Route::middleware('auth')->name('client.')->prefix('client')->group(function() {
@@ -62,7 +65,7 @@ Route::middleware('auth')->name('client.')->prefix('client')->group(function() {
     Route::get('', 'ClientController@index')->name('index');
     Route::post('select', 'ClientController@select')->name('select');
     Route::post('selectCity', 'ClientController@selectCity')->name('selectCity');
-
+    Route::post('selectCountry', 'ClientController@selectCountry')->name('selectCountry');
 });
 
 Route::middleware('auth')->name('product.')->prefix('product')->group(function() {

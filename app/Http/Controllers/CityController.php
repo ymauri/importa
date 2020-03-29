@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\City;
 use App\User;
 use App\Http\Requests\UserRequest;
+use App\State;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class CityController extends Controller
@@ -12,7 +15,7 @@ class CityController extends Controller
     /**
      * Display a listing of the users
      *
-     * @param  \App\User  $model
+     * @param  null
      * @return \Illuminate\View\View
      */
     public function index()
@@ -22,25 +25,59 @@ class CityController extends Controller
     }
 
     /**
-     * Show the form for creating a new user
+     * Show the form for creating a new city
      *
      * @return \Illuminate\View\View
      */
     public function create()
     {
-        return view('users.create');
+        return view('city.create');
     }
 
     /**
-     * Store a newly created user in storage
-     *
-     * @param  \App\Http\Requests\UserRequest  $request
-     * @param  \App\User  $model
-     * @return \Illuminate\Http\RedirectResponse
+     * Get all state by id country
+     * @param request
+     * @return json
      */
-    public function store(UserRequest $request, User $model)
+    public function searchState($id)
     {
-        $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
+        $state = State::where('id_country',$id)->get();
+            return response($state);
+    }
+
+    /**
+     * Insert city by state and country
+     * @param request
+     * @return json
+     */
+    public function insert(Request $request)
+    {
+        $data = $request->all();
+        $city = array(
+                    'name' => $data['name_city'],
+                    'id_state' => $data['id_state'],
+                );
+        $city_search = City::where('name',$city['name'])
+                    ->where('id_state',$city['id_state'])
+                    ->first();
+        if(empty($city_search)) {
+            City::create($city);
+            flash('Datos guarados correctamente.')->success();
+            return  redirect(route('city.index'));
+
+        }
+        flash('Ya existe '.$city['name'].' en el estado '.$data['id_state'].'.')->success();
+        return  redirect(route('city.index'));
+    }
+
+
+
+
+    public function store(Request $request)
+    {
+        dd($request->all());
+
+      //  $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
 
         return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
@@ -63,7 +100,7 @@ class CityController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, User  $user)
+    public function updates(UserRequest $request, User  $user)
     {
         $hasPassword = $request->get('password');
         $user->update(
@@ -86,4 +123,5 @@ class CityController extends Controller
 
         return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
     }
+
 }
