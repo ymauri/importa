@@ -119,6 +119,8 @@ class BillController extends Controller
     }
 
     public function excelBill (Bill $bill) {
+        ob_end_clean(); // this
+        ob_start(); // and this
         return (new BillEnterpriseExport($bill->id))->download('Factura '.$bill->id.'.xlsx', null);
     }
 

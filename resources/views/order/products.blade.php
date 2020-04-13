@@ -16,19 +16,19 @@
               <div class="row">
                     <div class="col-md-6 col-sm-12">
                             <h5><b>Cliente: </b>{{ $order->client->name.' '.$order->client->last_name }}</h5>
-                            <p>CI: {{ $order->client->ci }}</p>
+                            {{-- <p>CI: {{ $order->client->ci }}</p> --}}
                             {{-- <p>Pasaporte: {{ $order->client->passport }}</p>
                             <p>Teléfono Móvil: {{ $order->client->mobile }}</p>
                             <p>Teléfono Fijo: {{ $order->client->phone }}</p> --}}
-                            <p>Dirección: {{ $order->client->address->fullAddress() }}</p>
+                            {{-- <p>Dirección: {{ !empty($order->client->id_address) ? $order->client->address->fullAddress() : - }}</p> --}}
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <h5><b>Destinatario: </b> {{ $order->name.' '.$order->last_name }}</h5>
-                            <p>CI: {{ $order->ci }}</p>
+                            {{-- <p>CI: {{ $order->ci }}</p> --}}
                             {{-- <p>Pasaporte: {{ $order->passport }}</p>
                             <p>Teléfono Móvil: {{ $order->mobile }}</p>
                             <p>Teléfono Fijo: {{ $order->phone }}</p> --}}
-                            <p>Dirección: {{ $order->fullAddress() }}</p>
+                            {{-- <p>Dirección: {{ !empty($order->id_city) ? $order->fullAddress() : - }}</p> --}}
                         </div>
               </div>
           </div>

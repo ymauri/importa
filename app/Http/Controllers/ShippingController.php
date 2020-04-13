@@ -180,6 +180,8 @@ class ShippingController extends Controller
 
 
     public function excel (Shipping $shipping) {
+        ob_end_clean(); // this
+        ob_start(); // and this
         return (new ShippingExport($shipping->id))->download('Manifiesto '.$shipping->id.'.xlsx',  Excel::XLSX);
     }
 

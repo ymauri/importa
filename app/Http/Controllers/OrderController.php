@@ -194,6 +194,8 @@ class OrderController extends Controller
     }
 
     public function excel (Order $order) {
+        ob_end_clean(); // this
+        ob_start(); // and this
         return (new BillExport($order->id))->download('Factura'.$order->id.'.xlsx', null);
     }
 

@@ -39,21 +39,30 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client = Client::find($id);
-        $address = Address::find($client->id_address);
+        $address = !empty($client->id_address) ? Address::find($client->id_address) : new Address();
         $edit = true;
         return view('client.form', compact('client', 'address', 'edit'));
     }
 
-    public function update(Request $request)
-    {
+    public function update(Request $request) {
+        $data = $request->all();
         try {
-            $data = $request->all();
+            if (!empty($data['client']['id_city'])) {
+                if (empty($data['client']['id_address'])) {
+                    $data['client']['id_address'] = Address::insertGetId($data['address']);
+                } else {
+                    $address = Address::find($data['client']['id_address']);
+                    $address->update($data['address']);
+                }
+            }
+
+        } catch (Exception $e) {
+            unset($data['client']['id_address']);
+        }
+
+        try {
             $client = Client::find($data['client']['id_client']);
             $client->update($data['client']);
-
-            $address = Address::find($data['client']['id_address']);
-            $address->update($data['address']);
-
             flash('Datos guarados correctamente.')->success();
         }
         catch (Exception $e) {
