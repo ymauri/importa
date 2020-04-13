@@ -14,7 +14,7 @@ class AddCharterOrderProduct extends Migration
     public function up()
     {
         Schema::table('imp_order_product', function (Blueprint $table) {
-            $table->float('charter')->nullable();
+            $table->float('charter')->nullable()->default(0);
         });
         Schema::table('imp_product', function (Blueprint $table) {
             $table->dropColumn('charter');

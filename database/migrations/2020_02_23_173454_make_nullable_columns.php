@@ -19,6 +19,13 @@ class MakeNullableColumns extends Migration
             $table->string('passport')->nullable()->change();
             $table->string('phone')->nullable()->change();
             $table->string('mobile')->nullable()->change();
+            $table->dropForeign(['id_address']);
+            $table->dropColumn('id_address');
+        });
+
+        Schema::table('imp_client', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_address')->nullable();
+            $table->foreign('id_address')->references('id')->on('imp_address')->onDelete('cascade');
         });
 
         Schema::table('imp_address', function (Blueprint $table) {
@@ -34,7 +41,6 @@ class MakeNullableColumns extends Migration
             $table->float('volumen')->nullable()->default(0)->change();
             $table->float('price')->nullable()->default(0)->change();
             $table->float('customs_points')->nullable()->default(0)->change();
-            $table->float('charter')->nullable()->default(0)->change();
         });
 
         Schema::table('imp_order', function (Blueprint $table) {

@@ -70,11 +70,16 @@ class ClientController extends Controller
     }
 
     public function save (Request $request) {
+        $data = $request->all();
         try {
-            $data = $request->all();
-            // dd($data);
             $address = Address::create($data['address']);
             $data['client']['id_address'] = $address->id;
+        }
+        catch (Exception $e) {
+            unset($data['client']['id_address']);
+        }
+
+        try {
             Client::create($data['client']);
             flash('Datos guarados correctamente.')->success();
         }
