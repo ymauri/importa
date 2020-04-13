@@ -71,7 +71,6 @@
             <td><strong>PRECIO UNITARIO</strong></td>
             <td><strong>PRECIO TOTAL</strong></td>
         </tr>
-        {{-- {{dd($bill->orders)}} --}}
         @foreach ($bill->orders as $order)
              @foreach ($order->orderProducts as $op)
                 <tr>
@@ -129,8 +128,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][shop_transfer]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->shop_transfer : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->shop_transfer : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][shop_transfer]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->shop_transfer : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->shop_transfer : 0}}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td><strong>FORMULARIO DMC ENTRADA ZONA LIBRE</strong></td>
@@ -139,8 +150,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][form_dmc_in]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->form_dmc_in : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->form_dmc_in : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][form_dmc_in]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->form_dmc_in : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->form_dmc_in : 0}}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td><strong>ACARREO PANAMÁ- ZONA LIBRE</strong></td>
@@ -149,8 +172,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][free_zone]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->free_zone : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->free_zone : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][free_zone]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->free_zone : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->free_zone : 0}}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td><strong>FORMULARIO DMC SALIDA ZONA LIBRE</strong></td>
@@ -159,8 +194,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][form_dmc_out]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->form_dmc_out : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->form_dmc_out : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][form_dmc_out]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->form_dmc_out : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->form_dmc_out : 0}}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td colspan="14" style="background-color: #f5eded">&nbsp;</td>
@@ -172,8 +219,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td> {{ number_format($flete, 2) }} </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][charter]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->charter : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->charter : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][charter]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->charter : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->charter : 0}}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td><strong>DOCUMENTACIÓN</strong></td>
@@ -182,8 +241,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][docs]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->docs : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->docs : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][docs]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->docs : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->docs : 0}}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td><strong>MANEJO EN BODEGA</strong></td>
@@ -192,8 +263,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][store_manage]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->store_manage : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->store_manage : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][store_manage]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->store_manage : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->store_manage : 0}}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td><strong>GESTIÓN COMERCIAL Y COTIZACIÓN</strong></td>
@@ -202,8 +285,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][commercial_manage]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->commercial_manage : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->commercial_manage : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][commercial_manage]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->commercial_manage : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->commercial_manage : 0}}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td><strong>EMABALAJE Y RETRACTILADO</strong></td>
@@ -212,8 +307,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][packaging]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->packaging : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->packaging : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][packaging]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->packaging : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->packaging : 0}}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td><strong>TOTAL ENVÍO</strong></td>
@@ -222,8 +329,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td> {{ number_format($flete + 70, 2) }} </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][total_shipping]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->total_shipping : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->total_shipping : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][total_shipping]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->total_shipping : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->total_shipping : 0}}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td><strong>TOTAL MERCANCÍA + ENVÍO</strong></td>
@@ -232,8 +351,20 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td> {{ number_format($flete + 70 + $flete, 2) }} </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[unit_price][total_shipping_ware]"  step="any" type="number" value="{{ !empty($bill->details->unit_price) ? $bill->details->unit_price->total_shipping_ware : 0}}" />
+                @else
+                    {{ !empty($bill->details->unit_price) ? $bill->details->unit_price->total_shipping_ware : 0}}
+                @endisset
+            </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" name="details[total_price][total_shipping_ware]"  step="any" type="number" value="{{ !empty($bill->details->total_price) ? $bill->details->total_price->total_shipping_ware : 0}}" />
+                @else
+                    {{ !empty($bill->details->total_price) ? $bill->details->total_price->total_shipping_ware : 0}}
+                @endisset
+            </td>
         </tr>
     </tbody>
 </table>

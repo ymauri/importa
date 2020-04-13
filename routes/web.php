@@ -94,6 +94,8 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
     Route::get('excel/{order}', 'OrderController@excel')->name('excel');
     Route::get('productsDt/{order}', 'OrderController@productsDt')->name('productsDt');
     Route::get('bill/{order}', 'OrderController@bill')->name('bill');
+    Route::post('saveBill/{order}', 'OrderController@saveBill')->name('saveBill');
+
 
     Route::name('bill.')->prefix('enterprise')->group(function () {
         Route::get('bills', 'BillController@index')->name('index');
@@ -105,6 +107,7 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
         Route::post('selectOrder', 'BillController@select')->name('select');
         Route::get('excelBill/{bill}', 'BillController@excelBill')->name('excelBill');
         Route::get('bill/{bill}', 'BillController@bill')->name('bill');
+        Route::post('saveBill/{bill}', 'BillController@saveBill')->name('saveBill');
 	    Route::delete('delete/{bill}', 'BillController@delete')->name('delete');
 
     });

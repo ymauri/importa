@@ -32,8 +32,13 @@ class Order extends Model
         'id_city',
         'id_client',
         'type',
-        'pickup'
+        'pickup',
+        'details'
     ];
+
+    public function getDetailsAttribute () {
+        return json_decode($this->attributes['details']);
+    }
 
     public function products(){
         return $this->belongsToMany(Product::class, 'imp_order_product', 'id_order', 'id');
@@ -99,5 +104,21 @@ class Order extends Model
 
     public function weigthLb () {
         return number_format((!empty($this->attributes['weight']) ? $this->attributes['weight'] : 0) * 2.2, 2);
+    }
+
+    public function format() {
+        return [
+            "shop_transfer" => 0,
+            "form_dmc_in" => 0,
+            "free_zone" => 0,
+            "form_dmc_out" => 0,
+            "charter" => 0,
+            "docs" => 0,
+            "store_manage" => 0,
+            "commercial_manage" => 0,
+            "packaging" => 0,
+            "total_shipping" => 0,
+            "total_shipping_ware" => 0,
+        ];
     }
 }

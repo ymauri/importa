@@ -9,6 +9,7 @@ use App\Models\BillOrder;
 use App\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BillController extends Controller
 {
@@ -33,8 +34,13 @@ class BillController extends Controller
                 $address = Address::create($data['address']);
                 $data['bill']['address_id'] = $address->id;
             }
-            Bill::create($data['bill']);
-
+            $bill = Bill::create($data['bill']);
+            foreach ($data['orders'] as $id_order) {
+                BillOrder::create(
+                    ['order_id' => $id_order,
+                    'bill_id' => $bill->id]
+                );
+            }
             flash('Datos guarados correctamente.')->success();
         }
         catch (Exception $e) {
@@ -56,10 +62,17 @@ class BillController extends Controller
     {
         try {
             $data = $request->all();
+
             $bill = Bill::find($data['bill']['id']);
+            if (!empty($data['bill']['address_id'])) {
+                $address = Address::find($data['bill']['address_id']);
+                $address->update($data['address']);
+            } else if (!empty($address['address']['id_city'])) {
+                $address = Address::create($data['address']);
+                $data['bill']['address_id'] = $address->id;
+            }
+
             $bill->update($data['bill']);
-            $address = Address::find($data['bill']['address_id']);
-            $address->update($data['address']);
 
             BillOrder::where('bill_id', $bill->id)->delete();
             foreach ($data['orders'] as $id_order) {
@@ -118,5 +131,13 @@ class BillController extends Controller
             flash('Error al eliminar los datos. '.$e->getMessage())->error();
         }
         return  redirect(route('order.bill.index'));
+    }
+
+    public function saveBill(Request $request, Bill $bill) {
+        $data = $request->input('details');
+        $bill->details = json_encode($data);
+        $bill->save();
+        flash('Datos guarados correctamente.')->success();
+        return redirect(route('order.bill.bill', ['bill' => $bill->id]));
     }
 }

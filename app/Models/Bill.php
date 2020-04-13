@@ -15,8 +15,13 @@ class Bill extends Model
         'name',
         'email',
         'phone',
-        'address_id'
+        'address_id',
+        'details'
     ];
+
+    public function getDetailsAttribute () {
+        return json_decode($this->attributes['details']);
+    }
 
     public function address() {
         return $this->hasOne(Address::class, 'id', 'address_id');
@@ -24,6 +29,22 @@ class Bill extends Model
 
     public function orders() {
         return $this->belongsToMany(Order::class, 'imp_bill_order');
+    }
+
+    public function format() {
+        return [
+            "shop_transfer" => 0,
+            "form_dmc_in" => 0,
+            "free_zone" => 0,
+            "form_dmc_out" => 0,
+            "charter" => 0,
+            "docs" => 0,
+            "store_manage" => 0,
+            "commercial_manage" => 0,
+            "packaging" => 0,
+            "total_shipping" => 0,
+            "total_shipping_ware" => 0,
+        ];
     }
 
 }

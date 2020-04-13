@@ -197,4 +197,12 @@ class OrderController extends Controller
         return (new BillExport($order->id))->download('Factura'.$order->id.'.xlsx', null);
     }
 
+    public function saveBill(Request $request, Order $order) {
+        $data = $request->input('details');
+        $order->details = json_encode($data);
+        $order->save();
+        flash('Datos guarados correctamente.')->success();
+        return redirect(route('order.bill', ['order' => $order->id]));
+    }
+
 }
