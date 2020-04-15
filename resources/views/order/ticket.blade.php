@@ -39,12 +39,12 @@
             <tr>
                 <td>
                     <p> {{ $order->client->name .' '. $order->client->last_name }} </p>
-                    <p> {{ $order->client->address->fullAddress() }} </p>
+                    <p> {{  !empty($order->client->address) ? $order->client->address->fullAddress() : "-" }} </p>
                 </td>
                 <td>&nbsp;</td>
                 <td>
                     <p>{{ $order->name .' '. $order->last_name }}</p>
-                    <p> {{ $order->fullAddress() }} </p>
+                    <p> {{ !empty($order->id_city) ? $order->fullAddress() : "-" }} </p>
 
                 </td>
             </tr>
