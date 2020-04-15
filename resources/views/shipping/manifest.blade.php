@@ -16,6 +16,7 @@
         </tr>
         @foreach ($shipping->orders as $sho)
             @php $cantidad = $sho->order->orderProducts->count() @endphp
+            @if($cantidad >= 1)
                 <tr>
                     <td rowspan="{{ $cantidad }}"> {{$sho->order->barcode}} &nbsp;&nbsp;</td>
                     <td rowspan="{{ $cantidad }}"> {{$sho->order->id}} &nbsp; </td>
@@ -32,6 +33,7 @@
                         @endif
                             </tr>
                     @endforeach
+            @endif
         @endforeach
     </tbody>
 </table>
