@@ -24,7 +24,7 @@
             <tr>
                 <td><img src="{{ public_path(). '/img/gbi.jpg'}}" alt="GoldBlack Investments"></td>
                 <td style="text-align:right;">
-                    <p style="font-size:14pt;font-weight:bold;">Envío: {{ $shipping->id }} </p>
+                    <p style="font-size:14pt;font-weight:bold;">Envío: {{ $shipping->shipping->id + 99 }} </p>
                     <p style="font-size:14pt;font-weight:bold;">Bulto: {{ $order->id }} </p>
                     <p style="font-size:11pt;">Fecha: {{ date_format($order->updated_at, 'd-m-Y') }}</p>
                 </td>
@@ -59,16 +59,17 @@
                 <td style="text-align:left;padding-left:12px;border-bottom:1px solid black;">Valor</td>
                 <td style="text-align:left;padding-left:12px;border-bottom:1px solid black;">Peso</td>
             </tr>
-            {{$count = 0}}
-            {{$aduana = 0}}
+            @php
+                $count = $order->orderProducts->count();
+                $aduana = 0;
+            @endphp
             @foreach($order->orderProducts as $key=>$item)
                 <tr>
-                    <td style="text-align:center;">1</td>
+                    <td style="text-align:center;"> {{ $count }}</td>
                     <td style="padding-left:12px;">{{ $item->product->name }}</td>
                     <td style="padding-left:12px;">{{ $item->product->customs_points }}</td>
                     <td style="padding-left:12px;">{{ $item->product->weigthLb() }} Lbs</td>
                 </tr>
-                {{ $count ++ }}
                 {{ $aduana += $item->product->customs_points }}
             @endforeach
         </table>
@@ -84,7 +85,7 @@
                     <p>TELÉFONO: {{ $order->phone }}</p>
                     <p>CANTIDAD DE PIEZAS: {{$count}}</p>
                     <p>PESO TOTAL: {{ $order->weigthLb() }} Lbs</p>
-                    <p>VALOR TOTAL:  {{ $order->customs }}</p>
+                    <p>VALOR TOTAL:  {{ $aduana }}</p>
                 </td>
                 <td style="width:2%">&nbsp;</td>
 

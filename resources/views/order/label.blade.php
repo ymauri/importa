@@ -7,7 +7,7 @@
   </style>
 </head>
 <body style="font-family: Arial, Helvetica, sans-serif !important; line-height: 10px">
-	<h2>ENVÍO No.{{ $shipping->shipping->id }} / PAQUETE: {{ $order->id }} </h2>
+	<h2>ENVÍO No.{{ $shipping->shipping->id + 99 }} / PAQUETE: {{ $order->id }} </h2>
 	<p><b>REMITENTE:</b> {{ $order->client->name.' '. $order->client->last_name  }}</p>
     <p><b>DESTINATARIO:</b> {{ $order->name .' '. $order->last_name  }}</p>
 	<p><b>DIRECCIÓN:</b> {{ $order->fullAddress() }} </p>
