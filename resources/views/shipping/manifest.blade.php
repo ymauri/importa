@@ -9,6 +9,7 @@
             <td style="background-color: #f5eded; font-weight:bold;">Remitente</td>
             <td style="background-color: #f5eded; font-weight:bold;">Destinatario</td>
             <td style="background-color: #f5eded; font-weight:bold;">Artículo</td>
+            <td style="background-color: #f5eded; font-weight:bold;">Código</td>
             <td style="background-color: #f5eded; font-weight:bold;">Cantidad</td>
             <td style="background-color: #f5eded; font-weight:bold;">Peso</td>
             <td style="background-color: #f5eded; font-weight:bold;">Entrega</td>
@@ -24,6 +25,7 @@
                     @foreach ($sho->order->orderProducts as $op)
                         @if(!$loop->first) <tr> @endif
                         <td> {{ $op->product->name }} </td>
+                        <td> {{ $op->product->model }} </td>
                         <td> {{ $op->quantity }} </td>
                         <td> {{$op->product->weigthLb() }} Lbs</td>
                         @if ($loop->first)
