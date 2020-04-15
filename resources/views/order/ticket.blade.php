@@ -61,7 +61,7 @@
             </tr>
             @php
                 $count = $order->orderProducts->count();
-                $aduana = 0;
+                $aduana = $peso = 0;
             @endphp
             @foreach($order->orderProducts as $key=>$item)
                 <tr>
@@ -71,6 +71,7 @@
                     <td style="padding-left:12px;">{{ $item->product->weigthLb() }} Lbs</td>
                 </tr>
                 {{ $aduana += $item->product->customs_points }}
+                {{ $peso += $item->product->weigthLb() }}
             @endforeach
         </table>
 
@@ -82,10 +83,10 @@
                     <p>DESTINATARIO: {{ $order->name .' '. $order->last_name }} </p>
                     <p>DIRECCIÓN: {{ $order->fullAddress() }}</p>
                     <p>CI: {{ $order->ci }}</p>
-                    <p>TELÉFONO: {{ $order->phone }}</p>
+                    <p>TELÉFONO:  {{ !empty($order->phone) ? '(Fijo) '.$order->phone : "" }} {{ !empty($order->mobile) ? '(Cel) '.$order->mobile : "" }} </p>
                     <p>CANTIDAD DE PIEZAS: {{$count}}</p>
-                    <p>PESO TOTAL: {{ $order->weigthLb() }} Lbs</p>
-                    <p>VALOR TOTAL:  {{ $aduana }}</p>
+                    <p>PESO TOTAL: {{ number_format($peso, 2) }} Lbs</p>
+                    <p>VALOR TOTAL:  {{ number_format($aduana, 2) }}</p>
                 </td>
                 <td style="width:2%">&nbsp;</td>
 

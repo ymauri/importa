@@ -12,7 +12,7 @@
     <p><b>DESTINATARIO:</b> {{ $order->name .' '. $order->last_name  }}</p>
 	<p><b>DIRECCIÓN:</b> {{ $order->fullAddress() }} </p>
 	<p><b>CI:</b> {{ $order->ci }}</p>
-	<p><b>TELÉFONO:</b> {{ $order->mobile }}</p>
+	<p><b>TELÉFONO:</b>  {{ !empty($order->phone) ? '(Fijo) '.$order->phone : "" }} {{ !empty($order->mobile) ? '(Cel) '.$order->mobile : "" }} </p>
 	<p><b>DESCRIPCIÓN:</b> {{ $order->description() }}</p>
 	<p><b>RECOGIDA:</b> {{ $order->pickupName() }}</p>
     <p><b>CANTIDAD DE PIEZAS:</b> {{ $order->orderProducts->count() }} </p>
