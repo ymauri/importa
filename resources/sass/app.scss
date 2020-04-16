@@ -41,3 +41,13 @@ input.datepicker {
 .custom-table {
     border: 1px solid #ddd;
 }
+
+.data-bill table tr td,
+.data-bill table tr td input {
+    font-size: 13px;
+    padding: 5px;
+}
+
+.data-bill table tr td strong {
+    text-align: center;
+}

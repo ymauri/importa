@@ -51,7 +51,6 @@ class BillController extends Controller
 
     public function edit(Bill $bill)
     {
-        $edit = true;
         $address = !empty($bill->address_id) ?  Address::find($bill->address_id)  : new Address();
         $bill = $bill->with('orders')->first();
         $edit = true;
@@ -114,7 +113,6 @@ class BillController extends Controller
 
     public function bill (Bill $bill) {
         $view = true;
-        $bill = $bill->with(['address', 'orders'])->first();
         return view('bill.bill-view',compact('bill', 'view'));
     }
 

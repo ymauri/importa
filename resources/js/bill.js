@@ -105,10 +105,31 @@ let ImpOrder = function() {
         }
     }
 
+    let initCalcs = function() {
+        $('input').on('keyup', function() {
+            let id = $(this).attr('id').split('-');
+            let qty = $('#qty-' + id[1]).val();
+            let unit = $('#unit-' + id[1]).val();
+            $('#total-' + id[1]).val(parseFloat(qty * unit, 2));
+        }).on('blur', function() {
+            let envio = 0;
+            let mercancia = parseFloat($('#mercancia').val());
+            $('.envio').each(function() {
+                if ($(this).val()) {
+                    envio += parseFloat($(this).val());
+                }
+            });
+            $('#total-total_shipping').val(envio);
+            $('#total-total_shipping_ware').val(envio + mercancia);
+        });
+
+    }
+
     return {
         init: function() {
             initTable();
             initSelect();
+            initCalcs();
         }
     };
 }();

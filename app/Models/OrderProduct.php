@@ -29,7 +29,7 @@ class OrderProduct extends Model
     }
 
     public function totalCharter () {
-        return number_format($this->attributes['charter'] * $this->product->price, 2);
+        return number_format($this->charter * $this->quantity, 2);
     }
 
     public function totalPrice() {

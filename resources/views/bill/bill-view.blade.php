@@ -11,7 +11,7 @@
                         <h4 class="card-title">Vista previa - Factura - {{$bill->name}} </h4>
                         <p class="card-category"></p>
                     </div>
-                    <div class="card-body ">
+                    <div class="card-body data-bill">
                         <div class="row">
                             <div class="col-md-12 text-right">
                                 <a href="{{ url()->previous() }}" class="btn btn-sm btn-info">{{ __('Ir al listado') }}</a>
@@ -39,3 +39,7 @@
     </div>
   </div>
 @endsection
+
+@push('scripts')
+    <script src="{{asset('js/bill.js')}}" type="text/javascript"></script>
+@endpush
