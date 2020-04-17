@@ -1,10 +1,24 @@
 @php
     $quantity = $volumen = $pesoKg = $pesoLb = $precioTotal = $valueTotal = $flete = $charterTtotal = 0;
 @endphp
+
+@if (!isset($view))
+<style>
+    @page { size: 210mm 297mm landscape; }
+</style>
+<style type="text/css">
+    body,div,span,p,a,img,ol,ul,li,label,table,tbody,thead,tr,th,td{margin:0;padding:0;outline:0;font-size:100%;vertical-align:top;}
+    body{line-height:1; padding:2px;}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0}
+    table {font-size:12px;font-family:Arial,sans-serif; border: #666666 solid 1px;}
+    table th {padding:2px;font-size:12px;}
+    table td {padding:2px;font-size:12px; border: #666666 solid 1px;}
+</style>
+
+@endif
 <table @isset($view) class="table custom-table" @endisset style="boder: solid 1px #ddd !important;">
     <tbody>
         <tr>
-            <td rowspan="11" style="font-size: 12px; text-align: center;"><img style="width: 250px;"
+            <td rowspan="11" style="font-size: 12px; text-align: center;"><img style="width: 120px;"
                 @isset($view)
                     src="/img/gbi.jpg"
                 @else

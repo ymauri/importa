@@ -9,7 +9,9 @@ use App\Models\BillOrder;
 use App\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class BillController extends Controller
 {
@@ -119,7 +121,11 @@ class BillController extends Controller
     public function excelBill (Bill $bill) {
         ob_end_clean(); // this
         ob_start(); // and this
-        return (new BillEnterpriseExport($bill->id))->download('Factura '.$bill->id.'.xlsx', null);
+        $pdf = PDF::loadView('bill.bill', [
+            'bill' => $bill
+        ]);
+        return $pdf->download('Factura - '.$bill->id.'.pdf');
+        // return (new BillEnterpriseExport($bill->id))->download('Factura '.$bill->id.'.pdf');
     }
 
     public function delete(Bill $bill) {
