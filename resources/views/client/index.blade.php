@@ -12,7 +12,16 @@
           </div>
           <div class="card-body">
                 <div class="row">
-                    <div class="col-12 text-right">
+                    <div class='col-4'>
+                        <div class="input-group no-border">
+                            <input type="text" value="" class="form-control search" id="order-global-search" placeholder="Buscar...">
+                            <button type="submit" class="btn btn-white btn-round btn-just-icon search-btn">
+                                <i class="material-icons">search</i>
+                                <div class="ripple-container"></div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-8 text-right">
                         <a href="{{ route('client.create') }}" class="btn btn-sm btn-info">Nuevo cliente</a>
                     </div>
                 </div>

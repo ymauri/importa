@@ -2,9 +2,11 @@
  * Created by User on 14/01/2020.
  */
 let ImpProduct = function () {
-
+    let requestTimeout = 1000;
+    let table_order;
+    let timeout = false;
     let initTable = function () {
-        $('#datatable_product').DataTable({
+        table_order = $('#datatable_product').DataTable({
             responsive: true,
             // Pagination settings
             dom: `<'row'<'col-sm-12'tr>>
@@ -47,9 +49,18 @@ let ImpProduct = function () {
                 }
             ],
 
-            initComplete: function () {
-
+            initComplete: function() {
+                $('#order-global-search').on('keyup', function() {
+                    if (timeout) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(function() {
+                        offset = 0;
+                        table_order.search($('input.search').val()).draw();
+                    }, requestTimeout);
+                });
             }
+            
         });
     };
 
