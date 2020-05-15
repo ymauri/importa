@@ -80,11 +80,12 @@ class Order extends Model
 
     public function updateGlobalValues() {
         $weight = $chatrer = $volumen = $customs = 0;
-        foreach ($this->products as $product) {
-            $weight += $product->weight;
-            $chatrer += $product->chatrer;
-            $volumen += $product->volumen;
-            $customs += $product->customs;
+        $ops = $this->orderProducts;
+        foreach ($ops as $op) {
+            $weight +=  $op->product->weight;
+            $chatrer += $op->product->chatrer;
+            $volumen += $op->product->volumen;
+            $customs += $op->product->customs;
         }
         $this->update([
             'weight' => $weight,

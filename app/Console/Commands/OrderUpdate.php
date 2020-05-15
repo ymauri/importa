@@ -41,6 +41,7 @@ class OrderUpdate extends Command
         $orders = Order::all();
         foreach ($orders as $order) {
             $order->updateGlobalValues();
+            $this->info($order->products->count()."=>".$order->weight);
         }
     }
 }
