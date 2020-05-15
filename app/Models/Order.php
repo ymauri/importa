@@ -92,7 +92,7 @@ class Order extends Model
             'chatrer' => $chatrer,
             'volumen' => $volumen,
             'customs' => $customs,
-        ])->push();
+        ]);
     }
 
     public function pickupName() {
