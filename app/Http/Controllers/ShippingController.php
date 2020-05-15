@@ -170,7 +170,7 @@ class ShippingController extends Controller
                     str_ireplace(","," ",$o->order->between).'","'.
                     str_ireplace(","," ",preg_replace("/[\r\n|\n|\r]+/", PHP_EOL, $o->order->city->name)).'","'.
                     $o->order->city->cubapack_code.'",'.
-                    $o->order->weight.','.
+                    $o->order->weigthLb().','.
                     $o->order->ci;
             fwrite($file,$line.PHP_EOL);
         }
