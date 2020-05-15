@@ -41,7 +41,7 @@ class Order extends Model
     }
 
     public function products(){
-        return $this->hasManyThrough(Product::class, 'imp_order_product', 'id_order', 'id');
+        return $this->hasManyThrough(Product::class, OrderProduct::class, 'id_order', 'id');
     }
 
     public function orderProducts() {
@@ -91,7 +91,7 @@ class Order extends Model
             'chatrer' => $chatrer,
             'volumen' => $volumen,
             'customs' => $customs,
-        ])->push();
+        ]);
     }
 
     public function pickupName() {
