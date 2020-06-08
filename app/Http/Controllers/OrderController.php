@@ -12,6 +12,7 @@ use App\OrderProduct;
 use App\Product;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PDF;
 
 class OrderController extends Controller
@@ -38,7 +39,24 @@ class OrderController extends Controller
 
     public function dt()
     {
-        return datatables()->of(Order::with('client')->get())->toJson();
+        $orders = Order::join('imp_client', 'imp_client.id', 'imp_order.id_client')
+                    ->select(
+                        'imp_order.id as id_order',
+                        DB::raw("CONCAT(imp_client.name,' ',imp_client.last_name) as client_name"),
+                        DB::raw("CONCAT(imp_order.name,' ',imp_order.last_name) as dest_name"),
+                        'imp_order.barcode',
+                        'imp_order.type'
+                    );
+        return datatables()->of($orders)
+        ->filterColumn('id_order', function($query, $str) {
+            $query->whereRaw("imp_order.id LIKE '%$str%'");
+        })
+        ->filterColumn('client_name', function($query, $str) {
+            $query->whereRaw("CONCAT(imp_client.name,' ',imp_client.last_name) LIKE '%$str%'");
+        })
+        ->filterColumn('dest_name', function($query, $str) {
+            $query->whereRaw("CONCAT(imp_order.name,' ',imp_order.last_name) LIKE '%$str%'");
+        })->toJson();
     }
 
     public function edit($id)

@@ -4,6 +4,8 @@
 let ImpOrder = function() {
     let products;
     let ordersTables;
+    let timeout = false;
+    let requestTimeout = 1000;
     let initTable = function() {
         if ($('#datatable_order').length > 0) {
             ordersTables = $('#datatable_order').DataTable({
@@ -21,25 +23,25 @@ let ImpOrder = function() {
                 },
 
                 columns: [
-                    { title: 'Id', data: 'id' },
-                    { title: 'Comprador' },
-                    { title: 'Destinatario', data: 'name' },
+                    { title: 'Id', data: 'id_order' },
+                    { title: 'Comprador', data: 'client_name' },
+                    { title: 'Destinatario', data: 'dest_name' },
                     { title: 'HBL', data: 'barcode' },
                     { title: 'Tipo', data: 'type' },
-                    { title: 'Acciones', data: 'id', width: '200px' }
+                    { title: 'Acciones', data: 'id_order', width: '200px' }
                 ],
                 columnDefs: [{
                         targets: -1,
                         orderable: false,
                         class: 'td-actions text-right',
                         render: function(data, type, full, meta) {
-                            return `<form action="order/delete/${full.id}" method="post">
+                            return `<form action="order/delete/${full.id_order}" method="post">
                             <input type="hidden" name="_token" value="${ $('meta[name="csrf-token"]').attr('content')}">                                  <input type="hidden" name="_method" value="delete">
-                            <a rel="tooltip" class="btn btn-info btn-link" href="order/products/${full.id}" data-original-title="" title="Productos">
+                            <a rel="tooltip" class="btn btn-info btn-link" href="order/products/${full.id_order}" data-original-title="" title="Productos">
                             <i class="material-icons">widgets</i>
                             <div class="ripple-container"></div>
                             </a>
-                            <a rel="tooltip" class="btn btn-success btn-link" href="order/edit/${full.id}" data-original-title="" title="Editar">
+                            <a rel="tooltip" class="btn btn-success btn-link" href="order/edit/${full.id_order}" data-original-title="" title="Editar">
                             <i class="material-icons">edit</i>
                             <div class="ripple-container"></div>
                             </a>
@@ -53,20 +55,6 @@ let ImpOrder = function() {
                     },
 
                     {
-                        targets: 1,
-                        render: function(data, type, full, meta) {
-                            return full.client.name + " " + full.client.last_name;
-                        },
-                    },
-
-                    {
-                        targets: 2,
-                        render: function(data, type, full, meta) {
-                            return full.name + " " + full.last_name;
-                        },
-                    },
-
-                    {
                         targets: 4,
                         render: function(data, type, full, meta) {
                             return data == 1 ? "ENA" : "Importacion";
@@ -76,7 +64,16 @@ let ImpOrder = function() {
                 ],
 
                 initComplete: function() {
+                    $('input.search').on('keyup', function() {
+                        if (timeout) {
+                            clearTimeout(timeout);
+                        }
+                        timeout = setTimeout(function() {
+                            offset = 0;
+                            ordersTables.search($('input.search').val()).draw();
+                        }, requestTimeout);
 
+                    });
                 }
             });
         }
