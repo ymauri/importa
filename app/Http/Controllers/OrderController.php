@@ -12,6 +12,7 @@ use App\OrderProduct;
 use App\Product;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PDF;
 
 class OrderController extends Controller
@@ -38,7 +39,24 @@ class OrderController extends Controller
 
     public function dt()
     {
-        return datatables()->of(Order::with('client')->get())->toJson();
+        $orders = Order::join('imp_client', 'imp_client.id', 'imp_order.id_client')
+                    ->select(
+                        'imp_order.id as id_order',
+                        DB::raw("CONCAT(imp_client.name,' ',imp_client.last_name) as client_name"),
+                        DB::raw("CONCAT(imp_order.name,' ',imp_order.last_name) as dest_name"),
+                        'imp_order.barcode',
+                        'imp_order.type'
+                    );
+        return datatables()->of($orders)
+        ->filterColumn('id_order', function($query, $str) {
+            $query->whereRaw("imp_order.id LIKE '%$str%'");
+        })
+        ->filterColumn('client_name', function($query, $str) {
+            $query->whereRaw("CONCAT(imp_client.name,' ',imp_client.last_name) LIKE '%$str%'");
+        })
+        ->filterColumn('dest_name', function($query, $str) {
+            $query->whereRaw("CONCAT(imp_order.name,' ',imp_order.last_name) LIKE '%$str%'");
+        })->toJson();
     }
 
     public function edit($id)
@@ -209,6 +227,33 @@ class OrderController extends Controller
         $order->save();
         flash('Datos guarados correctamente.')->success();
         return redirect(route('order.bill', ['order' => $order->id]));
+    }
+
+    public function select(Request $request) {
+        $search = $request->search;
+        $query = Order::select( 'id',DB::raw("CONCAT(imp_order.name,' ',imp_order.last_name) as client_name"))->groupBy('client_name');
+
+        if($search != '') {
+            $query->where('name', 'like', '%' .$search . '%')->orWhere('last_name', 'like', '%' .$search . '%');
+        }
+        
+        $clients = $query->limit(15)->get();
+        $response = [];
+        foreach($clients as $c){
+            $response[] = [
+                "id"=>$c->id,
+                "text"=> $c->client_name
+            ];
+        }
+        return json_encode($response);
+    }
+
+    public function getOrder(Order $order) {
+        $city = !empty($order->city) ? $order->city->name . ", " : "";
+        $city .= !empty($city) ? $order->city->state->name . " - " : "";
+        $city .= !empty($city) ? $order->city->state->country->name : "";
+        $city = !empty($order->city) ? ["name" => $city, 'id' => $order->id_city] : [] ;
+        return compact('city', 'order');
     }
 
 }

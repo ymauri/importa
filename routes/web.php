@@ -81,6 +81,7 @@ Route::middleware('auth')->name('product.')->prefix('product')->group(function()
 Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
 	Route::get('edit/{id}', 'OrderController@edit')->name('edit');
     Route::post('edit', 'OrderController@update')->name('update');
+    Route::post('select', 'OrderController@select')->name('select');
 	Route::delete('delete/{order}', 'OrderController@delete')->name('delete');
     Route::get('create', 'OrderController@create')->name('create');
 	Route::post('create', 'OrderController@save')->name('save');
@@ -95,6 +96,7 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
     Route::get('productsDt/{order}', 'OrderController@productsDt')->name('productsDt');
     Route::get('bill/{order}', 'OrderController@bill')->name('bill');
     Route::post('saveBill/{order}', 'OrderController@saveBill')->name('saveBill');
+    Route::get('get/{order}', 'OrderController@getOrder')->name('saveBill');
 
 
     Route::name('bill.')->prefix('enterprise')->group(function () {
