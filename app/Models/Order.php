@@ -61,13 +61,16 @@ class Order extends Model
     }
 
     public function fullAddress() {
+        $complement = "";
+        if (!empty($this->city)) {
+            $complement = ', '. $this->city->name .
+                        ", ".$this->city->state->name.
+                        ", ".$this->city->state->country->name;
+        }
         return $this->street.
                 ' No. '. $this->number  .
                 ' E/ ' .$this->between.
-                ' Apto. '. $this->apartment .
-                ', '. $this->city->name .
-                ", ".$this->city->state->name.
-                ", ".$this->city->state->country->name;
+                ' Apto. '. $this->apartment . $complement;
     }
 
     public function description() {

@@ -150,11 +150,11 @@ let ImpOrder = function() {
                 data: $(form).serialize(),
                 dataType: 'json',
                 success: function(response) {
-                    if (response.status === 200) {
-                        Imp.notify('success', response.response)
+                    if (order.status === 200) {
+                        Imp.notify('success', order.response)
                         products.ajax.reload();
                     } else {
-                        Imp.notify('danger', response.response);
+                        Imp.notify('danger', order.response);
                     }
                 }
             });
@@ -214,6 +214,29 @@ let ImpOrder = function() {
                 }
             });
         }
+        if ($("#select_dest").length > 0) {
+            $("#select_dest").select2({
+                ajax: {
+                    url: "/order/select",
+                    type: "post",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            _token: CSRF_TOKEN,
+                            search: params.term // search term
+                        };
+                    },
+                    processResults: function(response) {
+                        return {
+                            results: response
+                        };
+                    },
+                    cache: true
+                }
+            });
+        }
+
     }
 
     let initComponents = function() {
@@ -230,6 +253,31 @@ let ImpOrder = function() {
         if ($('.datepicker').length > 0) {
             $('.datepicker').datepicker({ format: 'yyyy-mm-dd' });
         }
+
+
+        $('body').on('change', '#select_dest', function() {
+            $.get('get/' + $(this).val(), function(response) {
+                let order = response.order;
+                let city = response.city;
+                $('input[name="order[name]"]').val(order.name);
+                $('input[name="order[last_name]"]').val(order.last_name);
+                $('input[name="order[email]"]').val(order.email);
+                $('input[name="order[ci]"]').val(order.ci);
+                $('input[name="order[passport]"]').val(order.passport);
+                $('input[name="order[phone]"]').val(order.phone);
+                $('input[name="order[mobile]"]').val(order.mobile);
+                $('input[name="order[street]"]').val(order.street);
+                $('input[name="order[between]"]').val(order.between);
+                $('input[name="order[number]"]').val(order.number);
+                $('#order_city').children('option').remove();
+                let option = new Option(city.name, city.id, true, true);
+                $('#order_city').append(option).trigger('change');
+                $('#order_city').trigger({
+                    type: 'select2:select'
+                });
+            });
+        });
+
     }
 
     return {

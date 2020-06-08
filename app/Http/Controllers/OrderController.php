@@ -229,4 +229,31 @@ class OrderController extends Controller
         return redirect(route('order.bill', ['order' => $order->id]));
     }
 
+    public function select(Request $request) {
+        $search = $request->search;
+        $query = Order::select( 'id',DB::raw("CONCAT(imp_order.name,' ',imp_order.last_name) as client_name"))->groupBy('client_name');
+
+        if($search != '') {
+            $query->where('name', 'like', '%' .$search . '%')->orWhere('last_name', 'like', '%' .$search . '%');
+        }
+        
+        $clients = $query->limit(15)->get();
+        $response = [];
+        foreach($clients as $c){
+            $response[] = [
+                "id"=>$c->id,
+                "text"=> $c->client_name
+            ];
+        }
+        return json_encode($response);
+    }
+
+    public function getOrder(Order $order) {
+        $city = !empty($order->city) ? $order->city->name . ", " : "";
+        $city .= !empty($city) ? $order->city->state->name . " - " : "";
+        $city .= !empty($city) ? $order->city->state->country->name : "";
+        $city = !empty($order->city) ? ["name" => $city, 'id' => $order->id_city] : [] ;
+        return compact('city', 'order');
+    }
+
 }
