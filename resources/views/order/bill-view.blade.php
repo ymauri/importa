@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         @isset($view)
-                            <form action="{{route("order.saveBill", ['order' => $order->id])}}" method="POST" >
+                            <form action="{{route("order.saveBill", ['order' => $order->id])}}" method="POST" autocomplete="off">
                             @csrf
                             @method('post')
                         @endisset

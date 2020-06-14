@@ -236,7 +236,7 @@ class OrderController extends Controller
         if($search != '') {
             $query->where('name', 'like', '%' .$search . '%')->orWhere('last_name', 'like', '%' .$search . '%');
         }
-        
+
         $clients = $query->limit(15)->get();
         $response = [];
         foreach($clients as $c){

@@ -78,7 +78,7 @@
             <td><strong>VOLUMEN CBM</strong></td>
             <td><strong>PESO KG</strong></td>
             <td><strong>PESO LB</strong></td>
-            <td><strong>PRECIO UNITARIO</strong></td>
+            <td><strong>PRECIO UNITARI00O</strong></td>
             <td><strong>PRECIO TOTAL</strong></td>
             <td><strong>VALOR UNITARIO</strong></td>
             <td><strong>VALOR TOTAL</strong></td>
