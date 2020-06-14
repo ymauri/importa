@@ -96,7 +96,7 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
     Route::get('productsDt/{order}', 'OrderController@productsDt')->name('productsDt');
     Route::get('bill/{order}', 'OrderController@bill')->name('bill');
     Route::post('saveBill/{order}', 'OrderController@saveBill')->name('saveBill');
-    Route::get('get/{order}', 'OrderController@getOrder')->name('saveBill');
+    Route::get('get/{order}', 'OrderController@getOrder')->name('getOrder');
 
 
     Route::name('bill.')->prefix('enterprise')->group(function () {

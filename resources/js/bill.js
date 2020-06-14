@@ -110,8 +110,18 @@ let ImpOrder = function() {
             let id = $(this).attr('id').split('-');
             let qty = $('#qty-' + id[1]).val();
             let unit = $('#unit-' + id[1]).val();
+            let product = 0;
             $('#total-' + id[1]).val(parseFloat(qty * unit, 2));
-        }).on('blur', function() {
+
+            $('.product').each(function() {
+                if ($(this).val()) {
+                    product += parseFloat($(this).val());
+                }
+            });
+            $('#total-charter_products').val(product);
+            $('#unit-charter').val(product);
+            $('#total-charter').val(product * $("#qty-charter").val());
+
             let envio = 0;
             let mercancia = parseFloat($('#mercancia').val());
             $('.envio').each(function() {
@@ -122,7 +132,6 @@ let ImpOrder = function() {
             $('#total-total_shipping').val(envio);
             $('#total-total_shipping_ware').val(envio + mercancia);
         });
-
     }
 
     return {

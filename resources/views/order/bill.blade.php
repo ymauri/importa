@@ -84,9 +84,17 @@
             <td><strong>PRECIO TOTAL</strong></td>
         </tr>
         @foreach ($order->orderProducts as $op)
+            @php
+                $id_product = $op->product->id;
+                $unit_product = !empty($order->details->products->$id_product->unit) ? $order->details->products->$id_product->unit : 0.00;
+                $total_product = !empty($order->details->products->$id_product->total) ? $order->details->products->$id_product->total : 0.00;
+            @endphp
             <tr>
                 <td>{{ $op->product->name }}</td>
-                <td>{{ $op->quantity }}</td>
+                <td>
+                    {{ $op->quantity }}
+                    <input type="hidden" id="qty-product_{{$id_product}}" value="{{$op->quantity}}" />
+                </td>
                 <td>{{ $op->product->brand }}</td>
                 <td>{{ $op->product->model }} &nbsp;</td>
                 <td>{{ $op->product->provider }}</td>
@@ -97,8 +105,20 @@
                 <td>{{ $op->totalPrice()  }}</td>
                 <td>{{ $op->product->customs_points }}</td>
                 <td>{{ $op->totalCustomsPoints() }}</td>
-                <td>{{ $op->charter }}</td>
-                <td>{{ $op->totalCharter() }}</td>
+                <td>
+                    @isset($view)
+                        <input class="form-control text-right" id="unit-product_{{$id_product}}" name="details[products][{{$id_product}}][unit]"  step="any" type="number" value="{{$unit_product}}" />
+                    @else
+                        {{ $unit_product }}
+                    @endisset
+                </td>
+                <td>
+                    @isset($view)
+                        <input class="form-control text-right product" id="total-product_{{$id_product}}" readonly name="details[products][{{$id_product}}][total]"  step="any" type="number" value="{{$total_product}}" />
+                    @else
+                        {{ $total_product }}
+                    @endisset
+                </td>
             </tr>
             @php
                 $quantity += $op->quantity;
@@ -107,8 +127,8 @@
                 $pesoLb += $op->product->weigthLb();
                 $precioTotal += $op->product->price;
                 $valueTotal += ($op->product->customs_points * $op->quantity);
-                $flete += ($op->product->price * $op->charter);
-                $charterTtotal += $op->totalCharter();
+                $flete += ($op->product->price * $total_product);
+                $charterTtotal += $total_product;
             @endphp
         @endforeach
         <tr>
@@ -125,7 +145,13 @@
             <td style="background-color: #f5eded"></td>
             <td> {{ number_format($valueTotal, 2) }} </td>
             <td style="background-color: #f5eded"></td>
-            <td> {{ number_format($charterTtotal, 2) }} </td>
+            <td>
+                @isset($view)
+                    <input class="form-control text-right" id="total-charter_products" readonly name="details[totalCharter]"  step="any" type="number" value="{{number_format($charterTtotal, 2)}}" />
+                @else
+                    {{ number_format($charterTtotal, 2) }}
+                @endisset
+            </td>
         </tr>
         <tr>
             <td colspan="10" style="background-color: #f5eded"></td>
@@ -239,7 +265,7 @@
             <td><strong>FLETE</strong></td>
             <td>
                 @isset($view)
-                <input class="form-control text-right"  id="qty-charter" name="details[qty][charter]"  step="any" type="number" value="{{ !empty($order->details->qty) ? $order->details->qty->charter : 0}}" />
+                <input class="form-control text-right qty"  id="qty-charter" name="details[qty][charter]"  step="any" type="number" value="{{ !empty($order->details->qty) ? $order->details->qty->charter : 0}}" />
                 @else
                     {{ !empty($order->details->qty) ? $order->details->qty->charter : 0}}
                 @endisset
@@ -247,9 +273,9 @@
             <td colspan="10"  style="background-color: #f5eded"></td>
             <td>
                 @isset($view)
-                    <input class="form-control text-right" id="unit-charter" readonly name="details[unit_price][charter]"  step="any" type="number" value="{{ !empty($order->details->unit_price) ? $order->details->unit_price->charter : $charterTtotal}}" />
+                    <input class="form-control text-right" id="unit-charter" readonly name="details[unit_price][charter]"  step="any" type="number" value="{{ !empty($order->details->unit_price->charter) ? $order->details->unit_price->charter : $charterTtotal}}" />
                 @else
-                    {{ !empty($order->details->unit_price) ? $order->details->unit_price->charter : $charterTtotal}}
+                    {{ !empty($order->details->unit_price->charter) ? $order->details->unit_price->charter : $charterTtotal}}
                 @endisset
             </td>
             <td>
@@ -376,7 +402,7 @@
             <td colspan="12" style="background-color: #f5eded"></td>
             <td>
                 @isset($view)
-                    <input class="form-control text-right" id="total-total_shipping_ware" readonly name="details[total_price][total_shipping_ware]"  step="any" type="number" value="{{ !empty($order->details->total_price) ? $order->details->total_price->total_shipping_ware :    number_format($precioTotal + $charterTtotal, 2)}}" />
+                    <input class="form-control text-right" id="total-total_shipping_ware" readonly name="details[total_price][total_shipping_ware]"  step="any" type="number" value="{{ !empty($order->details->total_price) ? $order->details->total_price->total_shipping_ware : number_format($precioTotal + $charterTtotal, 2)}}" />
                 @else
                     {{ !empty($order->details->total_price) ? $order->details->total_price->total_shipping_ware :  number_format($precioTotal + $charterTtotal, 2)}}
                 @endisset

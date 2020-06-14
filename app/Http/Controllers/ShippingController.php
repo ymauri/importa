@@ -8,6 +8,7 @@ use App\Models\ShippingOrder;
 use App\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel;
 
 class ShippingController extends Controller
@@ -34,7 +35,18 @@ class ShippingController extends Controller
 
     public function dt()
     {
-        return datatables()->of(Shipping::all())->toJson();
+        $shipping = ShippingOrder::leftJoin('imp_shipping', 'imp_shipping.id', 'imp_shipping_orders.id_shipping')
+                            ->join('imp_order_product', 'imp_shipping_orders.id_order', 'imp_order_product.id_order')
+                            ->leftJoin('imp_product', 'imp_order_product.id_product', 'imp_product.id')
+                            ->select(
+                                'imp_shipping.id',
+                                'imp_shipping.description',
+                                DB::raw('COUNT(imp_shipping_orders.id_shipping) AS qty_orders'),
+                                DB::raw('SUM(imp_product.weight) AS weight_products'),
+                                DB::raw('SUM(imp_product.volumen) AS volumen_products'))
+                            ->groupBy('imp_shipping_orders.id_shipping')
+                            ->orderBy('imp_shipping.created_at', 'DESC');
+        return datatables()->of($shipping)->toJson();
     }
 
 
@@ -90,21 +102,28 @@ class ShippingController extends Controller
     {
         return datatables()->of(
                 ShippingOrder::join('imp_order', 'imp_order.id', 'imp_shipping_orders.id_order')
+                ->join('imp_order_product', 'imp_shipping_orders.id_order', 'imp_order_product.id_order')
+                ->leftJoin('imp_product', 'imp_order_product.id_product', 'imp_product.id')
                 ->where('id_shipping', $shipping->id)
                 ->select(
                     'imp_order.name',
                     'imp_order.last_name',
                     'imp_shipping_orders.id_order',
                     'imp_order.barcode',
-                    'imp_shipping_orders.id as id_shipping_order'
-                )) ->filterColumn('id_shipping_order', function($query, $id_shipping_order) {
+                    'imp_shipping_orders.id as id_shipping_order',
+                    DB::raw('GROUP_CONCAT(imp_product.name) AS name_products'),
+                    DB::raw('SUM(imp_product.weight) AS weight_products'),
+                    DB::raw('SUM(imp_product.volumen) AS volumen_products')
+                )->groupBy('imp_order.id')
+                ) ->filterColumn('id_shipping_order', function($query, $id_shipping_order) {
                         $query->where('imp_shipping_orders.id', $id_shipping_order);
                 })
                 ->filterColumn('name', function($query, $name) {
-                    $query->where('imp_order.name', 'like', '%'.$name.'%');
+                    $query->where('imp_order.name', 'like', '%'.$name.'%')
+                            ->orWhere('imp_order.last_name', 'like', '%'.$name.'%');
                 })
-                ->filterColumn('last_name', function($query, $last_name) {
-                    $query->where('imp_order.last_name', 'like', '%'.$last_name.'%');
+                ->filterColumn('name_products', function($query, $name_products) {
+                    $query->where('imp_product.name', 'like', '%'.$name_products.'%');
                 })
                 ->filterColumn('barcode', function($query, $barcode) {
                     $query->where('imp_order.barcode', 'like', '%'.$barcode.'%');

@@ -18,7 +18,7 @@
                             </div>
                         </div>
                         @isset($view)
-                            <form action="{{route("order.bill.saveBill", ['bill' => $bill->id])}}" method="POST" >
+                            <form action="{{route("order.bill.saveBill", ['bill' => $bill->id])}}" method="POST" autocomplete="off">
                             @csrf
                             @method('post')
                         @endisset
