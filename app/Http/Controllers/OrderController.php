@@ -191,13 +191,15 @@ class OrderController extends Controller
     public function label (Order $order) {
         $data = ['order' => $order, 'shipping' => ShippingOrder::where('id_order', $order->id)->first()];
         $pdf = PDF::loadView('order.label', $data);
-        return $pdf->download('Etiqueta - '.$order->id.'.pdf');
+        return $pdf->stream();
+        // return $pdf->download('Etiqueta - '.$order->id.'.pdf');
     }
 
     public function ticket (Order $order) {
         $data = ['order' => $order, 'shipping' => ShippingOrder::where('id_order', $order->id)->first()];
         $pdf = PDF::loadView('order.ticket', $data);
-        return $pdf->download('Comprobante - '.$order->id.'.pdf');
+        return $pdf->stream();
+        // return $pdf->download('Comprobante - '.$order->id.'.pdf');
     }
 
     public function productsDt ($order) {
@@ -217,7 +219,8 @@ class OrderController extends Controller
         $pdf = PDF::loadView('order.bill', [
             'order' => $order
         ]);
-        return $pdf->download('Factura - '.$order->id.'.pdf');
+        return $pdf->stream();
+        // return $pdf->download('Factura - '.$order->id.'.pdf');
         // return (new BillExport($order->id))->download('Factura'.$order->id.'.xlsx', null);
     }
 

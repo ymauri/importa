@@ -102,11 +102,11 @@ let ImpShipping = function() {
                                 <input type="hidden" name="_token" value="${token}">
                                 <input type="hidden" name="_method" value="delete">
                                 <input type="hidden" name="id_shipping_order" value="${full.id_shipping_order}">
-                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/label/${data}" data-original-title="" title="Etiqueta">
+                                <a rel="tooltip" class="btn btn-success btn-link" target="_blank" href="/order/label/${data}" data-original-title="" title="Etiqueta">
                                 <i class="material-icons">label</i>
                                 <div class="ripple-container"></div>
                                 </a>
-                                <a rel="tooltip" class="btn btn-success btn-link" href="/order/ticket/${data}" data-original-title="" title="Comprobante">
+                                <a rel="tooltip" class="btn btn-success btn-link" target="_blank" href="/order/ticket/${data}" data-original-title="" title="Comprobante">
                                 <i class="material-icons">picture_as_pdf</i>
                                 <div class="ripple-container"></div>
                                 </a>
