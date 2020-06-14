@@ -8,6 +8,7 @@ use App\Models\ShippingOrder;
 use App\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Excel;
 
 class ShippingController extends Controller
@@ -34,7 +35,18 @@ class ShippingController extends Controller
 
     public function dt()
     {
-        return datatables()->of(Shipping::all())->toJson();
+        $shipping = ShippingOrder::leftJoin('imp_shipping', 'imp_shipping.id', 'imp_shipping_orders.id_shipping')
+                            ->join('imp_order_product', 'imp_shipping_orders.id_order', 'imp_order_product.id_order')
+                            ->leftJoin('imp_product', 'imp_order_product.id_product', 'imp_product.id')
+                            ->select(
+                                'imp_shipping.id',
+                                'imp_shipping.description',
+                                DB::raw('COUNT(imp_shipping_orders.id_shipping) AS qty_orders'),
+                                DB::raw('SUM(imp_product.weight) AS weight_products'),
+                                DB::raw('SUM(imp_product.volumen) AS volumen_products'))
+                            ->groupBy('imp_shipping_orders.id_shipping')
+                            ->orderBy('imp_shipping.created_at', 'DESC');
+        return datatables()->of($shipping)->toJson();
     }
 
 

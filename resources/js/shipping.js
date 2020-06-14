@@ -26,6 +26,9 @@ let ImpShipping = function() {
                 columns: [
                     { title: 'Id', data: 'id' },
                     { title: 'Descripción', data: 'description' },
+                    { title: 'Bultos', data: 'qty_orders' },
+                    { title: 'Peso', data: 'weight_products' },
+                    { title: 'Volumen', data: 'volumen_products' },
                     { title: 'Acciones', data: 'id', width: '200px' }
                 ],
                 columnDefs: [{
