@@ -102,21 +102,28 @@ class ShippingController extends Controller
     {
         return datatables()->of(
                 ShippingOrder::join('imp_order', 'imp_order.id', 'imp_shipping_orders.id_order')
+                ->join('imp_order_product', 'imp_shipping_orders.id_order', 'imp_order_product.id_order')
+                ->leftJoin('imp_product', 'imp_order_product.id_product', 'imp_product.id')
                 ->where('id_shipping', $shipping->id)
                 ->select(
                     'imp_order.name',
                     'imp_order.last_name',
                     'imp_shipping_orders.id_order',
                     'imp_order.barcode',
-                    'imp_shipping_orders.id as id_shipping_order'
-                )) ->filterColumn('id_shipping_order', function($query, $id_shipping_order) {
+                    'imp_shipping_orders.id as id_shipping_order',
+                    DB::raw('GROUP_CONCAT(imp_product.name) AS name_products'),
+                    DB::raw('SUM(imp_product.weight) AS weight_products'),
+                    DB::raw('SUM(imp_product.volumen) AS volumen_products')
+                )->groupBy('imp_order.id')
+                ) ->filterColumn('id_shipping_order', function($query, $id_shipping_order) {
                         $query->where('imp_shipping_orders.id', $id_shipping_order);
                 })
                 ->filterColumn('name', function($query, $name) {
-                    $query->where('imp_order.name', 'like', '%'.$name.'%');
+                    $query->where('imp_order.name', 'like', '%'.$name.'%')
+                            ->orWhere('imp_order.last_name', 'like', '%'.$name.'%');
                 })
-                ->filterColumn('last_name', function($query, $last_name) {
-                    $query->where('imp_order.last_name', 'like', '%'.$last_name.'%');
+                ->filterColumn('name_products', function($query, $name_products) {
+                    $query->where('imp_product.name', 'like', '%'.$name_products.'%');
                 })
                 ->filterColumn('barcode', function($query, $barcode) {
                     $query->where('imp_order.barcode', 'like', '%'.$barcode.'%');

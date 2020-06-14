@@ -85,8 +85,11 @@ let ImpShipping = function() {
 
                 columns: [
                     { title: 'Id', data: 'id_order' },
+                    { title: 'Productos', data: 'name_products', width: "210px" },
                     { title: 'Destinatario', data: 'name' },
                     { title: 'HBL', data: 'barcode' },
+                    { title: 'Peso', data: 'weight_products', searchable: false, class: 'text-center' },
+                    { title: 'Volumen', data: 'volumen_products', searchable: false, class: 'text-center' },
                     { title: 'Eliminar', data: 'id_order' }
                 ],
                 columnDefs: [{
@@ -123,7 +126,7 @@ let ImpShipping = function() {
                         },
                     },
                     {
-                        targets: 1,
+                        targets: 2,
                         render: function(data, type, full, meta) {
                             return full.name + " " + full.last_name;
                         },
