@@ -26,10 +26,10 @@
                         <div class="col-12 text-right">
                             <button type="submit" class="btn btn-info">Guardar</button>
                             @isset($view) </form> @endisset
-                            <form method="get" style="display:inline;" action="{{ route('order.bill.excelBill', ['bill' => $bill->id]) }}" autocomplete="off" class="form-horizontal">
+                            <form method="get"  target="_blank" style="display:inline;" action="{{ route('order.bill.excelBill', ['bill' => $bill->id]) }}" autocomplete="off" class="form-horizontal">
                                 @csrf
                                 @method('post')
-                                <button type="submit" class="btn btn-success">Exportar Excel</button>
+                                <button type="submit" class="btn btn-success">Imprimir</button>
                             </form>
                         </div>
                     </div>

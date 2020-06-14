@@ -124,7 +124,8 @@ class BillController extends Controller
         $pdf = PDF::loadView('bill.bill', [
             'bill' => $bill
         ]);
-        return $pdf->download('Factura - '.$bill->id.'.pdf');
+        return $pdf->strim();
+        // return $pdf->download('Factura - '.$bill->id.'.pdf');
         // return (new BillEnterpriseExport($bill->id))->download('Factura '.$bill->id.'.pdf');
     }
 
