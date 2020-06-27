@@ -35,8 +35,8 @@ class ShippingController extends Controller
 
     public function dt()
     {
-        $shipping = ShippingOrder::leftJoin('imp_shipping', 'imp_shipping.id', 'imp_shipping_orders.id_shipping')
-                            ->join('imp_order_product', 'imp_shipping_orders.id_order', 'imp_order_product.id_order')
+        $shipping = Shipping::leftJoin("imp_shipping_orders", 'imp_shipping.id', 'imp_shipping_orders.id_shipping')
+                            ->leftJoin('imp_order_product', 'imp_shipping_orders.id_order', 'imp_order_product.id_order')
                             ->leftJoin('imp_product', 'imp_order_product.id_product', 'imp_product.id')
                             ->select(
                                 'imp_shipping.id',
@@ -44,7 +44,7 @@ class ShippingController extends Controller
                                 DB::raw('COUNT(imp_shipping_orders.id_shipping) AS qty_orders'),
                                 DB::raw('SUM(imp_product.weight) AS weight_products'),
                                 DB::raw('SUM(imp_product.volumen) AS volumen_products'))
-                            ->groupBy('imp_shipping_orders.id_shipping')
+                            ->groupBy('imp_shipping.id')
                             ->orderBy('imp_shipping.created_at', 'DESC');
         return datatables()->of($shipping)->toJson();
     }
