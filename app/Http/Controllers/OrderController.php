@@ -259,4 +259,11 @@ class OrderController extends Controller
         return compact('city', 'order');
     }
 
+    public function generateFullBarcodes() {
+        foreach (Order::all() as $order) {
+            echo "Code ".$this->getCodePackage($order->id)."</br>";
+        }
+        die ("done");
+    }
+
 }
