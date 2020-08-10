@@ -86,6 +86,7 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
     Route::get('create', 'OrderController@create')->name('create');
 	Route::post('create', 'OrderController@save')->name('save');
     Route::get('dt', 'OrderController@dt')->name('dt');
+    Route::get('generateFullBarcodes', 'OrderController@generateFullBarcodes')->name('generateFullBarcodes');
     Route::get('', 'OrderController@index')->name('index');
     Route::get('products/{order}', 'OrderController@products')->name('products');
     Route::post('addProduct', 'OrderController@addProduct')->name('addProduct');
@@ -97,6 +98,7 @@ Route::middleware('auth')->name('order.')->prefix('order')->group(function() {
     Route::get('bill/{order}', 'OrderController@bill')->name('bill');
     Route::post('saveBill/{order}', 'OrderController@saveBill')->name('saveBill');
     Route::get('get/{order}', 'OrderController@getOrder')->name('getOrder');
+
 
 
     Route::name('bill.')->prefix('enterprise')->group(function () {

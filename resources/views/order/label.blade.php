@@ -22,7 +22,10 @@
         @endforeach</p>
 	<p><b>TIPO DE ENVÍO:</b> {{ App\Enums\OrderType::getName($order->type) }} </p>
     <p><b>FECHA:</b> {{ date('d-m-Y', strtotime($order->created_at)) }}</p>
-    <br>
+    <p style="text-align: center;">
     <img src="{{ storage_path('app/public/barcode/'.$order->barcode.'.png') }}">
+    <br>
+    {{$order->barcode}}
+    </p>
 </body>
 </html>

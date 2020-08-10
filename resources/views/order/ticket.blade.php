@@ -96,7 +96,11 @@
                     <!--<p style="font-weight:bold;">ORDEN: {$order->ID_ORDER}</p>-->
                     <p style="font-weight:bold;">PAQUETE: {{ $order->id }}</p>
                     <p>FECHA: {{ date_format($order->updated_at, 'd-m-Y') }}</p>
-                    <p><img src="{{ storage_path('app/public/barcode/'.$order->barcode.'.png') }}"></p>
+                    <p style="text-align: center;">
+                        <img src="{{ storage_path('app/public/barcode/'.$order->barcode.'.png') }}">
+                        <br>
+                        {{$order->barcode}}
+                        </p>
                 </td>
             </tr>
         </table>
